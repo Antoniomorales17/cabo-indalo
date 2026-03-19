@@ -38,24 +38,37 @@ export const config = {
 };
 
 export default async function handler(req: any, res: any) {
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    return res.status(405).json({ ok: false, message: 'Method not allowed' });
-  }
-
-  const resendApiKey = process.env['RESEND_API_KEY'];
-  if (!resendApiKey) {
-    return res.status(500).json({ ok: false, message: 'Missing RESEND_API_KEY' });
-  }
-
-  const body = parseBody(req.body);
-  const travelers = Array.isArray(body.travelers) ? body.travelers : [];
-
-  if (!travelers.length) {
-    return res.status(400).json({ ok: false, message: 'No travelers provided' });
-  }
-
   try {
+    if (req.method === 'GET') {
+      return res.status(200).json({
+        ok: true,
+        service: 'send-travelers',
+        timestamp: new Date().toISOString(),
+        env: {
+          resendApiKey: Boolean(process.env['RESEND_API_KEY']),
+          resendFromEmail: process.env['RESEND_FROM_EMAIL'] || '',
+          travelersToEmail: process.env['TRAVELERS_TO_EMAIL'] || '',
+        },
+      });
+    }
+
+    if (req.method !== 'POST') {
+      res.setHeader('Allow', 'GET, POST');
+      return res.status(405).json({ ok: false, message: 'Method not allowed' });
+    }
+
+    const resendApiKey = process.env['RESEND_API_KEY'];
+    if (!resendApiKey) {
+      return res.status(500).json({ ok: false, message: 'Missing RESEND_API_KEY' });
+    }
+
+    const body = parseBody(req.body);
+    const travelers = Array.isArray(body.travelers) ? body.travelers : [];
+
+    if (!travelers.length) {
+      return res.status(400).json({ ok: false, message: 'No travelers provided' });
+    }
+
     const subject = `Registro de viajeros - ${travelers.length} personas`;
     const resendResponse = await fetch(resendApiUrl, {
       method: 'POST',
@@ -92,7 +105,8 @@ export default async function handler(req: any, res: any) {
   } catch (error) {
     console.error('send-travelers error:', error);
     const message = error instanceof Error ? error.message : 'Unexpected server error';
-    return res.status(500).json({ ok: false, message });
+    const stack = error instanceof Error ? error.stack : undefined;
+    return res.status(500).json({ ok: false, message, stack: stack ? stack.split('\n').slice(0, 3) : [] });
   }
 }
 
