@@ -1,48 +1,17 @@
-/// <reference types="node" />
-
-type TravelerAddress = {
-  direccion?: string;
-  informacionAdicional?: string;
-  pais?: string;
-  provincia?: string;
-  municipio?: string;
-};
-
-type Traveler = {
-  nombre?: string;
-  primerApellido?: string;
-  segundoApellido?: string;
-  fechaNacimiento?: string;
-  nacionalidad?: string;
-  sexo?: string;
-  tipoDocumento?: string;
-  documento?: string;
-  soporteDocumento?: string;
-  telefono?: string;
-  telefonoAdicional?: string;
-  correo?: string;
-  parentesco?: string;
-  direccionViajero?: TravelerAddress;
-};
-
-type RequestBody = {
-  travelers?: Traveler[];
-};
-
 const RESEND_API_URL = 'https://api.resend.com/emails';
 
-export default async function handler(req: any, res: any) {
+module.exports = async function handler(req, res) {
   try {
-    const method = String(req?.method || '').toUpperCase();
+    const method = String(req && req.method ? req.method : '').toUpperCase();
 
     if (method === 'GET') {
       return res.status(200).json({
         ok: true,
         service: 'send-travelers',
         env: {
-          resendApiKey: Boolean(process.env['RESEND_API_KEY']),
-          resendFromEmail: process.env['RESEND_FROM_EMAIL'] || '',
-          travelersToEmail: process.env['TRAVELERS_TO_EMAIL'] || '',
+          resendApiKey: Boolean(process.env.RESEND_API_KEY),
+          resendFromEmail: process.env.RESEND_FROM_EMAIL || '',
+          travelersToEmail: process.env.TRAVELERS_TO_EMAIL || '',
         },
       });
     }
@@ -52,15 +21,15 @@ export default async function handler(req: any, res: any) {
       return res.status(405).json({ ok: false, message: 'Method not allowed' });
     }
 
-    const resendApiKey = process.env['RESEND_API_KEY'] || '';
-    const fromEmail = process.env['RESEND_FROM_EMAIL'] || 'Cabo Indalo <onboarding@resend.dev>';
-    const toEmail = process.env['TRAVELERS_TO_EMAIL'] || 'caboindalo@gmail.com';
+    const resendApiKey = process.env.RESEND_API_KEY || '';
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'Cabo Indalo <onboarding@resend.dev>';
+    const toEmail = process.env.TRAVELERS_TO_EMAIL || 'caboindalo@gmail.com';
 
     if (!resendApiKey) {
       return res.status(500).json({ ok: false, message: 'Missing RESEND_API_KEY' });
     }
 
-    const body = parseBody(req?.body);
+    const body = parseBody(req ? req.body : null);
     const travelers = Array.isArray(body.travelers) ? body.travelers : [];
 
     if (!travelers.length) {
@@ -92,46 +61,39 @@ export default async function handler(req: any, res: any) {
           : '';
       const errorMessageFromString = typeof payload.error === 'string' ? payload.error : '';
       const message =
-        payload.message ||
-        errorMessageFromObject ||
-        errorMessageFromString ||
-        `Resend HTTP ${resendResponse.status}`;
+        payload.message || errorMessageFromObject || errorMessageFromString || `Resend HTTP ${resendResponse.status}`;
       return res.status(502).json({ ok: false, message });
     }
 
     return res.status(200).json({ ok: true, message: 'Email sent', id: payload.id || '' });
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unexpected server error';
+    const message = error && error.message ? error.message : 'Unexpected server error';
     return res.status(500).json({ ok: false, message });
   }
-}
+};
 
-function parseBody(body: unknown): RequestBody {
-  if (!body) {
-    return {};
-  }
+function parseBody(body) {
+  if (!body) return {};
   if (typeof body === 'string') {
     try {
-      return JSON.parse(body) as RequestBody;
+      return JSON.parse(body);
     } catch {
       return {};
     }
   }
-  return body as RequestBody;
+  return body;
 }
 
-function safeParse(raw: string): { id?: string; message?: string; error?: { message?: string } | string } {
-  if (!raw) {
-    return {};
-  }
+function safeParse(raw) {
+  if (!raw) return {};
   try {
-    return JSON.parse(raw) as { id?: string; message?: string; error?: { message?: string } | string };
+    return JSON.parse(raw);
   } catch {
     return {};
   }
 }
 
-function buildTextBody(travelers: Traveler[]): string {
+function buildTextBody(travelers) {
   return travelers
     .flatMap((traveler, index) => [
       `Viajero ${index + 1}`,
@@ -145,17 +107,17 @@ function buildTextBody(travelers: Traveler[]): string {
       `Telefono adicional: ${safe(traveler.telefonoAdicional)}`,
       `Correo: ${safe(traveler.correo)}`,
       `Parentesco: ${safe(traveler.parentesco)}`,
-      `Direccion: ${safe(traveler.direccionViajero?.direccion)}`,
-      `Info adicional: ${safe(traveler.direccionViajero?.informacionAdicional)}`,
-      `Pais: ${safe(traveler.direccionViajero?.pais)}`,
-      `Provincia: ${safe(traveler.direccionViajero?.provincia)}`,
-      `Municipio: ${safe(traveler.direccionViajero?.municipio)}`,
+      `Direccion: ${safe(traveler.direccionViajero && traveler.direccionViajero.direccion)}`,
+      `Info adicional: ${safe(traveler.direccionViajero && traveler.direccionViajero.informacionAdicional)}`,
+      `Pais: ${safe(traveler.direccionViajero && traveler.direccionViajero.pais)}`,
+      `Provincia: ${safe(traveler.direccionViajero && traveler.direccionViajero.provincia)}`,
+      `Municipio: ${safe(traveler.direccionViajero && traveler.direccionViajero.municipio)}`,
       '',
     ])
     .join('\n');
 }
 
-function buildHtmlBody(travelers: Traveler[]): string {
+function buildHtmlBody(travelers) {
   const rows = travelers
     .map(
       (traveler, index) => `
@@ -169,9 +131,9 @@ function buildHtmlBody(travelers: Traveler[]): string {
         <td>${escapeHtml(safe(traveler.parentesco))}</td>
         <td>${escapeHtml(safe(traveler.correo))}</td>
         <td>${escapeHtml(safe(traveler.telefono))}</td>
-        <td>${escapeHtml(safe(traveler.direccionViajero?.direccion))}</td>
-        <td>${escapeHtml(safe(traveler.direccionViajero?.provincia))}</td>
-        <td>${escapeHtml(safe(traveler.direccionViajero?.municipio))}</td>
+        <td>${escapeHtml(safe(traveler.direccionViajero && traveler.direccionViajero.direccion))}</td>
+        <td>${escapeHtml(safe(traveler.direccionViajero && traveler.direccionViajero.provincia))}</td>
+        <td>${escapeHtml(safe(traveler.direccionViajero && traveler.direccionViajero.municipio))}</td>
       </tr>
     `,
     )
@@ -204,19 +166,19 @@ function buildHtmlBody(travelers: Traveler[]): string {
   `;
 }
 
-function fullName(traveler: Traveler): string {
+function fullName(traveler) {
   return [safe(traveler.nombre), safe(traveler.primerApellido), safe(traveler.segundoApellido)]
     .filter((part) => part !== '-')
     .join(' ')
     .trim();
 }
 
-function safe(value: unknown): string {
+function safe(value) {
   const text = typeof value === 'string' ? value.trim() : '';
   return text || '-';
 }
 
-function escapeHtml(value: string): string {
+function escapeHtml(value) {
   return value
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
