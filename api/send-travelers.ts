@@ -29,48 +29,57 @@ type RequestBody = {
   travelers?: Traveler[];
 };
 
-const toEmail = process.env['TRAVELERS_TO_EMAIL'] || 'caboindalo@gmail.com';
-const fromEmail = process.env['RESEND_FROM_EMAIL'] || 'Cabo Indalo <onboarding@resend.dev>';
-const resendApiUrl = 'https://api.resend.com/emails';
+type JsonObject = Record<string, unknown>;
 
-export const config = {
-  runtime: 'nodejs',
-};
+const RESEND_API_URL = 'https://api.resend.com/emails';
 
-export default async function handler(req: any, res: any) {
+export default async function handler(req: any, res?: any) {
+  const isNodeStyle = Boolean(res && typeof res.status === 'function');
+
   try {
-    if (req.method === 'GET') {
-      return res.status(200).json({
-        ok: true,
-        service: 'send-travelers',
-        timestamp: new Date().toISOString(),
-        env: {
-          resendApiKey: Boolean(process.env['RESEND_API_KEY']),
-          resendFromEmail: process.env['RESEND_FROM_EMAIL'] || '',
-          travelersToEmail: process.env['TRAVELERS_TO_EMAIL'] || '',
+    const method = getMethod(req);
+
+    if (method === 'GET') {
+      return sendJson(
+        isNodeStyle,
+        res,
+        200,
+        {
+          ok: true,
+          service: 'send-travelers',
+          timestamp: new Date().toISOString(),
+          env: {
+            resendApiKey: Boolean(getEnv('RESEND_API_KEY')),
+            resendFromEmail: getEnv('RESEND_FROM_EMAIL'),
+            travelersToEmail: getEnv('TRAVELERS_TO_EMAIL'),
+          },
         },
-      });
+        { Allow: 'GET, POST' },
+      );
     }
 
-    if (req.method !== 'POST') {
-      res.setHeader('Allow', 'GET, POST');
-      return res.status(405).json({ ok: false, message: 'Method not allowed' });
+    if (method !== 'POST') {
+      return sendJson(isNodeStyle, res, 405, { ok: false, message: 'Method not allowed' }, { Allow: 'GET, POST' });
     }
 
-    const resendApiKey = process.env['RESEND_API_KEY'];
+    const resendApiKey = getEnv('RESEND_API_KEY');
     if (!resendApiKey) {
-      return res.status(500).json({ ok: false, message: 'Missing RESEND_API_KEY' });
+      return sendJson(isNodeStyle, res, 500, { ok: false, message: 'Missing RESEND_API_KEY' });
     }
 
-    const body = parseBody(req.body);
+    const fromEmail = getEnv('RESEND_FROM_EMAIL') || 'Cabo Indalo <onboarding@resend.dev>';
+    const toEmail = getEnv('TRAVELERS_TO_EMAIL') || 'caboindalo@gmail.com';
+
+    const body = await parseBody(req, isNodeStyle);
     const travelers = Array.isArray(body.travelers) ? body.travelers : [];
 
     if (!travelers.length) {
-      return res.status(400).json({ ok: false, message: 'No travelers provided' });
+      return sendJson(isNodeStyle, res, 400, { ok: false, message: 'No travelers provided' });
     }
 
     const subject = `Registro de viajeros - ${travelers.length} personas`;
-    const resendResponse = await fetch(resendApiUrl, {
+
+    const resendResponse = await fetch(RESEND_API_URL, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${resendApiKey}`,
@@ -85,45 +94,137 @@ export default async function handler(req: any, res: any) {
       }),
     });
 
-    const resendText = await resendResponse.text();
-    let resendPayload: { id?: string; message?: string; error?: unknown } = {};
-    try {
-      resendPayload = resendText ? (JSON.parse(resendText) as typeof resendPayload) : {};
-    } catch {
-      resendPayload = {};
-    }
+    const resendRaw = await resendResponse.text();
+    const resendPayload = safeJsonParse(resendRaw);
 
     if (!resendResponse.ok) {
-      const errorMessage =
-        resendPayload.message ||
-        (typeof resendPayload.error === 'string' ? resendPayload.error : '') ||
-        `Resend HTTP ${resendResponse.status}`;
-      return res.status(502).json({ ok: false, message: errorMessage });
+      const resendMessage = getResendErrorMessage(resendPayload, resendResponse.status);
+      return sendJson(isNodeStyle, res, 502, { ok: false, message: resendMessage });
     }
 
-    return res.status(200).json({ ok: true, message: 'Email sent', id: resendPayload.id || '' });
+    return sendJson(isNodeStyle, res, 200, {
+      ok: true,
+      message: 'Email sent',
+      id: typeof resendPayload.id === 'string' ? resendPayload.id : '',
+    });
   } catch (error) {
-    console.error('send-travelers error:', error);
     const message = error instanceof Error ? error.message : 'Unexpected server error';
-    const stack = error instanceof Error ? error.stack : undefined;
-    return res.status(500).json({ ok: false, message, stack: stack ? stack.split('\n').slice(0, 3) : [] });
+    const stack = error instanceof Error ? error.stack?.split('\n').slice(0, 3) : [];
+    return sendJson(isNodeStyle, res, 500, { ok: false, message, stack });
   }
 }
 
-function parseBody(body: unknown): RequestBody {
-  if (!body) {
+function getMethod(req: any): string {
+  const method = typeof req?.method === 'string' ? req.method : '';
+  return method.toUpperCase();
+}
+
+function getEnv(name: string): string {
+  if (typeof process === 'undefined' || !process?.env) {
+    return '';
+  }
+  return process.env[name] || '';
+}
+
+async function parseBody(req: any, isNodeStyle: boolean): Promise<RequestBody> {
+  if (isNodeStyle) {
+    return parseBodyValue(req?.body);
+  }
+
+  if (!req || typeof req.json !== 'function') {
     return {};
   }
 
-  if (typeof body === 'string') {
+  try {
+    const parsed = await req.json();
+    return parseBodyValue(parsed);
+  } catch {
+    return {};
+  }
+}
+
+function parseBodyValue(value: unknown): RequestBody {
+  if (!value) {
+    return {};
+  }
+
+  if (typeof value === 'string') {
     try {
-      return JSON.parse(body) as RequestBody;
+      return JSON.parse(value) as RequestBody;
     } catch {
       return {};
     }
   }
 
-  return body as RequestBody;
+  if (typeof value === 'object') {
+    return value as RequestBody;
+  }
+
+  return {};
+}
+
+function sendJson(
+  isNodeStyle: boolean,
+  res: any,
+  statusCode: number,
+  payload: JsonObject,
+  extraHeaders?: Record<string, string>,
+) {
+  if (isNodeStyle) {
+    if (extraHeaders) {
+      for (const [header, value] of Object.entries(extraHeaders)) {
+        res.setHeader(header, value);
+      }
+    }
+    return res.status(statusCode).json(payload);
+  }
+
+  const headers = new Headers({
+    'Content-Type': 'application/json; charset=utf-8',
+  });
+
+  if (extraHeaders) {
+    for (const [header, value] of Object.entries(extraHeaders)) {
+      headers.set(header, value);
+    }
+  }
+
+  return new Response(JSON.stringify(payload), {
+    status: statusCode,
+    headers,
+  });
+}
+
+function safeJsonParse(value: string): JsonObject {
+  if (!value) {
+    return {};
+  }
+  try {
+    return JSON.parse(value) as JsonObject;
+  } catch {
+    return {};
+  }
+}
+
+function getResendErrorMessage(payload: JsonObject, statusCode: number): string {
+  const message = typeof payload.message === 'string' ? payload.message.trim() : '';
+  if (message) {
+    return message;
+  }
+
+  const nestedError = payload.error;
+  if (typeof nestedError === 'string' && nestedError.trim()) {
+    return nestedError.trim();
+  }
+
+  if (nestedError && typeof nestedError === 'object') {
+    const nestedMessage = (nestedError as JsonObject).message;
+    if (typeof nestedMessage === 'string' && nestedMessage.trim()) {
+      return nestedMessage.trim();
+    }
+  }
+
+  return `Resend HTTP ${statusCode}`;
 }
 
 function buildTextBody(travelers: Traveler[]): string {
@@ -221,4 +322,3 @@ function escapeHtml(value: string): string {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
-
