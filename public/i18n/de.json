@@ -1,0 +1,175 @@
+{
+  "nav": {
+    "brand": "Cabo Indalo",
+    "gallery": "Galerie",
+    "services": "Leistungen",
+    "location": "Lage",
+    "form": "Formular",
+    "contact": "Kontakt",
+    "fullGallery": "Komplette Galerie",
+    "menuLabel": "Menue oeffnen",
+    "language": "Sprache"
+  },
+  "hero": {
+    "badge": "Ferienhaus in Cabo de Gata",
+    "title": "Erlebe Cabo de Gata mit Meeresruhe und Sonnenlicht",
+    "subtitle": "Eine Unterkunft zum Abschalten: nahe Buchten, helle Raeume und mediterranes Ambiente.",
+    "book": "Bei Airbnb buchen",
+    "viewGallery": "Komplette Galerie ansehen"
+  },
+  "gallery": {
+    "eyebrow": "Galerie",
+    "title": "Ein visueller Vorgeschmack auf deinen Aufenthalt",
+    "explore": "Komplette Galerie entdecken",
+    "alt": {
+      "living": "Hauptwohnzimmer mit Aussenblick",
+      "bedroom": "Hauptschlafzimmer in hellen Toenen",
+      "kitchen": "Offene Kueche in Holz und Weiss",
+      "terrace": "Terrasse mit Tisch im goldenen Licht",
+      "cozy": "Modernes Interieur mit mediterraner Dekoration",
+      "beach": "Ruhiges Meer mit sanften Wellen",
+      "sunrise": "Strand mit klarem Wasser bei Sonnenaufgang in Cabo de Gata",
+      "room": "Nebenzimmer mit Tageslicht und sanften Farben"
+    },
+    "labels": {
+      "living": "Wohnzimmer mit Aussicht",
+      "bedroom": "Schlafzimmer",
+      "kitchen": "Kueche",
+      "terrace": "Aussenterrasse",
+      "cozy": "Gemuetliches Interieur",
+      "beach": "Strand in der Naehe",
+      "sunrise": "Sonnenaufgang an der Kueste",
+      "room": "Helles Zimmer"
+    }
+  },
+  "features": {
+    "eyebrow": "Leistungen und Ausstattung",
+    "title": "Alles Wichtige fuer eine schnelle Entscheidung",
+    "wifi": { "title": "Schnelles WLAN", "text": "Gute Verbindung fuer Arbeit und Streaming." },
+    "climate": { "title": "Klimaanlage und Heizung", "text": "Komfort das ganze Jahr." },
+    "parking": { "title": "Parken", "text": "Bequeme Parkmoeglichkeiten in der Naehe." },
+    "beach": { "title": "5 Min. zum Strand", "text": "Zu Fuss in wenigen Minuten erreichbar." },
+    "pets": { "title": "Haustierfreundlich", "text": "Haustiere sind fuer Familienreisen willkommen." }
+  },
+  "location": {
+    "eyebrow": "Lage und Umgebung",
+    "title": "Calle Poseidonia 14, Cabo de Gata",
+    "nearby": "Sehenswerte Orte in der Naehe",
+    "g1": "Playa de los Genoveses",
+    "g1Time": "15 Min. mit dem Auto",
+    "g2": "Playa de Monsul",
+    "g2Time": "18 Min. mit dem Auto",
+    "g3": "Arrecife de las Sirenas",
+    "g3Time": "22 Min. mit dem Auto",
+    "g4": "Tapas-Bars in San Jose",
+    "g4Time": "8 Min. mit dem Auto",
+    "note": "Ungefaehre Zeiten je nach Verkehr und Saison.",
+    "mapTitle": "Karte Cabo Indalo"
+  },
+  "guest": {
+    "eyebrow": "Reisenden-Registrierung",
+    "title": "Daten vorbereiten, bevor sie ins Portal uebertragen werden",
+    "intro": "Formular ausfuellen, <strong>Zur Liste hinzufuegen</strong> klicken und fuer jeden Reisenden wiederholen. Die Daten werden in diesem Browser gespeichert.",
+    "travelerData": "Reisendendaten",
+    "addressData": "Adresse des Reisenden",
+    "name": "Vorname",
+    "firstSurname": "Erster Nachname",
+    "secondSurname": "Zweiter Nachname",
+    "birthDate": "Geburtsdatum",
+    "nationality": "Nationalitaet",
+    "sex": "Geschlecht",
+    "documentType": "Dokumenttyp",
+    "document": "Dokument",
+    "documentSupport": "Dokumententraeger",
+    "phone": "Telefon",
+    "phone2": "Zusaetzliches Telefon",
+    "email": "E-Mail",
+    "relationship": "Beziehung",
+    "address": "Adresse",
+    "addressExtra": "Zusaetzliche Info",
+    "country": "Land",
+    "province": "Provinz",
+    "city": "Stadt",
+    "requiredName": "Vorname ist erforderlich.",
+    "requiredFirstSurname": "Erster Nachname ist erforderlich.",
+    "requiredBirthDate": "Geburtsdatum ist erforderlich.",
+    "requiredNationality": "Nationalitaet ist erforderlich.",
+    "requiredSex": "Bitte eine Option waehlen.",
+    "requiredDocType": "Bitte Dokumenttyp waehlen.",
+    "requiredDocument": "Dokument ist erforderlich.",
+    "invalidEmail": "Bitte gueltige E-Mail eingeben.",
+    "requiredRelationship": "Bitte Beziehung waehlen.",
+    "requiredAddress": "Adresse ist erforderlich.",
+    "requiredCountry": "Land ist erforderlich.",
+    "requiredProvince": "Provinz ist erforderlich.",
+    "requiredCity": "Stadt ist erforderlich.",
+    "select": "Auswaehlen",
+    "add": "Zur Liste hinzufuegen",
+    "clearForm": "Formular leeren",
+    "listTitle": "Reisendenliste",
+    "send": "Per E-Mail senden",
+    "sending": "Senden...",
+    "sendingInfo": "Daten werden an die Cabo-Indalo-E-Mail gesendet. Das kann ein paar Sekunden dauern.",
+    "emptyList": "Noch keine Reisenden hinzugefuegt.",
+    "clearList": "Liste leeren",
+    "delete": "Loeschen",
+    "table": {
+      "name": "Name",
+      "birthDate": "Geburt",
+      "document": "Dokument",
+      "relationship": "Beziehung",
+      "city": "Stadt",
+      "actions": "Aktionen"
+    },
+    "sexOptions": { "male": "Maennlich", "female": "Weiblich", "other": "Andere" },
+    "documentTypes": { "dni": "DNI", "nie": "NIE", "passport": "Reisepass" },
+    "relationships": {
+      "holder": "Buchungsinhaber",
+      "partner": "Partner/in",
+      "child": "Kind",
+      "family": "Familienmitglied",
+      "friend": "Freund/in",
+      "other": "Andere"
+    },
+    "status": {
+      "noTravelers": "Keine Reisenden zum Senden.",
+      "sent": "E-Mail erfolgreich an caboindalo@gmail.com gesendet.",
+      "sendError": "Senden nicht moeglich. FormSubmit-Aktivierung pruefen oder erneut versuchen.",
+      "networkError": "Netzwerkfehler oder Timeout beim Senden der E-Mail."
+    }
+  },
+  "cta": {
+    "title": "Dein Cabo-de-Gata-Urlaub beginnt heute",
+    "text": "Verfuegbarkeit pruefen und in weniger als einer Minute bei Airbnb buchen.",
+    "button": "Zu Airbnb"
+  },
+  "contact": {
+    "emailTitle": "Kontakt per E-Mail",
+    "emailText": "Wir beantworten Fragen und Verfuegbarkeit.",
+    "phoneTitle": "Kontakt per Telefon",
+    "phoneText": "Anrufe und WhatsApp fuer Direktbuchungen."
+  },
+  "footer": {
+    "subtitle": "Ferienhaus in Cabo de Gata",
+    "home": "Start",
+    "gallery": "Galerie"
+  },
+  "galleryPage": {
+    "back": "Zurueck zur Startseite",
+    "eyebrow": "Komplette Galerie",
+    "title": "Entdecke jede Ecke von Cabo Indalo",
+    "subtitle": "Ausgewaehlte Bilder, die Ruhe, Licht und Meeresnaehe vermitteln.",
+    "alt": {
+      "sunrise": "Strand mit klarem Wasser bei Sonnenaufgang",
+      "living": "Grosses, helles Wohnzimmer",
+      "bedroom": "Schlafzimmer mit hellen Textilien",
+      "kitchen": "Voll ausgestattete offene Kueche",
+      "terrace": "Aussenterrasse fuer Mahlzeiten im Freien",
+      "coast": "Kueste mit sanften Wellen bei Sonnenuntergang",
+      "interior": "Modernes, gemuetliches Interieurdetail",
+      "room": "Nebenzimmer mit Tageslicht",
+      "path": "Meerblick von einem Kuestenweg"
+    }
+  }
+}
+

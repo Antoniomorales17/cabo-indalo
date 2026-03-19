@@ -5,13 +5,13 @@
         routerLink="/"
         class="inline-flex w-fit items-center rounded-lg border border-white/50 px-4 py-2 text-sm font-medium transition hover:bg-white/15"
       >
-        Volver a inicio
+        {{ 'galleryPage.back' | translate }}
       </a>
       <div>
-        <p class="text-sm font-semibold uppercase tracking-wider text-[var(--sun)]">Galeria completa</p>
-        <h1 class="mt-2 text-4xl font-bold sm:text-5xl">Descubre cada rincon de Cabo Indalo</h1>
+        <p class="text-sm font-semibold uppercase tracking-wider text-[var(--sun)]">{{ 'galleryPage.eyebrow' | translate }}</p>
+        <h1 class="mt-2 text-4xl font-bold sm:text-5xl">{{ 'galleryPage.title' | translate }}</h1>
         <p class="mt-3 max-w-2xl text-white/90">
-          Seleccion de imagenes de referencia para transmitir la experiencia de descanso, luz y cercania al mar.
+          {{ 'galleryPage.subtitle' | translate }}
         </p>
       </div>
     </div>
@@ -21,7 +21,7 @@
     <div class="columns-1 gap-4 sm:columns-2 lg:columns-3">
       @for (image of galleryImages; track image.src) {
         <figure class="mb-4 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <img [src]="image.src" [alt]="image.alt" class="w-full object-cover transition duration-300 hover:scale-[1.02]" />
+          <img [src]="image.src" [alt]="image.altKey | translate" class="w-full object-cover transition duration-300 hover:scale-[1.02]" />
         </figure>
       }
     </div>

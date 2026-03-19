@@ -1,0 +1,175 @@
+{
+  "nav": {
+    "brand": "Cabo Indalo",
+    "gallery": "Gallery",
+    "services": "Services",
+    "location": "Location",
+    "form": "Form",
+    "contact": "Contact",
+    "fullGallery": "Full gallery",
+    "menuLabel": "Open menu",
+    "language": "Language"
+  },
+  "hero": {
+    "badge": "Holiday home in Cabo de Gata",
+    "title": "Experience Cabo de Gata with sea calm and sunlight",
+    "subtitle": "A stay designed to unwind: near hidden coves, bright spaces, and a Mediterranean atmosphere.",
+    "book": "Book on Airbnb",
+    "viewGallery": "View full gallery"
+  },
+  "gallery": {
+    "eyebrow": "Gallery",
+    "title": "A visual preview of your stay",
+    "explore": "Explore full gallery",
+    "alt": {
+      "living": "Main living room with outdoor views",
+      "bedroom": "Main bedroom in light tones",
+      "kitchen": "Open kitchen in wood and white tones",
+      "terrace": "Terrace with outdoor table and golden light",
+      "cozy": "Modern interior with Mediterranean decor",
+      "beach": "Calm sea with gentle waves",
+      "sunrise": "Clear-water beach at sunrise in Cabo de Gata",
+      "room": "Secondary bedroom with natural light and soft tones"
+    },
+    "labels": {
+      "living": "Living room with views",
+      "bedroom": "Bedroom",
+      "kitchen": "Kitchen",
+      "terrace": "Outdoor terrace",
+      "cozy": "Cozy interior",
+      "beach": "Nearby beach",
+      "sunrise": "Coast sunrise",
+      "room": "Bright room"
+    }
+  },
+  "features": {
+    "eyebrow": "Services and amenities",
+    "title": "Everything you need to decide quickly",
+    "wifi": { "title": "Fast Wi-Fi", "text": "Great connection for work and streaming." },
+    "climate": { "title": "A/C and heating", "text": "Comfort all year round." },
+    "parking": { "title": "Parking", "text": "Convenient nearby parking area." },
+    "beach": { "title": "5 min from the beach", "text": "You can walk there in minutes." },
+    "pets": { "title": "Pet friendly", "text": "Pets are welcome for full-family trips." }
+  },
+  "location": {
+    "eyebrow": "Location and surroundings",
+    "title": "Calle Poseidonia 14, Cabo de Gata",
+    "nearby": "Nearby highlights",
+    "g1": "Genoveses Beach",
+    "g1Time": "15 min by car",
+    "g2": "Monsul Beach",
+    "g2Time": "18 min by car",
+    "g3": "Arrecife de las Sirenas",
+    "g3Time": "22 min by car",
+    "g4": "Tapas bars in San Jose",
+    "g4Time": "8 min by car",
+    "note": "Approximate times depending on traffic and season.",
+    "mapTitle": "Cabo Indalo map"
+  },
+  "guest": {
+    "eyebrow": "Traveler registration",
+    "title": "Prepare the data before uploading it to the portal",
+    "intro": "Complete the form, click <strong>Add to list</strong>, and repeat for each traveler. Data is saved in this browser so it is not lost on refresh.",
+    "travelerData": "Traveler details",
+    "addressData": "Traveler address",
+    "name": "First name",
+    "firstSurname": "Last name",
+    "secondSurname": "Second last name",
+    "birthDate": "Date of birth",
+    "nationality": "Nationality",
+    "sex": "Sex",
+    "documentType": "Document type",
+    "document": "Document",
+    "documentSupport": "Document support",
+    "phone": "Phone",
+    "phone2": "Additional phone",
+    "email": "Email",
+    "relationship": "Relationship",
+    "address": "Address",
+    "addressExtra": "Additional info",
+    "country": "Country",
+    "province": "Province",
+    "city": "City",
+    "requiredName": "First name is required.",
+    "requiredFirstSurname": "Last name is required.",
+    "requiredBirthDate": "Date of birth is required.",
+    "requiredNationality": "Nationality is required.",
+    "requiredSex": "Select an option.",
+    "requiredDocType": "Select a document type.",
+    "requiredDocument": "Document is required.",
+    "invalidEmail": "Enter a valid email.",
+    "requiredRelationship": "Select a relationship.",
+    "requiredAddress": "Address is required.",
+    "requiredCountry": "Country is required.",
+    "requiredProvince": "Province is required.",
+    "requiredCity": "City is required.",
+    "select": "Select",
+    "add": "Add to list",
+    "clearForm": "Clear form",
+    "listTitle": "Traveler list",
+    "send": "Send by email",
+    "sending": "Sending...",
+    "sendingInfo": "Sending data to Cabo Indalo email. This may take a few seconds.",
+    "emptyList": "No travelers added yet.",
+    "clearList": "Clear list",
+    "delete": "Delete",
+    "table": {
+      "name": "Name",
+      "birthDate": "Birth date",
+      "document": "Document",
+      "relationship": "Relationship",
+      "city": "City",
+      "actions": "Actions"
+    },
+    "sexOptions": { "male": "Male", "female": "Female", "other": "Other" },
+    "documentTypes": { "dni": "ID", "nie": "NIE", "passport": "Passport" },
+    "relationships": {
+      "holder": "Booking holder",
+      "partner": "Spouse or partner",
+      "child": "Child",
+      "family": "Family member",
+      "friend": "Friend",
+      "other": "Other"
+    },
+    "status": {
+      "noTravelers": "No travelers to send.",
+      "sent": "Email sent successfully to caboindalo@gmail.com.",
+      "sendError": "Could not send. Check FormSubmit activation or try again.",
+      "networkError": "Network error or timeout while sending email."
+    }
+  },
+  "cta": {
+    "title": "Your Cabo de Gata escape starts today",
+    "text": "Check availability and book on Airbnb in under a minute.",
+    "button": "Go to Airbnb"
+  },
+  "contact": {
+    "emailTitle": "Contact by email",
+    "emailText": "We answer questions and availability requests.",
+    "phoneTitle": "Contact by phone",
+    "phoneText": "Calls and WhatsApp for direct booking."
+  },
+  "footer": {
+    "subtitle": "Holiday home in Cabo de Gata",
+    "home": "Home",
+    "gallery": "Gallery"
+  },
+  "galleryPage": {
+    "back": "Back to home",
+    "eyebrow": "Full gallery",
+    "title": "Discover every corner of Cabo Indalo",
+    "subtitle": "A curated image selection to showcase rest, light, and closeness to the sea.",
+    "alt": {
+      "sunrise": "Clear-water beach at sunrise",
+      "living": "Spacious and bright living room",
+      "bedroom": "Bedroom with light textiles",
+      "kitchen": "Fully equipped open kitchen",
+      "terrace": "Outdoor terrace for open-air meals",
+      "coast": "Coastline with soft waves at sunset",
+      "interior": "Cozy modern interior detail",
+      "room": "Secondary room with natural light",
+      "path": "Sea views from a coastal path"
+    }
+  }
+}
+

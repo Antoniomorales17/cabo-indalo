@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { RevealOnScrollDirective } from '../../directives/reveal-on-scroll.directive';
 
 interface TravelerAddress {
   direccion: string;
@@ -29,27 +31,30 @@ interface Traveler {
 }
 
 const STORAGE_KEY = 'cabo-indalo-viajeros';
-const EMAIL_API_URL = '/api/send-travelers';
+// Temporal fallback: use FormSubmit until domain + Resend are fully configured in production.
+// const EMAIL_API_URL = '/api/send-travelers';
+const EMAIL_API_URL = 'https://formsubmit.co/ajax/caboindalo@gmail.com';
 
 @Component({
   selector: 'app-guest-registration-section',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslatePipe, RevealOnScrollDirective],
   templateUrl: './guest-registration-section.component.html',
 })
 export class GuestRegistrationSectionComponent {
   private readonly fb = inject(NonNullableFormBuilder);
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly translate = inject(TranslateService);
   private readonly isBrowser = typeof window !== 'undefined' && typeof localStorage !== 'undefined';
 
-  protected readonly sexOptions = ['Hombre', 'Mujer', 'Otro'];
-  protected readonly documentTypeOptions = ['DNI', 'NIE', 'Pasaporte'];
+  protected readonly sexOptions = ['male', 'female', 'other'];
+  protected readonly documentTypeOptions = ['dni', 'nie', 'passport'];
   protected readonly relationshipOptions = [
-    'Titular de la reserva',
-    'Conyuge o pareja',
-    'Hijo/a',
-    'Familiar',
-    'Amigo/a',
-    'Otro',
+    'holder',
+    'partner',
+    'child',
+    'family',
+    'friend',
+    'other',
   ];
 
   protected readonly travelerForm = this.fb.group({
@@ -113,7 +118,7 @@ export class GuestRegistrationSectionComponent {
 
   protected async sendByEmail(): Promise<void> {
     if (!this.travelers.length) {
-      this.setEmailStatus('error', 'No hay viajeros para enviar.');
+      this.setEmailStatus('error', this.translate.instant('guest.status.noTravelers'));
       return;
     }
 
@@ -133,7 +138,10 @@ export class GuestRegistrationSectionComponent {
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          travelers: this.travelers,
+          _subject: `Registro de viajeros - ${this.travelers.length} personas`,
+          _template: 'table',
+          _captcha: 'false',
+          mensaje: this.buildEmailBody(),
         }),
       });
 
@@ -141,16 +149,16 @@ export class GuestRegistrationSectionComponent {
         const errorPayload = (await response.json().catch(() => null)) as { message?: string } | null;
         this.setEmailStatus(
           'error',
-          errorPayload?.message || 'No se pudo enviar el correo desde el servidor.',
+          errorPayload?.message || this.translate.instant('guest.status.sendError'),
         );
         this.cdr.markForCheck();
         return;
       }
 
-      this.setEmailStatus('ok', 'Correo enviado correctamente a caboindalo@gmail.com.');
+      this.setEmailStatus('ok', this.translate.instant('guest.status.sent'));
       this.cdr.markForCheck();
     } catch {
-      this.setEmailStatus('error', 'Fallo de red o timeout al enviar el correo.');
+      this.setEmailStatus('error', this.translate.instant('guest.status.networkError'));
       this.cdr.markForCheck();
     } finally {
       clearTimeout(timeoutId);
@@ -225,6 +233,32 @@ export class GuestRegistrationSectionComponent {
     }
 
     return `traveler-${Date.now()}-${Math.round(Math.random() * 1_000_000)}`;
+  }
+
+  private buildEmailBody(): string {
+    const lines = this.travelers.flatMap((traveler, index) => {
+      return [
+        `Viajero ${index + 1}`,
+        `Nombre: ${traveler.nombre} ${traveler.primerApellido} ${traveler.segundoApellido}`.trim(),
+        `Fecha nacimiento: ${traveler.fechaNacimiento}`,
+        `Nacionalidad: ${traveler.nacionalidad}`,
+        `Sexo: ${traveler.sexo}`,
+        `Documento: ${traveler.tipoDocumento} ${traveler.documento}`,
+        `Soporte documento: ${traveler.soporteDocumento || '-'}`,
+        `Telefono: ${traveler.telefono || '-'}`,
+        `Telefono adicional: ${traveler.telefonoAdicional || '-'}`,
+        `Correo: ${traveler.correo || '-'}`,
+        `Parentesco: ${traveler.parentesco}`,
+        `Direccion: ${traveler.direccionViajero.direccion}`,
+        `Info adicional: ${traveler.direccionViajero.informacionAdicional || '-'}`,
+        `Pais: ${traveler.direccionViajero.pais}`,
+        `Provincia: ${traveler.direccionViajero.provincia}`,
+        `Municipio: ${traveler.direccionViajero.municipio}`,
+        '',
+      ];
+    });
+
+    return lines.join('\n');
   }
 
   private setEmailStatus(kind: 'ok' | 'error' | '', message: string): void {

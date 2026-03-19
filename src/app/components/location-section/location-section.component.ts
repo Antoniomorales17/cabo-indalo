@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
+import { RevealOnScrollDirective } from '../../directives/reveal-on-scroll.directive';
 
 @Component({
   selector: 'app-location-section',
-  imports: [],
+  imports: [TranslatePipe, RevealOnScrollDirective],
   templateUrl: './location-section.component.html',
 })
 export class LocationSectionComponent {}

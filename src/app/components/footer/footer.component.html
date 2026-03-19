@@ -3,22 +3,22 @@
     <div class="flex items-center gap-3">
       <img
         src="/cabo-indalo.png"
-        alt="Logo Cabo Indalo"
+        [alt]="'nav.brand' | translate"
         class="h-11 w-11 rounded-full border border-[var(--sea)]/30 object-cover"
       />
       <div>
-        <p class="font-semibold text-[var(--sea-dark)]">Cabo Indalo</p>
-        <p class="text-sm text-slate-500">Casa turistica en Cabo de Gata</p>
+        <p class="font-semibold text-[var(--sea-dark)]">{{ 'nav.brand' | translate }}</p>
+        <p class="text-sm text-slate-500">{{ 'footer.subtitle' | translate }}</p>
       </div>
     </div>
     <nav class="flex flex-wrap items-center gap-5 text-sm font-medium text-slate-600">
-      <a routerLink="/" class="transition hover:text-[var(--sea-dark)]">Inicio</a>
-      <a routerLink="/galeria" class="transition hover:text-[var(--sea-dark)]">Galeria</a>
+
+      <a routerLink="/galeria" class="transition hover:text-[var(--sea-dark)]">{{ 'footer.gallery' | translate }}</a>
       <a href="https://www.airbnb.es/" target="_blank" rel="noopener noreferrer" class="transition hover:text-[var(--sea-dark)]">
         Airbnb
       </a>
       <a href="mailto:caboindalo@gmail.com" class="transition hover:text-[var(--sea-dark)]">caboindalo@gmail.com</a>
-      <a href="tel:+34600000000" class="transition hover:text-[var(--sea-dark)]">+34 600 000 000</a>
+      <a href="tel:+34647664536" class="transition hover:text-[var(--sea-dark)]">+34 647 664 536</a>
     </nav>
   </div>
 </footer>

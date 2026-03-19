@@ -34,3 +34,25 @@ h4 {
   font-family: var(--font-display);
   letter-spacing: -0.01em;
 }
+
+.reveal-enter {
+  opacity: 0;
+  transform: translateY(22px) scale(0.985);
+  transition:
+    opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-enter.reveal-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-enter {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

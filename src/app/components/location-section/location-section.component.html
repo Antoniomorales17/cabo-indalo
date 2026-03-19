@@ -1,10 +1,12 @@
 <section id="ubicacion" class="mx-auto max-w-7xl scroll-mt-24 px-6 py-20 sm:px-10">
-  <p class="text-sm font-semibold uppercase tracking-wider text-[var(--sea-dark)]">Ubicacion y entorno</p>
-  <h2 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">Calle Poseidonia 14, Cabo de Gata</h2>
+  <div appRevealOnScroll>
+    <p class="text-sm font-semibold uppercase tracking-wider text-[var(--sea-dark)]">{{ 'location.eyebrow' | translate }}</p>
+    <h2 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">{{ 'location.title' | translate }}</h2>
+  </div>
   <div class="mt-10 grid gap-6 lg:grid-cols-2">
     <div class="overflow-hidden rounded-2xl border border-[var(--sea)]/15 bg-white shadow-sm">
       <iframe
-        title="Mapa de Cabo Indalo"
+        [title]="'location.mapTitle' | translate"
         src="https://www.google.com/maps?q=Calle+Poseidonia+14,+Cabo+de+Gata,+Almeria&output=embed"
         class="h-[360px] w-full"
         loading="lazy"
@@ -12,26 +14,26 @@
       ></iframe>
     </div>
     <div class="rounded-2xl border border-[var(--sea)]/15 bg-white p-6 shadow-sm">
-      <h3 class="text-xl font-semibold text-slate-900">Puntos de interes cercanos</h3>
+      <h3 class="text-xl font-semibold text-slate-900">{{ 'location.nearby' | translate }}</h3>
       <ul class="mt-5 space-y-3 text-sm text-slate-700">
         <li class="flex items-start justify-between gap-3 border-b border-slate-100 pb-3">
-          <span>Playa de los Genoveses</span>
-          <strong class="text-[var(--sea-dark)]">15 min en coche</strong>
+          <span>{{ 'location.g1' | translate }}</span>
+          <strong class="text-[var(--sea-dark)]">{{ 'location.g1Time' | translate }}</strong>
         </li>
         <li class="flex items-start justify-between gap-3 border-b border-slate-100 pb-3">
-          <span>Playa de Monsul</span>
-          <strong class="text-[var(--sea-dark)]">18 min en coche</strong>
+          <span>{{ 'location.g2' | translate }}</span>
+          <strong class="text-[var(--sea-dark)]">{{ 'location.g2Time' | translate }}</strong>
         </li>
         <li class="flex items-start justify-between gap-3 border-b border-slate-100 pb-3">
-          <span>Arrecife de las Sirenas</span>
-          <strong class="text-[var(--sea-dark)]">22 min en coche</strong>
+          <span>{{ 'location.g3' | translate }}</span>
+          <strong class="text-[var(--sea-dark)]">{{ 'location.g3Time' | translate }}</strong>
         </li>
         <li class="flex items-start justify-between gap-3">
-          <span>Bares de tapas en San Jose</span>
-          <strong class="text-[var(--sea-dark)]">8 min en coche</strong>
+          <span>{{ 'location.g4' | translate }}</span>
+          <strong class="text-[var(--sea-dark)]">{{ 'location.g4Time' | translate }}</strong>
         </li>
       </ul>
-      <p class="mt-5 text-xs text-slate-500">Tiempos orientativos segun trafico y temporada.</p>
+      <p class="mt-5 text-xs text-slate-500">{{ 'location.note' | translate }}</p>
     </div>
   </div>
 </section>
