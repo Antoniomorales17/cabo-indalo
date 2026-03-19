@@ -31,9 +31,7 @@ interface Traveler {
 }
 
 const STORAGE_KEY = 'cabo-indalo-viajeros';
-// Temporal fallback: use FormSubmit until domain + Resend are fully configured in production.
-// const EMAIL_API_URL = '/api/send-travelers';
-const EMAIL_API_URL = 'https://formsubmit.co/ajax/caboindalo@gmail.com';
+const EMAIL_API_URL = '/api/send-travelers';
 
 @Component({
   selector: 'app-guest-registration-section',
@@ -138,10 +136,7 @@ export class GuestRegistrationSectionComponent {
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          _subject: `Registro de viajeros - ${this.travelers.length} personas`,
-          _template: 'table',
-          _captcha: 'false',
-          mensaje: this.buildEmailBody(),
+          travelers: this.travelers,
         }),
       });
 
@@ -235,34 +230,9 @@ export class GuestRegistrationSectionComponent {
     return `traveler-${Date.now()}-${Math.round(Math.random() * 1_000_000)}`;
   }
 
-  private buildEmailBody(): string {
-    const lines = this.travelers.flatMap((traveler, index) => {
-      return [
-        `Viajero ${index + 1}`,
-        `Nombre: ${traveler.nombre} ${traveler.primerApellido} ${traveler.segundoApellido}`.trim(),
-        `Fecha nacimiento: ${traveler.fechaNacimiento}`,
-        `Nacionalidad: ${traveler.nacionalidad}`,
-        `Sexo: ${traveler.sexo}`,
-        `Documento: ${traveler.tipoDocumento} ${traveler.documento}`,
-        `Soporte documento: ${traveler.soporteDocumento || '-'}`,
-        `Telefono: ${traveler.telefono || '-'}`,
-        `Telefono adicional: ${traveler.telefonoAdicional || '-'}`,
-        `Correo: ${traveler.correo || '-'}`,
-        `Parentesco: ${traveler.parentesco}`,
-        `Direccion: ${traveler.direccionViajero.direccion}`,
-        `Info adicional: ${traveler.direccionViajero.informacionAdicional || '-'}`,
-        `Pais: ${traveler.direccionViajero.pais}`,
-        `Provincia: ${traveler.direccionViajero.provincia}`,
-        `Municipio: ${traveler.direccionViajero.municipio}`,
-        '',
-      ];
-    });
-
-    return lines.join('\n');
-  }
-
   private setEmailStatus(kind: 'ok' | 'error' | '', message: string): void {
     this.emailStatusKind = kind;
     this.emailStatus = message;
   }
 }
+

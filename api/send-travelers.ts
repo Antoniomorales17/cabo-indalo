@@ -31,8 +31,8 @@ type RequestBody = {
   travelers?: Traveler[];
 };
 
-const toEmail = process.env.TRAVELERS_TO_EMAIL || 'caboindalo@gmail.com';
-const fromEmail = process.env.RESEND_FROM_EMAIL || 'Cabo Indalo <onboarding@resend.dev>';
+const toEmail = process.env['TRAVELERS_TO_EMAIL'] || 'caboindalo@gmail.com';
+const fromEmail = process.env['RESEND_FROM_EMAIL'] || 'Cabo Indalo <onboarding@resend.dev>';
 
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
@@ -40,7 +40,8 @@ export default async function handler(req: any, res: any) {
     return res.status(405).json({ ok: false, message: 'Method not allowed' });
   }
 
-  if (!process.env.RESEND_API_KEY) {
+  const resendApiKey = process.env['RESEND_API_KEY'];
+  if (!resendApiKey) {
     return res.status(500).json({ ok: false, message: 'Missing RESEND_API_KEY' });
   }
 
@@ -52,7 +53,7 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const resend = new Resend(resendApiKey);
     const subject = `Registro de viajeros - ${travelers.length} personas`;
 
     const emailResult = await resend.emails.send({
@@ -185,3 +186,4 @@ function escapeHtml(value: string): string {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
+
