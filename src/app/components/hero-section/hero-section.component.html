@@ -1,0 +1,193 @@
+<section id="inicio" class="relative min-h-[88vh] scroll-mt-24 overflow-hidden">
+  <img
+    src="https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format&fit=crop&w=2200&q=80"
+    alt="Costa de Cabo de Gata con aguas azules"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <div class="absolute inset-0 bg-gradient-to-r from-[var(--sea-dark)]/90 via-[var(--sea-dark)]/65 to-[var(--sea)]/50"></div>
+
+  <header
+    class="fixed inset-x-0 top-0 z-30 backdrop-blur transition-colors duration-300"
+    [class.border-b]="hasScrolled"
+    [class.border-slate-200]="hasScrolled"
+    [class.bg-white/95]="hasScrolled"
+    [class.border-white/20]="!hasScrolled"
+    [class.bg-[var(--sea-dark)]/70]="!hasScrolled"
+  >
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-10">
+      <a
+        href="#inicio"
+        (click)="closeMobileMenu()"
+        class="inline-flex items-center gap-2 rounded-full px-3 py-2 backdrop-blur transition-colors sm:gap-2.5 sm:px-4 sm:py-2.5"
+        [class.border]="true"
+        [class.border-slate-300]="hasScrolled"
+        [class.bg-white]="hasScrolled"
+        [class.border-white/35]="!hasScrolled"
+        [class.bg-white/15]="!hasScrolled"
+      >
+        <img src="/cabo-indalo.png" alt="Logo Cabo Indalo" class="h-10 w-auto sm:h-11" />
+        <span class="text-base font-semibold" [class.text-slate-900]="hasScrolled" [class.text-white]="!hasScrolled">Cabo Indalo</span>
+      </a>
+
+      <nav class="hidden items-center gap-5 sm:flex">
+        <a
+          href="#galeria"
+          class="text-sm font-semibold transition"
+          [class.text-slate-700]="hasScrolled"
+          [class.hover:text-slate-900]="hasScrolled"
+          [class.text-white/90]="!hasScrolled"
+          [class.hover:text-white]="!hasScrolled"
+        >Galeria</a>
+        <a
+          href="#servicios"
+          class="text-sm font-semibold transition"
+          [class.text-slate-700]="hasScrolled"
+          [class.hover:text-slate-900]="hasScrolled"
+          [class.text-white/90]="!hasScrolled"
+          [class.hover:text-white]="!hasScrolled"
+        >Servicios</a>
+        <a
+          href="#ubicacion"
+          class="text-sm font-semibold transition"
+          [class.text-slate-700]="hasScrolled"
+          [class.hover:text-slate-900]="hasScrolled"
+          [class.text-white/90]="!hasScrolled"
+          [class.hover:text-white]="!hasScrolled"
+        >Ubicacion</a>
+        <a
+          href="#registro-viajeros"
+          class="text-sm font-semibold transition"
+          [class.text-slate-700]="hasScrolled"
+          [class.hover:text-slate-900]="hasScrolled"
+          [class.text-white/90]="!hasScrolled"
+          [class.hover:text-white]="!hasScrolled"
+        >Formulario</a>
+        <a
+          href="#contacto"
+          class="text-sm font-semibold transition"
+          [class.text-slate-700]="hasScrolled"
+          [class.hover:text-slate-900]="hasScrolled"
+          [class.text-white/90]="!hasScrolled"
+          [class.hover:text-white]="!hasScrolled"
+        >Contacto</a>
+        <a
+          routerLink="/galeria"
+          class="inline-flex rounded-full border px-4 py-2 text-sm font-semibold transition"
+          [class.border-slate-300]="hasScrolled"
+          [class.text-slate-800]="hasScrolled"
+          [class.hover:bg-slate-100]="hasScrolled"
+          [class.border-white/60]="!hasScrolled"
+          [class.text-white]="!hasScrolled"
+          [class.hover:bg-white/15]="!hasScrolled"
+        >
+          Galeria completa
+        </a>
+      </nav>
+
+      <button
+        type="button"
+        (click)="toggleMobileMenu()"
+        class="inline-flex items-center justify-center rounded-lg border p-2 transition sm:hidden"
+        [class.border-slate-300]="hasScrolled"
+        [class.bg-white]="hasScrolled"
+        [class.text-slate-700]="hasScrolled"
+        [class.border-white/45]="!hasScrolled"
+        [class.bg-white/10]="!hasScrolled"
+        [class.text-white]="!hasScrolled"
+        [attr.aria-expanded]="isMobileMenuOpen"
+        aria-label="Abrir menu"
+      >
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+
+    <nav
+      [class.hidden]="!isMobileMenuOpen"
+      class="border-t px-4 py-3 sm:hidden"
+      [class.border-slate-200]="hasScrolled"
+      [class.bg-white]="hasScrolled"
+      [class.border-white/20]="!hasScrolled"
+      [class.bg-[var(--sea-dark)]/95]="!hasScrolled"
+    >
+      <div class="flex flex-col gap-2">
+        <a
+          href="#galeria"
+          (click)="closeMobileMenu()"
+          class="rounded-lg px-3 py-2 text-sm font-semibold transition"
+          [class.text-slate-800]="hasScrolled"
+          [class.hover:bg-slate-100]="hasScrolled"
+          [class.text-white/90]="!hasScrolled"
+          [class.hover:bg-white/10]="!hasScrolled"
+        >Galeria</a>
+        <a
+          href="#servicios"
+          (click)="closeMobileMenu()"
+          class="rounded-lg px-3 py-2 text-sm font-semibold transition"
+          [class.text-slate-800]="hasScrolled"
+          [class.hover:bg-slate-100]="hasScrolled"
+          [class.text-white/90]="!hasScrolled"
+          [class.hover:bg-white/10]="!hasScrolled"
+        >Servicios</a>
+        <a
+          href="#ubicacion"
+          (click)="closeMobileMenu()"
+          class="rounded-lg px-3 py-2 text-sm font-semibold transition"
+          [class.text-slate-800]="hasScrolled"
+          [class.hover:bg-slate-100]="hasScrolled"
+          [class.text-white/90]="!hasScrolled"
+          [class.hover:bg-white/10]="!hasScrolled"
+        >Ubicacion</a>
+        <a
+          href="#registro-viajeros"
+          (click)="closeMobileMenu()"
+          class="rounded-lg px-3 py-2 text-sm font-semibold transition"
+          [class.text-slate-800]="hasScrolled"
+          [class.hover:bg-slate-100]="hasScrolled"
+          [class.text-white/90]="!hasScrolled"
+          [class.hover:bg-white/10]="!hasScrolled"
+        >Formulario</a>
+        <a
+          href="#contacto"
+          (click)="closeMobileMenu()"
+          class="rounded-lg px-3 py-2 text-sm font-semibold transition"
+          [class.text-slate-800]="hasScrolled"
+          [class.hover:bg-slate-100]="hasScrolled"
+          [class.text-white/90]="!hasScrolled"
+          [class.hover:bg-white/10]="!hasScrolled"
+        >Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="relative z-10 mx-auto flex min-h-[72vh] w-full max-w-7xl items-center px-6 pb-12 pt-24 sm:px-10 sm:pt-28">
+    <div class="max-w-3xl text-white">
+      <p class="mb-4 inline-flex rounded-full bg-white/20 px-4 py-1 text-sm font-medium backdrop-blur">
+        Casa Turistica en Cabo de Gata
+      </p>
+      <h1 class="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+        Vive Cabo de Gata con la calma del mar y la luz del sol
+      </h1>
+      <p class="mt-6 max-w-2xl text-base text-white/90 sm:text-lg">
+        Un alojamiento pensado para desconectar: cerca de las calas, con espacios luminosos y ambiente mediterraneo.
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a
+          href="https://www.airbnb.es/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-xl bg-[var(--sun)] px-7 py-3 text-base font-semibold text-slate-900 transition hover:bg-[var(--sun-soft)]"
+        >
+          Reservar en Airbnb
+        </a>
+        <a
+          routerLink="/galeria"
+          class="hidden items-center justify-center rounded-xl border border-white/65 px-7 py-3 text-base font-semibold text-white transition hover:bg-white/15 sm:inline-flex"
+        >
+          Ver galeria completa
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
