@@ -1,7 +1,5 @@
 /// <reference types="node" />
 
-import { Resend } from 'resend';
-
 type TravelerAddress = {
   direccion?: string;
   informacionAdicional?: string;
@@ -33,6 +31,11 @@ type RequestBody = {
 
 const toEmail = process.env['TRAVELERS_TO_EMAIL'] || 'caboindalo@gmail.com';
 const fromEmail = process.env['RESEND_FROM_EMAIL'] || 'Cabo Indalo <onboarding@resend.dev>';
+const resendApiUrl = 'https://api.resend.com/emails';
+
+export const config = {
+  runtime: 'nodejs',
+};
 
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
@@ -53,23 +56,41 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const resend = new Resend(resendApiKey);
     const subject = `Registro de viajeros - ${travelers.length} personas`;
-
-    const emailResult = await resend.emails.send({
-      from: fromEmail,
-      to: [toEmail],
-      subject,
-      text: buildTextBody(travelers),
-      html: buildHtmlBody(travelers),
+    const resendResponse = await fetch(resendApiUrl, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${resendApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: fromEmail,
+        to: [toEmail],
+        subject,
+        text: buildTextBody(travelers),
+        html: buildHtmlBody(travelers),
+      }),
     });
 
-    if (emailResult.error) {
-      return res.status(502).json({ ok: false, message: emailResult.error.message || 'Resend send error' });
+    const resendText = await resendResponse.text();
+    let resendPayload: { id?: string; message?: string; error?: unknown } = {};
+    try {
+      resendPayload = resendText ? (JSON.parse(resendText) as typeof resendPayload) : {};
+    } catch {
+      resendPayload = {};
     }
 
-    return res.status(200).json({ ok: true, message: 'Email sent', id: emailResult.data?.id || '' });
+    if (!resendResponse.ok) {
+      const errorMessage =
+        resendPayload.message ||
+        (typeof resendPayload.error === 'string' ? resendPayload.error : '') ||
+        `Resend HTTP ${resendResponse.status}`;
+      return res.status(502).json({ ok: false, message: errorMessage });
+    }
+
+    return res.status(200).json({ ok: true, message: 'Email sent', id: resendPayload.id || '' });
   } catch (error) {
+    console.error('send-travelers error:', error);
     const message = error instanceof Error ? error.message : 'Unexpected server error';
     return res.status(500).json({ ok: false, message });
   }
