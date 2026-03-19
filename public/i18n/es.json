@@ -134,7 +134,7 @@
     "status": {
       "noTravelers": "No hay viajeros para enviar.",
       "sent": "Correo enviado correctamente a caboindalo@gmail.com.",
-      "sendError": "No se pudo enviar. Revisa activacion de FormSubmit o intenta de nuevo.",
+      "sendError": "No se pudo enviar. Revisa la configuracion de Resend o intenta de nuevo.",
       "networkError": "Fallo de red o timeout al enviar el correo."
     }
   },

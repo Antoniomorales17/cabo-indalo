@@ -134,7 +134,7 @@
     "status": {
       "noTravelers": "Keine Reisenden zum Senden.",
       "sent": "E-Mail erfolgreich an caboindalo@gmail.com gesendet.",
-      "sendError": "Senden nicht moeglich. FormSubmit-Aktivierung pruefen oder erneut versuchen.",
+      "sendError": "Senden nicht moeglich. Resend-Konfiguration pruefen oder erneut versuchen.",
       "networkError": "Netzwerkfehler oder Timeout beim Senden der E-Mail."
     }
   },

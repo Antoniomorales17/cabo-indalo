@@ -141,10 +141,25 @@ export class GuestRegistrationSectionComponent {
       });
 
       if (!response.ok) {
-        const errorPayload = (await response.json().catch(() => null)) as { message?: string } | null;
+        const rawResponse = await response.text();
+        let backendMessage = '';
+        try {
+          const parsed = JSON.parse(rawResponse) as { message?: string };
+          backendMessage = typeof parsed.message === 'string' ? parsed.message.trim() : '';
+        } catch {
+          backendMessage = '';
+        }
+
+        if (!backendMessage) {
+          const plainResponse = rawResponse.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+          if (plainResponse) {
+            backendMessage = `Error ${response.status}: ${plainResponse.slice(0, 160)}`;
+          }
+        }
+
         this.setEmailStatus(
           'error',
-          errorPayload?.message || this.translate.instant('guest.status.sendError'),
+          backendMessage || this.translate.instant('guest.status.sendError'),
         );
         this.cdr.markForCheck();
         return;
