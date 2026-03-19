@@ -86,10 +86,15 @@ export default async function handler(req: any, res: any) {
     const payload = safeParse(raw);
 
     if (!resendResponse.ok) {
+      const errorMessageFromObject =
+        typeof payload.error === 'object' && payload.error && typeof payload.error.message === 'string'
+          ? payload.error.message
+          : '';
+      const errorMessageFromString = typeof payload.error === 'string' ? payload.error : '';
       const message =
         payload.message ||
-        payload.error?.message ||
-        payload.error ||
+        errorMessageFromObject ||
+        errorMessageFromString ||
         `Resend HTTP ${resendResponse.status}`;
       return res.status(502).json({ ok: false, message });
     }
