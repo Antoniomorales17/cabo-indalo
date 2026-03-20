@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-footer',
@@ -8,4 +8,11 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './footer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent { }
+export class FooterComponent {
+  constructor(private readonly translate: TranslateService) {}
+
+  protected get galleryRoute(): string[] {
+    const language = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    return ['/', language, 'galeria'];
+  }
+}

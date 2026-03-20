@@ -13,7 +13,7 @@
     </div>
     <nav class="flex flex-wrap items-center gap-5 text-sm font-medium text-slate-600">
 
-      <a routerLink="/galeria" class="transition hover:text-[var(--sea-dark)]">{{ 'footer.gallery' | translate }}</a>
+      <a [routerLink]="galleryRoute" class="transition hover:text-[var(--sea-dark)]">{{ 'footer.gallery' | translate }}</a>
       <a href="https://www.airbnb.es/" target="_blank" rel="noopener noreferrer" class="transition hover:text-[var(--sea-dark)]">
         Airbnb
       </a>

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -16,7 +16,10 @@ export class HeroSectionComponent {
   protected currentLanguage = 'es';
   protected readonly languages = ['es', 'en', 'fr', 'de'];
 
-  constructor(private readonly translate: TranslateService) {
+  constructor(
+    private readonly translate: TranslateService,
+    private readonly router: Router,
+  ) {
     this.initializeLanguage();
   }
 
@@ -33,7 +36,11 @@ export class HeroSectionComponent {
     this.isMobileMenuOpen = false;
   }
 
-  protected setLanguage(language: string): void {
+  protected get galleryRoute(): string[] {
+    return ['/', this.currentLanguage, 'galeria'];
+  }
+
+  protected setLanguage(language: string, updateUrl = true): void {
     if (!this.languages.includes(language)) {
       return;
     }
@@ -48,14 +55,39 @@ export class HeroSectionComponent {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem(this.languageStorageKey, language);
     }
+
+    if (updateUrl) {
+      this.navigateToLanguage(language);
+    }
   }
 
   private initializeLanguage(): void {
+    const fromUrl = this.readLanguageFromUrl();
     const stored =
       typeof localStorage !== 'undefined' ? localStorage.getItem(this.languageStorageKey) : null;
     const browser =
       typeof navigator !== 'undefined' ? navigator.language.slice(0, 2).toLowerCase() : 'es';
-    const initial = stored && this.languages.includes(stored) ? stored : this.languages.includes(browser) ? browser : 'es';
-    this.setLanguage(initial);
+    const initial = fromUrl
+      ?? (stored && this.languages.includes(stored) ? stored : null)
+      ?? (this.languages.includes(browser) ? browser : 'es');
+    this.setLanguage(initial, false);
+  }
+
+  private readLanguageFromUrl(): string | null {
+    const path = this.router.url.split(/[?#]/)[0];
+    const firstSegment = path.split('/').filter(Boolean)[0]?.toLowerCase();
+    return firstSegment && this.languages.includes(firstSegment) ? firstSegment : null;
+  }
+
+  private navigateToLanguage(language: string): void {
+    const path = this.router.url.split(/[?#]/)[0];
+    const segments = path.split('/').filter(Boolean);
+    const cleanSegments = [...segments];
+
+    if (cleanSegments[0] && this.languages.includes(cleanSegments[0])) {
+      cleanSegments.shift();
+    }
+
+    this.router.navigate(['/', language, ...cleanSegments]);
   }
 }

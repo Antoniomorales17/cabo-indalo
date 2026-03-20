@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
@@ -9,6 +9,13 @@ import { FooterComponent } from '../../components/footer/footer.component';
   templateUrl: './gallery-page.component.html',
 })
 export class GalleryPageComponent {
+  constructor(private readonly translate: TranslateService) {}
+
+  protected get homeRoute(): string[] {
+    const language = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    return ['/', language];
+  }
+
   protected readonly galleryImages = [
     {
       src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80',

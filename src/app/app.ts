@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { filter } from 'rxjs';
 
 
 @Component({
@@ -9,4 +12,91 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css',
 })
 export class App {
+  private readonly supportedLanguages = ['es', 'en', 'fr', 'de'];
+  private readonly baseUrl = 'https://www.caboindalo.es';
+  private readonly router = inject(Router);
+  private readonly translate = inject(TranslateService);
+  private readonly meta = inject(Meta);
+  private readonly title = inject(Title);
+
+  constructor() {
+    this.translate.setDefaultLang('es');
+    this.syncFromRoute();
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => this.syncFromRoute());
+  }
+
+  private syncFromRoute(): void {
+    const { lang, pagePath } = this.readRouteState();
+    this.applyLanguage(lang);
+    this.applySeoMeta(lang, pagePath);
+  }
+
+  private readRouteState(): { lang: string; pagePath: string } {
+    const url = this.router.url.split(/[?#]/)[0];
+    const segments = url.split('/').filter(Boolean);
+    const first = segments[0]?.toLowerCase();
+    const hasLang = Boolean(first && this.supportedLanguages.includes(first));
+    const lang = hasLang ? first : 'es';
+    const pagePath = hasLang ? `/${segments.slice(1).join('/')}` : `/${segments.join('/')}`;
+    return { lang, pagePath };
+  }
+
+  private applyLanguage(language: string): void {
+    if (this.translate.currentLang !== language) {
+      this.translate.use(language);
+    }
+
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = language;
+    }
+  }
+
+  private applySeoMeta(language: string, pagePath: string): void {
+    const isGallery = pagePath === '/galeria';
+    const localizedPath = isGallery ? `/${language}/galeria` : `/${language}`;
+    const canonicalUrl = `${this.baseUrl}${localizedPath}`;
+
+    const title = isGallery
+      ? 'Galeria completa | Cabo Indalo - Casa turistica en Cabo de Gata'
+      : 'Cabo Indalo | Casa turistica en Cabo de Gata (Almeria)';
+    const description = isGallery
+      ? 'Descubre la galeria completa de Cabo Indalo: casa turistica en Cabo de Gata con ambiente mediterraneo, cerca de playas y naturaleza.'
+      : 'Disfruta de Cabo Indalo, alojamiento vacacional en Cabo de Gata. Playa a 5 minutos, entorno natural y reserva segura.';
+
+    this.title.setTitle(title);
+    this.meta.updateTag({ name: 'description', content: description });
+    this.meta.updateTag({ property: 'og:title', content: title });
+    this.meta.updateTag({ property: 'og:description', content: description });
+    this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
+    this.meta.updateTag({ property: 'og:locale', content: this.mapOgLocale(language) });
+    this.meta.updateTag({ name: 'twitter:title', content: title });
+    this.meta.updateTag({ name: 'twitter:description', content: description });
+
+    if (typeof document !== 'undefined') {
+      const canonicalLink = this.getOrCreateLink('canonical');
+      canonicalLink.setAttribute('href', canonicalUrl);
+    }
+  }
+
+  private mapOgLocale(language: string): string {
+    const map: Record<string, string> = {
+      es: 'es_ES',
+      en: 'en_US',
+      fr: 'fr_FR',
+      de: 'de_DE',
+    };
+    return map[language] ?? 'es_ES';
+  }
+
+  private getOrCreateLink(rel: string): HTMLLinkElement {
+    let link = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null;
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', rel);
+      document.head.appendChild(link);
+    }
+    return link;
+  }
 }

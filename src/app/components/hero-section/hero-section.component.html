@@ -104,7 +104,7 @@
           <option value="de">DE</option>
         </select>
         <a
-          routerLink="/galeria"
+          [routerLink]="galleryRoute"
           class="inline-flex rounded-full border px-4 py-2 text-sm font-semibold transition"
           [class.border-slate-300]="hasScrolled"
           [class.text-slate-800]="hasScrolled"
@@ -258,7 +258,7 @@
           {{ 'hero.book' | translate }}
         </a>
         <a
-          routerLink="/galeria"
+          [routerLink]="galleryRoute"
           class="inline-flex items-center justify-center rounded-xl border border-white/65 px-7 py-3 text-base font-semibold text-white transition hover:bg-white/15"
         >
           {{ 'hero.viewGallery' | translate }}
