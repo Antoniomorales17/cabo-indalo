@@ -87,19 +87,19 @@ export class App {
         slug: 'que-ver',
         title: 'Que ver en Cabo de Gata | Guia local Cabo Indalo',
         description:
-          'Guia local con planes imprescindibles en Cabo de Gata: salinas, arrecifes, pueblos y rutas para disfrutar tu escapada.',
+          'Que ver en Cabo de Gata en 1, 2 o 3 dias: ruta facil con salinas, Arrecife de las Sirenas y pueblos con encanto. Planifica tu escapada sin perder tiempo.',
       },
       '/playas-cercanas': {
         slug: 'playas-cercanas',
         title: 'Playas cercanas a Cabo Indalo | Cabo de Gata',
         description:
-          'Descubre las mejores playas cercanas a Cabo Indalo: Cabo de Gata, Genoveses y Monsul, con consejos para organizar tu dia.',
+          'Las mejores playas cerca de Cabo Indalo: Cabo de Gata, Genoveses y Monsul con tiempos reales, consejos de acceso y plan recomendado para cada dia.',
       },
       '/como-llegar': {
         slug: 'como-llegar',
         title: 'Como llegar a Cabo Indalo | San Miguel de Cabo de Gata',
         description:
-          'Como llegar a Cabo Indalo en coche o avion, con tiempos orientativos y recomendaciones para aparcar y moverte por la zona.',
+          'Como llegar a Cabo Indalo desde aeropuerto o carretera: tiempos actualizados, donde aparcar y como moverte por Cabo de Gata de forma sencilla.',
       },
       '/': {
         slug: null,
