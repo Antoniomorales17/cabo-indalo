@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -6,5 +6,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-footer',
   imports: [RouterLink, TranslatePipe],
   templateUrl: './footer.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent {}
+export class FooterComponent { }

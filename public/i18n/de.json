@@ -6,6 +6,7 @@
     "location": "Lage",
     "form": "Formular",
     "contact": "Kontakt",
+    "faq": "FAQs",
     "fullGallery": "Komplette Galerie",
     "menuLabel": "Menue oeffnen",
     "language": "Sprache"
@@ -45,11 +46,26 @@
   "features": {
     "eyebrow": "Leistungen und Ausstattung",
     "title": "Alles Wichtige fuer eine schnelle Entscheidung",
-    "wifi": { "title": "Schnelles WLAN", "text": "Gute Verbindung fuer Arbeit und Streaming." },
-    "climate": { "title": "Klimaanlage und Heizung", "text": "Komfort das ganze Jahr." },
-    "parking": { "title": "Parken", "text": "Bequeme Parkmoeglichkeiten in der Naehe." },
-    "beach": { "title": "5 Min. zum Strand", "text": "Zu Fuss in wenigen Minuten erreichbar." },
-    "pets": { "title": "Haustierfreundlich", "text": "Haustiere sind fuer Familienreisen willkommen." }
+    "wifi": {
+      "title": "Schnelles WLAN",
+      "text": "Gute Verbindung fuer Arbeit und Streaming."
+    },
+    "climate": {
+      "title": "Klimaanlage und Heizung",
+      "text": "Komfort das ganze Jahr."
+    },
+    "parking": {
+      "title": "Parken",
+      "text": "Bequeme Parkmoeglichkeiten in der Naehe."
+    },
+    "beach": {
+      "title": "5 Min. zum Strand",
+      "text": "Zu Fuss in wenigen Minuten erreichbar."
+    },
+    "pets": {
+      "title": "Haustierfreundlich",
+      "text": "Haustiere sind fuer Familienreisen willkommen."
+    }
   },
   "location": {
     "eyebrow": "Lage und Umgebung",
@@ -121,8 +137,16 @@
       "city": "Stadt",
       "actions": "Aktionen"
     },
-    "sexOptions": { "male": "Maennlich", "female": "Weiblich", "other": "Andere" },
-    "documentTypes": { "dni": "DNI", "nie": "NIE", "passport": "Reisepass" },
+    "sexOptions": {
+      "male": "Maennlich",
+      "female": "Weiblich",
+      "other": "Andere"
+    },
+    "documentTypes": {
+      "dni": "DNI",
+      "nie": "NIE",
+      "passport": "Reisepass"
+    },
     "relationships": {
       "holder": "Buchungsinhaber",
       "partner": "Partner/in",
@@ -154,6 +178,45 @@
     "home": "Start",
     "gallery": "Galerie"
   },
+  "faq": {
+    "eyebrow": "Haeufige Fragen",
+    "title": "Wir beantworten deine Fragen zu Cabo Indalo",
+    "subtitle": "Alles, was du vor der Buchung deiner Unterkunft in Cabo de Gata wissen musst.",
+    "items": {
+      "location": {
+        "q": "Wo genau befindet sich Cabo Indalo?",
+        "a": "Cabo Indalo liegt in der Calle Poseidonia 14 in Cabo de Gata (Almeria), im Naturpark Cabo de Gata-Nijar. Es ist eine ruhige Wohngegend, ganz in der Naehe der Salinen von Cabo de Gata, mit einfachem Zugang zu den besten Straenden des Naturparks."
+      },
+      "beach": {
+        "q": "Wie weit ist der naechste Strand entfernt?",
+        "a": "Der Strand von Cabo de Gata ist nur 5 Minuten zu Fuss vom Haus entfernt. Es ist ein breiter Strand, ideal fuer Familien, mit kristallklarem Wasser. Ausserdem sind unberuehrte Straende wie Los Genoveses oder Monsul in 15-18 Minuten mit dem Auto erreichbar."
+      },
+      "pets": {
+        "q": "Sind Haustiere in der Unterkunft erlaubt?",
+        "a": "Ja! Cabo Indalo ist eine pet-friendly Unterkunft. Wir wissen, dass dein Haustier zur Familie gehoert, daher ist es ohne zusaetzliche Kosten willkommen. Wir bitten dich nur, Gemeinschaftsbereiche und Sauberkeit zu beachten."
+      },
+      "amenities": {
+        "q": "Gibt es WiFi, Klimaanlage und Heizung?",
+        "a": "Ja, das Haus verfuegt ueber schnelles WiFi zum Arbeiten oder Streamen, Klimaanlage im Hauptgeschoss und Deckenventilatoren in jedem Schlafzimmer."
+      },
+      "parking": {
+        "q": "Ist es einfach, in der Naehe des Hauses zu parken?",
+        "a": "Ja, normalerweise findet man in der Naehe der Unterkunft gut einen Parkplatz. In der Hochsaison kann es zwar etwas schwieriger sein, aber im Allgemeinen solltest du keine Probleme haben. Du brauchst weder eine Garage noch einen reservierten Stellplatz."
+      },
+      "shops": {
+        "q": "Gibt es Supermaerkte und Restaurants in der Naehe?",
+        "a": "Es gibt einen Supermarkt nur wenige Gehminuten entfernt, Baeckereien, Apotheken und mehrere Bars und Restaurants mit lokalen Tapas und mediterraner Kueche. Fuer mehr Auswahl ist Almeria-Stadt 25 Minuten mit dem Auto entfernt. Ausserdem gibt es im nahegelegenen Ort Pujaire einen sehr gut sortierten Spar-Supermarkt mit vielen Produkten."
+      },
+      "booking": {
+        "q": "Wie kann ich Cabo Indalo buchen?",
+        "a": "Die Buchungen werden ueber Airbnb abgewickelt. Dort kannst du Verfuegbarkeiten pruefen, Bewertungen anderer Gaeste lesen und sicher buchen. Du kannst uns auch per Email oder Telefon kontaktieren, wenn du vor der Buchung Fragen hast."
+      },
+      "activities": {
+        "q": "Was kann ich im Naturpark Cabo de Gata besuchen?",
+        "a": "Der Naturpark Cabo de Gata-Nijar bietet unberuehrte Buchten wie Genoveses und Monsul, das ikonische Arrecife de las Sirenas, Wanderwege mit Meerblick, die Salinen von Cabo de Gata (ein Paradies zum Beobachten von Flamingos) und charmante Orte wie San Jose und Las Negras."
+      }
+    }
+  },
   "galleryPage": {
     "back": "Zurueck zur Startseite",
     "eyebrow": "Komplette Galerie",
@@ -172,4 +235,3 @@
     }
   }
 }
-

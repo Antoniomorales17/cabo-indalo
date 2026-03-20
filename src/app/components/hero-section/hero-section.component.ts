@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
@@ -6,6 +6,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
   selector: 'app-hero-section',
   imports: [RouterLink, TranslatePipe],
   templateUrl: './hero-section.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroSectionComponent {
   private readonly languageStorageKey = 'cabo-indalo-lang';

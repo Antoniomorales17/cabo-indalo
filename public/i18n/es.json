@@ -6,6 +6,7 @@
     "location": "Ubicacion",
     "form": "Formulario",
     "contact": "Contacto",
+    "faq": "FAQs",
     "fullGallery": "Galeria completa",
     "menuLabel": "Abrir menu",
     "language": "Idioma"
@@ -153,6 +154,45 @@
     "subtitle": "Casa turistica en Cabo de Gata",
     "home": "Inicio",
     "gallery": "Galeria"
+  },
+  "faq": {
+    "eyebrow": "Preguntas frecuentes",
+    "title": "Resolvemos tus dudas sobre Cabo Indalo",
+    "subtitle": "Todo lo que necesitas saber antes de reservar tu alojamiento en Cabo de Gata.",
+    "items": {
+      "location": {
+        "q": "¿Dónde se encuentra exactamente Cabo Indalo?",
+        "a": "Cabo Indalo está en la Calle Poseidonia 14, en Cabo de Gata (Almería), dentro del Parque Natural de Cabo de Gata-Níjar. Es una zona tranquila y residencial, muy cerca de las Salinas de Cabo de Gata y con fácil acceso a las mejores playas del parque natural."
+      },
+      "beach": {
+        "q": "¿A qué distancia está la playa más cercana?",
+        "a": "La playa de Cabo de Gata está a solo 5 minutos a pie desde la casa. Es una playa amplia, ideal para familias y con aguas cristalinas. Además, playas vírgenes como Los Genoveses o Mónsul están a 15-18 minutos en coche."
+      },
+      "pets": {
+        "q": "¿Se admiten mascotas en el alojamiento?",
+        "a": "¡Sí! Cabo Indalo es un alojamiento pet-friendly. Sabemos que tu mascota es parte de la familia, así que es bienvenida sin coste adicional. Solo te pedimos que cuides los espacios comunes y la limpieza."
+      },
+      "amenities": {
+        "q": "¿Hay WiFi, aire acondicionado ?",
+        "a": "Sí, la casa dispone de WiFi de alta velocidad para trabajar o hacer streaming, aire acondicionado en la planta principal y ventiladores de techo en cada habitación."
+      },
+      "parking": {
+        "q": "¿Es fácil aparcar cerca de la casa?",
+        "a": "Sí, es normal encontrar aparcamiento cerca de la vivienda. Es cierto que en temporada alta puede ser un poco más complicado, pero en general no tendrás problemas. No necesitarás garaje ni reservar plaza."
+      },
+      "shops": {
+        "q": "¿Hay supermercados y restaurantes cerca?",
+        "a": "Hay un supermercado a pocos minutos caminando, panaderías, farmacias y varios bares y restaurantes con tapeo local y cocina mediterránea. Para más variedad, Almería capital está a 25 minutos en coche. Además en el pueblo cercano Pujaire, disponen de un supermercado Spar muy completo con todo tipo de productos."
+      },
+      "booking": {
+        "q": "¿Cómo puedo reservar Cabo Indalo?",
+        "a": "Las reservas se gestionan a través de Airbnb, donde podrás consultar la disponibilidad, ver las valoraciones de otros huéspedes y reservar de forma segura. También puedes contactarnos por email o teléfono para resolver cualquier duda antes de reservar."
+      },
+      "activities": {
+        "q": "¿Qué puedo visitar en el Parque Natural de Cabo de Gata?",
+        "a": "El Parque Natural de Cabo de Gata-Níjar ofrece calas vírgenes como Genoveses y Mónsul, el icónico Arrecife de las Sirenas, rutas de senderismo con vistas al mar, las Salinas de Cabo de Gata (un paraíso para observar flamencos) y pueblos con encanto como San José y Las Negras."
+      }
+    }
   },
   "galleryPage": {
     "back": "Volver a inicio",

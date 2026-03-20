@@ -1,8 +1,12 @@
 <section id="galeria" class="mx-auto w-full max-w-7xl scroll-mt-24 px-6 py-20 sm:px-10">
   <div class="mb-10 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
     <div appRevealOnScroll>
-      <p class="text-sm font-semibold uppercase tracking-wider text-[var(--sea-dark)]">{{ 'gallery.eyebrow' | translate }}</p>
-      <h2 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">{{ 'gallery.title' | translate }}</h2>
+      <p class="text-sm font-semibold uppercase tracking-wider text-[var(--sea-dark)]">
+        {{ 'gallery.eyebrow' | translate }}
+      </p>
+      <h2 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">
+        {{ 'gallery.title' | translate }}
+      </h2>
     </div>
     <a
       routerLink="/galeria"
@@ -13,46 +17,175 @@
   </div>
 
   <div class="grid auto-rows-[200px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-    <article appRevealOnScroll [revealDelay]="40" class="group relative overflow-hidden rounded-2xl sm:col-span-2 lg:row-span-2">
-      <img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=1200&q=80" [alt]="'gallery.alt.living' | translate" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-      <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white">{{ 'gallery.labels.living' | translate }}</div>
+    <article
+      appRevealOnScroll
+      [revealDelay]="40"
+      class="group relative overflow-hidden rounded-2xl sm:col-span-2 lg:row-span-2"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=1200&q=80"
+        loading="lazy"
+        [alt]="'gallery.alt.living' | translate"
+        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+      <div
+        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
+      >
+        {{ 'gallery.labels.living' | translate }}
+      </div>
     </article>
-    <article appRevealOnScroll [revealDelay]="80" class="group relative overflow-hidden rounded-2xl">
-      <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?auto=format&fit=crop&w=900&q=80" [alt]="'gallery.alt.bedroom' | translate" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-      <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white">{{ 'gallery.labels.bedroom' | translate }}</div>
+    <article
+      appRevealOnScroll
+      [revealDelay]="80"
+      class="group relative overflow-hidden rounded-2xl"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?auto=format&fit=crop&w=900&q=80"
+        loading="lazy"
+        [alt]="'gallery.alt.bedroom' | translate"
+        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+      <div
+        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
+      >
+        {{ 'gallery.labels.bedroom' | translate }}
+      </div>
     </article>
-    <article appRevealOnScroll [revealDelay]="120" class="group relative overflow-hidden rounded-2xl">
-      <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=900&q=80" [alt]="'gallery.alt.kitchen' | translate" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-      <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white">{{ 'gallery.labels.kitchen' | translate }}</div>
+    <article
+      appRevealOnScroll
+      [revealDelay]="120"
+      class="group relative overflow-hidden rounded-2xl"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=900&q=80"
+        loading="lazy"
+        [alt]="'gallery.alt.kitchen' | translate"
+        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+      <div
+        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
+      >
+        {{ 'gallery.labels.kitchen' | translate }}
+      </div>
     </article>
-    <article appRevealOnScroll [revealDelay]="160" class="group relative overflow-hidden rounded-2xl sm:col-span-2">
-      <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80" [alt]="'gallery.alt.terrace' | translate" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-      <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white">{{ 'gallery.labels.terrace' | translate }}</div>
+    <article
+      appRevealOnScroll
+      [revealDelay]="160"
+      class="group relative overflow-hidden rounded-2xl sm:col-span-2"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80"
+        loading="lazy"
+        [alt]="'gallery.alt.terrace' | translate"
+        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+      <div
+        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
+      >
+        {{ 'gallery.labels.terrace' | translate }}
+      </div>
     </article>
-    <article appRevealOnScroll [revealDelay]="200" class="group relative overflow-hidden rounded-2xl">
-      <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=900&q=80" [alt]="'gallery.alt.cozy' | translate" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-      <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white">{{ 'gallery.labels.cozy' | translate }}</div>
+    <article
+      appRevealOnScroll
+      [revealDelay]="200"
+      class="group relative overflow-hidden rounded-2xl"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=900&q=80"
+        loading="lazy"
+        [alt]="'gallery.alt.cozy' | translate"
+        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+      <div
+        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
+      >
+        {{ 'gallery.labels.cozy' | translate }}
+      </div>
     </article>
-    <article appRevealOnScroll [revealDelay]="240" class="group relative overflow-hidden rounded-2xl">
-      <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80" [alt]="'gallery.alt.beach' | translate" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-      <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white">{{ 'gallery.labels.beach' | translate }}</div>
+    <article
+      appRevealOnScroll
+      [revealDelay]="240"
+      class="group relative overflow-hidden rounded-2xl"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80"
+        loading="lazy"
+        [alt]="'gallery.alt.beach' | translate"
+        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+      <div
+        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
+      >
+        {{ 'gallery.labels.beach' | translate }}
+      </div>
     </article>
-    <article appRevealOnScroll [revealDelay]="280" class="group relative overflow-hidden rounded-2xl sm:col-span-2">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" [alt]="'gallery.alt.sunrise' | translate" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-      <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white">{{ 'gallery.labels.sunrise' | translate }}</div>
+    <article
+      appRevealOnScroll
+      [revealDelay]="280"
+      class="group relative overflow-hidden rounded-2xl sm:col-span-2"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+        loading="lazy"
+        [alt]="'gallery.alt.sunrise' | translate"
+        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+      <div
+        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
+      >
+        {{ 'gallery.labels.sunrise' | translate }}
+      </div>
     </article>
-    <article appRevealOnScroll [revealDelay]="320" class="group relative overflow-hidden rounded-2xl">
-      <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80" [alt]="'gallery.alt.room' | translate" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-      <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white">{{ 'gallery.labels.room' | translate }}</div>
+    <article
+      appRevealOnScroll
+      [revealDelay]="320"
+      class="group relative overflow-hidden rounded-2xl"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80"
+        loading="lazy"
+        [alt]="'gallery.alt.room' | translate"
+        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+      <div
+        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
+      >
+        {{ 'gallery.labels.room' | translate }}
+      </div>
     </article>
-    <article appRevealOnScroll [revealDelay]="280" class="group relative overflow-hidden rounded-2xl sm:col-span-2">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" [alt]="'gallery.alt.sunrise' | translate" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-      <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white">{{ 'gallery.labels.sunrise' | translate }}</div>
+    <article
+      appRevealOnScroll
+      [revealDelay]="280"
+      class="group relative overflow-hidden rounded-2xl sm:col-span-2"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+        loading="lazy"
+        [alt]="'gallery.alt.sunrise' | translate"
+        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+      <div
+        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
+      >
+        {{ 'gallery.labels.sunrise' | translate }}
+      </div>
     </article>
-    <article appRevealOnScroll [revealDelay]="80" class="group relative overflow-hidden rounded-2xl">
-      <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?auto=format&fit=crop&w=900&q=80" [alt]="'gallery.alt.bedroom' | translate" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-      <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white">{{ 'gallery.labels.bedroom' | translate }}</div>
+    <article
+      appRevealOnScroll
+      [revealDelay]="80"
+      class="group relative overflow-hidden rounded-2xl"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?auto=format&fit=crop&w=900&q=80"
+        loading="lazy"
+        [alt]="'gallery.alt.bedroom' | translate"
+        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+      <div
+        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
+      >
+        {{ 'gallery.labels.bedroom' | translate }}
+      </div>
     </article>
-   
   </div>
 </section>

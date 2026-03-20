@@ -6,6 +6,7 @@
     "location": "Location",
     "form": "Form",
     "contact": "Contact",
+    "faq": "FAQs",
     "fullGallery": "Full gallery",
     "menuLabel": "Open menu",
     "language": "Language"
@@ -45,11 +46,26 @@
   "features": {
     "eyebrow": "Services and amenities",
     "title": "Everything you need to decide quickly",
-    "wifi": { "title": "Fast Wi-Fi", "text": "Great connection for work and streaming." },
-    "climate": { "title": "A/C and heating", "text": "Comfort all year round." },
-    "parking": { "title": "Parking", "text": "Convenient nearby parking area." },
-    "beach": { "title": "5 min from the beach", "text": "You can walk there in minutes." },
-    "pets": { "title": "Pet friendly", "text": "Pets are welcome for full-family trips." }
+    "wifi": {
+      "title": "Fast Wi-Fi",
+      "text": "Great connection for work and streaming."
+    },
+    "climate": {
+      "title": "A/C and heating",
+      "text": "Comfort all year round."
+    },
+    "parking": {
+      "title": "Parking",
+      "text": "Convenient nearby parking area."
+    },
+    "beach": {
+      "title": "5 min from the beach",
+      "text": "You can walk there in minutes."
+    },
+    "pets": {
+      "title": "Pet friendly",
+      "text": "Pets are welcome for full-family trips."
+    }
   },
   "location": {
     "eyebrow": "Location and surroundings",
@@ -121,8 +137,16 @@
       "city": "City",
       "actions": "Actions"
     },
-    "sexOptions": { "male": "Male", "female": "Female", "other": "Other" },
-    "documentTypes": { "dni": "ID", "nie": "NIE", "passport": "Passport" },
+    "sexOptions": {
+      "male": "Male",
+      "female": "Female",
+      "other": "Other"
+    },
+    "documentTypes": {
+      "dni": "ID",
+      "nie": "NIE",
+      "passport": "Passport"
+    },
     "relationships": {
       "holder": "Booking holder",
       "partner": "Spouse or partner",
@@ -154,6 +178,45 @@
     "home": "Home",
     "gallery": "Gallery"
   },
+  "faq": {
+    "eyebrow": "Frequently asked questions",
+    "title": "We answer your questions about Cabo Indalo",
+    "subtitle": "Everything you need to know before booking your accommodation in Cabo de Gata.",
+    "items": {
+      "location": {
+        "q": "Where exactly is Cabo Indalo located?",
+        "a": "Cabo Indalo is at Calle Poseidonia 14, in Cabo de Gata (Almeria), inside the Cabo de Gata-Nijar Natural Park. It is a quiet residential area, very close to the Cabo de Gata salt flats and with easy access to the best beaches in the natural park."
+      },
+      "beach": {
+        "q": "How far is the nearest beach?",
+        "a": "Cabo de Gata beach is just a 5-minute walk from the house. It is a wide beach, ideal for families, with crystal-clear waters. In addition, unspoilt beaches like Los Genoveses or Monsul are 15-18 minutes away by car."
+      },
+      "pets": {
+        "q": "Are pets allowed at the accommodation?",
+        "a": "Yes! Cabo Indalo is a pet-friendly accommodation. We know your pet is part of the family, so they are welcome at no extra cost. We only ask you to take care of shared spaces and cleanliness."
+      },
+      "amenities": {
+        "q": "Is there WiFi, air conditioning, and heating?",
+        "a": "Yes, the house has high-speed WiFi for work or streaming, air conditioning on the main floor, and ceiling fans in each bedroom."
+      },
+      "parking": {
+        "q": "Is it easy to park near the house?",
+        "a": "Yes, it is usually easy to find parking near the house. It is true that in high season it can be a bit more difficult, but in general you should not have problems. You will not need a garage or a reserved spot."
+      },
+      "shops": {
+        "q": "Are there supermarkets and restaurants nearby?",
+        "a": "There is a supermarket just a few minutes away on foot, as well as bakeries, pharmacies, and several bars and restaurants with local tapas and Mediterranean cuisine. For more variety, Almeria city is 25 minutes away by car. Also, in the nearby village of Pujaire, there is a very complete Spar supermarket with all kinds of products."
+      },
+      "booking": {
+        "q": "How can I book Cabo Indalo?",
+        "a": "Bookings are managed through Airbnb, where you can check availability, read reviews from other guests, and book securely. You can also contact us by email or phone to answer any questions before booking."
+      },
+      "activities": {
+        "q": "What can I visit in Cabo de Gata Natural Park?",
+        "a": "Cabo de Gata-Nijar Natural Park offers unspoilt coves such as Genoveses and Monsul, the iconic Arrecife de las Sirenas, hiking routes with sea views, the Cabo de Gata salt flats (a paradise for watching flamingos), and charming villages such as San Jose and Las Negras."
+      }
+    }
+  },
   "galleryPage": {
     "back": "Back to home",
     "eyebrow": "Full gallery",
@@ -172,4 +235,3 @@
     }
   }
 }
-

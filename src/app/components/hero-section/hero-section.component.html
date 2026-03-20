@@ -2,6 +2,7 @@
   <img
     src="https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format&fit=crop&w=2200&q=80"
     [alt]="'hero.title' | translate"
+    fetchpriority="high"
     class="absolute inset-0 h-full w-full object-cover"
   />
   <div
@@ -28,7 +29,12 @@
         [class.bg-white/15]="!hasScrolled"
       >
         <img src="/cabo-indalo.png" [alt]="'nav.brand' | translate" class="h-10 w-auto sm:h-11" />
-        <span class="text-base font-semibold" [class.text-slate-900]="hasScrolled" [class.text-white]="!hasScrolled">{{ 'nav.brand' | translate }}</span>
+        <span
+          class="text-base font-semibold"
+          [class.text-slate-900]="hasScrolled"
+          [class.text-white]="!hasScrolled"
+          >{{ 'nav.brand' | translate }}</span
+        >
       </a>
 
       <nav class="hidden items-center gap-5 sm:flex">
@@ -39,7 +45,8 @@
           [class.hover:text-slate-900]="hasScrolled"
           [class.text-white/90]="!hasScrolled"
           [class.hover:text-white]="!hasScrolled"
-        >{{ 'nav.gallery' | translate }}</a>
+          >{{ 'nav.gallery' | translate }}</a
+        >
         <a
           href="#servicios"
           class="text-sm font-semibold transition"
@@ -47,7 +54,8 @@
           [class.hover:text-slate-900]="hasScrolled"
           [class.text-white/90]="!hasScrolled"
           [class.hover:text-white]="!hasScrolled"
-        >{{ 'nav.services' | translate }}</a>
+          >{{ 'nav.services' | translate }}</a
+        >
         <a
           href="#ubicacion"
           class="text-sm font-semibold transition"
@@ -55,7 +63,8 @@
           [class.hover:text-slate-900]="hasScrolled"
           [class.text-white/90]="!hasScrolled"
           [class.hover:text-white]="!hasScrolled"
-        >{{ 'nav.location' | translate }}</a>
+          >{{ 'nav.location' | translate }}</a
+        >
         <a
           href="#registro-viajeros"
           class="text-sm font-semibold transition"
@@ -63,7 +72,8 @@
           [class.hover:text-slate-900]="hasScrolled"
           [class.text-white/90]="!hasScrolled"
           [class.hover:text-white]="!hasScrolled"
-        >{{ 'nav.form' | translate }}</a>
+          >{{ 'nav.form' | translate }}</a
+        >
         <a
           href="#contacto"
           class="text-sm font-semibold transition"
@@ -71,7 +81,17 @@
           [class.hover:text-slate-900]="hasScrolled"
           [class.text-white/90]="!hasScrolled"
           [class.hover:text-white]="!hasScrolled"
-        >{{ 'nav.contact' | translate }}</a>
+          >{{ 'nav.contact' | translate }}</a
+        >
+        <a
+          href="#faqs"
+          class="text-sm font-semibold transition"
+          [class.text-slate-700]="hasScrolled"
+          [class.hover:text-slate-900]="hasScrolled"
+          [class.text-white/90]="!hasScrolled"
+          [class.hover:text-white]="!hasScrolled"
+          >{{ 'nav.faq' | translate }}</a
+        >
         <select
           [value]="currentLanguage"
           (change)="setLanguage($any($event.target).value)"
@@ -111,7 +131,12 @@
         [attr.aria-label]="'nav.menuLabel' | translate"
       >
         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <path
+            d="M4 7h16M4 12h16M4 17h16"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
         </svg>
       </button>
     </div>
@@ -133,7 +158,8 @@
           [class.hover:bg-slate-100]="hasScrolled"
           [class.text-white/90]="!hasScrolled"
           [class.hover:bg-white/10]="!hasScrolled"
-        >{{ 'nav.gallery' | translate }}</a>
+          >{{ 'nav.gallery' | translate }}</a
+        >
         <a
           href="#servicios"
           (click)="closeMobileMenu()"
@@ -142,7 +168,8 @@
           [class.hover:bg-slate-100]="hasScrolled"
           [class.text-white/90]="!hasScrolled"
           [class.hover:bg-white/10]="!hasScrolled"
-        >{{ 'nav.services' | translate }}</a>
+          >{{ 'nav.services' | translate }}</a
+        >
         <a
           href="#ubicacion"
           (click)="closeMobileMenu()"
@@ -151,7 +178,8 @@
           [class.hover:bg-slate-100]="hasScrolled"
           [class.text-white/90]="!hasScrolled"
           [class.hover:bg-white/10]="!hasScrolled"
-        >{{ 'nav.location' | translate }}</a>
+          >{{ 'nav.location' | translate }}</a
+        >
         <a
           href="#registro-viajeros"
           (click)="closeMobileMenu()"
@@ -160,7 +188,8 @@
           [class.hover:bg-slate-100]="hasScrolled"
           [class.text-white/90]="!hasScrolled"
           [class.hover:bg-white/10]="!hasScrolled"
-        >{{ 'nav.form' | translate }}</a>
+          >{{ 'nav.form' | translate }}</a
+        >
         <a
           href="#contacto"
           (click)="closeMobileMenu()"
@@ -169,9 +198,24 @@
           [class.hover:bg-slate-100]="hasScrolled"
           [class.text-white/90]="!hasScrolled"
           [class.hover:bg-white/10]="!hasScrolled"
-        >{{ 'nav.contact' | translate }}</a>
+          >{{ 'nav.contact' | translate }}</a
+        >
+        <a
+          href="#faqs"
+          (click)="closeMobileMenu()"
+          class="rounded-lg px-3 py-2 text-sm font-semibold transition"
+          [class.text-slate-800]="hasScrolled"
+          [class.hover:bg-slate-100]="hasScrolled"
+          [class.text-white/90]="!hasScrolled"
+          [class.hover:bg-white/10]="!hasScrolled"
+          >{{ 'nav.faq' | translate }}</a
+        >
         <div class="px-3 py-2">
-          <label class="mb-1 block text-xs font-semibold uppercase tracking-wide" [class.text-slate-600]="hasScrolled" [class.text-white/80]="!hasScrolled">
+          <label
+            class="mb-1 block text-xs font-semibold uppercase tracking-wide"
+            [class.text-slate-600]="hasScrolled"
+            [class.text-white/80]="!hasScrolled"
+          >
             {{ 'nav.language' | translate }}
           </label>
           <select
@@ -189,9 +233,13 @@
     </nav>
   </header>
 
-  <div class="relative z-10 mx-auto flex min-h-[72vh] w-full max-w-7xl items-center px-6 pb-12 pt-24 sm:px-10 sm:pt-28">
+  <div
+    class="relative z-10 mx-auto flex min-h-[72vh] w-full max-w-7xl items-center px-6 pb-12 pt-24 sm:px-10 sm:pt-28"
+  >
     <div class="max-w-3xl text-white">
-      <p class="mb-4 inline-flex rounded-full bg-white/20 px-4 py-1 text-sm font-medium backdrop-blur">
+      <p
+        class="mb-4 inline-flex rounded-full bg-white/20 px-4 py-1 text-sm font-medium backdrop-blur"
+      >
         {{ 'hero.badge' | translate }}
       </p>
       <h1 class="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
@@ -211,7 +259,7 @@
         </a>
         <a
           routerLink="/galeria"
-          class="hidden items-center justify-center rounded-xl border border-white/65 px-7 py-3 text-base font-semibold text-white transition hover:bg-white/15 sm:inline-flex"
+          class="inline-flex items-center justify-center rounded-xl border border-white/65 px-7 py-3 text-base font-semibold text-white transition hover:bg-white/15"
         >
           {{ 'hero.viewGallery' | translate }}
         </a>
