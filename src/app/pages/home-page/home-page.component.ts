@@ -8,6 +8,7 @@ import { GalleryBentoComponent } from '../../components/gallery-bento/gallery-be
 import { GuestRegistrationSectionComponent } from '../../components/guest-registration-section/guest-registration-section.component';
 import { HeroSectionComponent } from '../../components/hero-section/hero-section.component';
 import { LocationSectionComponent } from '../../components/location-section/location-section.component';
+import { LocalGuidesSectionComponent } from '../../components/local-guides-section/local-guides-section.component';
 
 @Component({
   selector: 'app-home-page',
@@ -16,6 +17,7 @@ import { LocationSectionComponent } from '../../components/location-section/loca
     GalleryBentoComponent,
     FeaturesSectionComponent,
     LocationSectionComponent,
+    LocalGuidesSectionComponent,
     GuestRegistrationSectionComponent,
     FaqSectionComponent,
     CtaSectionComponent,

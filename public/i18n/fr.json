@@ -233,5 +233,66 @@
       "room": "Chambre secondaire avec lumiere naturelle",
       "path": "Vue sur la mer depuis un sentier cotier"
     }
+  },
+  "guides": {
+    "eyebrow": "Guides locales",
+    "title": "Planifiez votre voyage avec nos guides de Cabo de Gata",
+    "subtitle": "Nous avons prepare trois guides pratiques pour organiser votre sejour et profiter de chaque jour.",
+    "readGuide": "Lire le guide",
+    "cards": {
+      "whatToVisit": {
+        "title": "Que visiter a Cabo de Gata",
+        "text": "Une selection de lieux essentiels pour une premiere visite du parc naturel."
+      },
+      "nearbyBeaches": {
+        "title": "Plages proches recommandees",
+        "text": "Decouvrez quelles plages visiter selon la distance et l ambiance."
+      },
+      "howToGetThere": {
+        "title": "Comment arriver et se deplacer",
+        "text": "Conseils clairs pour venir en voiture ou en avion et se deplacer facilement."
+      }
+    },
+    "page": {
+      "backHome": "Retour a l accueil",
+      "bookNow": "Reserver sur Airbnb",
+      "contactUs": "Nous contacter",
+      "whatToVisit": {
+        "eyebrow": "Guide local",
+        "title": "Que voir a Cabo de Gata pendant votre sejour",
+        "intro": "Si c est votre premiere visite, ce guide vous aide a decouvrir les lieux les plus speciaux pres de Cabo Indalo.",
+        "sectionTitle": "Lieux incontournables",
+        "p1": "Commencez par les salines de Cabo de Gata au lever ou au coucher du soleil. C est un paysage iconique du parc naturel.",
+        "p2": "Gardez une matinee pour l Arrecife de las Sirenas et terminez la journee a San Jose ou Las Negras.",
+        "tipsTitle": "Conseils rapides",
+        "tip1": "Prenez de l eau, une casquette et des chaussures confortables.",
+        "tip2": "Evitez les heures les plus chaudes en ete.",
+        "tip3": "Verifiez le vent avant de choisir plage ou belvedere."
+      },
+      "nearbyBeaches": {
+        "eyebrow": "Guide des plages",
+        "title": "Plages proches de Cabo Indalo a ne pas manquer",
+        "intro": "Depuis la maison, vous pouvez combiner plage quotidienne et criques iconiques en peu de temps.",
+        "sectionTitle": "Plages pour votre semaine",
+        "p1": "La plage de Cabo de Gata est a 5 minutes a pied et parfaite pour un plan confortable en famille.",
+        "p2": "Pour une ambiance plus naturelle, visitez Genoveses et Monsul en voiture.",
+        "tipsTitle": "Conseils rapides",
+        "tip1": "Arrivez tot en haute saison pour mieux vous garer.",
+        "tip2": "Prenez parasol et nourriture pour les plages sans services.",
+        "tip3": "Respectez les zones protegees et ne laissez pas de dechets."
+      },
+      "howToGetThere": {
+        "eyebrow": "Guide pratique",
+        "title": "Comment arriver a Cabo Indalo et se deplacer",
+        "intro": "Voici une reference claire pour organiser votre arrivee et gagner du temps.",
+        "sectionTitle": "Arrivee et mobilite",
+        "p1": "Si vous arrivez en avion, l aeroport d Almeria est a environ 15-20 minutes en voiture.",
+        "p2": "Si vous venez en voiture, il est habituel de trouver une place pres du logement.",
+        "tipsTitle": "Conseils rapides",
+        "tip1": "Enregistrez l adresse exacte dans Google Maps avant de partir.",
+        "tip2": "Planifiez vos courses a Cabo de Gata ou Pujaire.",
+        "tip3": "Alternez jours en voiture et plans a pied."
+      }
+    }
   }
 }

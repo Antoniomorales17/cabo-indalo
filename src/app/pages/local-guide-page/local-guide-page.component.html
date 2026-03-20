@@ -1,0 +1,73 @@
+<main class="bg-[var(--sand)] text-slate-800">
+  <section class="bg-[var(--sea-dark)] py-16 text-white">
+    <div class="mx-auto flex w-full max-w-4xl flex-col gap-6 px-6 sm:px-10">
+      <a
+        [routerLink]="homeRoute"
+        class="inline-flex w-fit items-center rounded-lg border border-white/50 px-4 py-2 text-sm font-medium transition hover:bg-white/15"
+      >
+        {{ 'guides.page.backHome' | translate }}
+      </a>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wider text-[var(--sun)]">
+          {{ ('guides.page.' + guideKey + '.eyebrow') | translate }}
+        </p>
+        <h1 class="mt-2 text-4xl font-bold sm:text-5xl">
+          {{ ('guides.page.' + guideKey + '.title') | translate }}
+        </h1>
+        <p class="mt-3 max-w-3xl text-white/90">
+          {{ ('guides.page.' + guideKey + '.intro') | translate }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-4xl px-6 py-16 sm:px-10">
+    <article class="rounded-2xl border border-[var(--sea)]/15 bg-white p-6 shadow-sm sm:p-8">
+      <h2 class="text-2xl font-semibold text-slate-900">
+        {{ ('guides.page.' + guideKey + '.sectionTitle') | translate }}
+      </h2>
+      <p class="mt-4 leading-relaxed text-slate-700">
+        {{ ('guides.page.' + guideKey + '.p1') | translate }}
+      </p>
+      <p class="mt-4 leading-relaxed text-slate-700">
+        {{ ('guides.page.' + guideKey + '.p2') | translate }}
+      </p>
+
+      <h3 class="mt-8 text-xl font-semibold text-slate-900">
+        {{ ('guides.page.' + guideKey + '.tipsTitle') | translate }}
+      </h3>
+      <ul class="mt-4 space-y-3 text-slate-700">
+        <li class="rounded-lg bg-[var(--foam)] px-4 py-3">
+          {{ ('guides.page.' + guideKey + '.tip1') | translate }}
+        </li>
+        <li class="rounded-lg bg-[var(--foam)] px-4 py-3">
+          {{ ('guides.page.' + guideKey + '.tip2') | translate }}
+        </li>
+        <li class="rounded-lg bg-[var(--foam)] px-4 py-3">
+          {{ ('guides.page.' + guideKey + '.tip3') | translate }}
+        </li>
+      </ul>
+
+      <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+        <a
+          href="https://www.airbnb.es/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-xl bg-[var(--sun)] px-6 py-3 text-base font-semibold text-slate-900 transition hover:bg-[var(--sun-soft)]"
+        >
+          {{ 'guides.page.bookNow' | translate }}
+        </a>
+        <a
+          [routerLink]="homeRoute"
+          fragment="contacto"
+          class="inline-flex items-center justify-center rounded-xl border border-[var(--sea)] px-6 py-3 text-base font-semibold text-[var(--sea-dark)] transition hover:bg-[var(--sea)]/10"
+        >
+          {{ 'guides.page.contactUs' | translate }}
+        </a>
+      </div>
+    </article>
+  </section>
+
+  <app-footer></app-footer>
+</main>
+

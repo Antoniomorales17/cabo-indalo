@@ -46,11 +46,26 @@
   "features": {
     "eyebrow": "Servicios y comodidades",
     "title": "Todo lo que necesitas para una estancia perfecta",
-    "wifi": { "title": "Wifi rapido", "text": "Buena conexion para trabajar y streaming." },
-    "climate": { "title": "A/C y calefaccion", "text": "Confort todo el ano, en verano e invierno." },
-    "parking": { "title": "Aparcamiento", "text": "Zona de aparcamiento cercana y comoda." },
-    "beach": { "title": "A 5 min de la playa", "text": "Llegas caminando en muy poco tiempo." },
-    "pets": { "title": "Pet friendly", "text": "Admitimos mascotas para viajar en familia completa." }
+    "wifi": {
+      "title": "Wifi rapido",
+      "text": "Buena conexion para trabajar y streaming."
+    },
+    "climate": {
+      "title": "A/C y calefaccion",
+      "text": "Confort todo el ano, en verano e invierno."
+    },
+    "parking": {
+      "title": "Aparcamiento",
+      "text": "Zona de aparcamiento cercana y comoda."
+    },
+    "beach": {
+      "title": "A 5 min de la playa",
+      "text": "Llegas caminando en muy poco tiempo."
+    },
+    "pets": {
+      "title": "Pet friendly",
+      "text": "Admitimos mascotas para viajar en familia completa."
+    }
   },
   "location": {
     "eyebrow": "Ubicacion y entorno",
@@ -122,8 +137,16 @@
       "city": "Municipio",
       "actions": "Acciones"
     },
-    "sexOptions": { "male": "Hombre", "female": "Mujer", "other": "Otro" },
-    "documentTypes": { "dni": "DNI", "nie": "NIE", "passport": "Pasaporte" },
+    "sexOptions": {
+      "male": "Hombre",
+      "female": "Mujer",
+      "other": "Otro"
+    },
+    "documentTypes": {
+      "dni": "DNI",
+      "nie": "NIE",
+      "passport": "Pasaporte"
+    },
     "relationships": {
       "holder": "Titular de la reserva",
       "partner": "Conyuge o pareja",
@@ -210,6 +233,66 @@
       "room": "Habitacion secundaria con luz natural",
       "path": "Vistas al mar desde sendero costero"
     }
+  },
+  "guides": {
+    "eyebrow": "Guias locales",
+    "title": "Planifica tu viaje con nuestras guias de Cabo de Gata",
+    "subtitle": "Hemos preparado tres guias practicas para ayudarte a organizar tu estancia y aprovechar cada dia.",
+    "readGuide": "Leer guia",
+    "cards": {
+      "whatToVisit": {
+        "title": "Que ver en Cabo de Gata",
+        "text": "Una seleccion de lugares imprescindibles para disfrutar del parque natural en tu primera visita."
+      },
+      "nearbyBeaches": {
+        "title": "Playas cercanas recomendadas",
+        "text": "Descubre que playas visitar cada dia segun distancia, ambiente y tipo de plan."
+      },
+      "howToGetThere": {
+        "title": "Como llegar y moverte",
+        "text": "Consejos claros para llegar en coche o avion, aparcar con facilidad y moverte por la zona."
+      }
+    },
+    "page": {
+      "backHome": "Volver a inicio",
+      "bookNow": "Reservar en Airbnb",
+      "contactUs": "Contactar",
+      "whatToVisit": {
+        "eyebrow": "Guia local",
+        "title": "Que ver en Cabo de Gata durante tu estancia",
+        "intro": "Si es tu primera vez en la zona, esta guia te ayuda a descubrir los lugares mas especiales cerca de Cabo Indalo.",
+        "sectionTitle": "Lugares imprescindibles",
+        "p1": "Empieza por las Salinas de Cabo de Gata al amanecer o al atardecer. Es uno de los paisajes mas iconicos del parque natural y un sitio perfecto para observar flamencos.",
+        "p2": "Reserva una manana para el Arrecife de las Sirenas y termina el dia en pueblos con encanto como San Jose o Las Negras, donde puedes pasear, cenar y disfrutar del ambiente local.",
+        "tipsTitle": "Consejos rapidos",
+        "tip1": "Lleva agua, gorra y calzado comodo para rutas cortas.",
+        "tip2": "Evita las horas centrales de calor en verano.",
+        "tip3": "Consulta el viento antes de elegir playa o mirador."
+      },
+      "nearbyBeaches": {
+        "eyebrow": "Guia de playas",
+        "title": "Playas cercanas a Cabo Indalo que merecen la pena",
+        "intro": "Desde la casa puedes combinar playa diaria y escapadas a calas iconicas del parque en pocos minutos.",
+        "sectionTitle": "Playas para tu semana",
+        "p1": "La playa de Cabo de Gata esta a 5 minutos a pie y es ideal para un plan comodo en familia. Tiene espacio amplio y acceso sencillo para cualquier momento del dia.",
+        "p2": "Para un plan mas natural, organiza salidas a Genoveses y Monsul en coche. Son playas de referencia por su paisaje virgen y por el entorno protegido del parque natural.",
+        "tipsTitle": "Consejos rapidos",
+        "tip1": "Llega temprano en temporada alta para aparcar mejor.",
+        "tip2": "Lleva sombrilla y comida si vas a calas sin servicios.",
+        "tip3": "Respeta las zonas protegidas y no dejes residuos."
+      },
+      "howToGetThere": {
+        "eyebrow": "Guia practica",
+        "title": "Como llegar a Cabo Indalo y moverte por la zona",
+        "intro": "Te dejamos una referencia clara para organizar la llegada y ahorrar tiempo durante tu estancia.",
+        "sectionTitle": "Llegada y movilidad",
+        "p1": "Si viajas en avion, el aeropuerto de Almeria esta a unos 15-20 minutos en coche. Desde alli, un coche de alquiler es la opcion mas practica para explorar playas y pueblos del parque.",
+        "p2": "Si vienes en coche, la ubicacion de Cabo Indalo permite aparcar normalmente cerca de la vivienda. En temporada alta puede tardarse un poco mas, pero no suele ser necesario garaje privado.",
+        "tipsTitle": "Consejos rapidos",
+        "tip1": "Guarda la ubicacion exacta en Google Maps antes de salir.",
+        "tip2": "Planifica compras en supermercados de Cabo de Gata o Pujaire.",
+        "tip3": "Combina dias de coche con planes a pie en el entorno cercano."
+      }
+    }
   }
 }
-

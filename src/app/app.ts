@@ -54,16 +54,11 @@ export class App {
   }
 
   private applySeoMeta(language: string, pagePath: string): void {
-    const isGallery = pagePath === '/galeria';
-    const localizedPath = isGallery ? `/${language}/galeria` : `/${language}`;
+    const pageMeta = this.resolvePageMeta(pagePath);
+    const localizedPath = pageMeta.slug ? `/${language}/${pageMeta.slug}` : `/${language}`;
     const canonicalUrl = `${this.baseUrl}${localizedPath}`;
-
-    const title = isGallery
-      ? 'Galeria completa | Cabo Indalo - Casa turistica en Cabo de Gata'
-      : 'Cabo Indalo | Casa turistica en Cabo de Gata (Almeria)';
-    const description = isGallery
-      ? 'Descubre la galeria completa de Cabo Indalo: casa turistica en Cabo de Gata con ambiente mediterraneo, cerca de playas y naturaleza.'
-      : 'Disfruta de Cabo Indalo, alojamiento vacacional en Cabo de Gata. Playa a 5 minutos, entorno natural y reserva segura.';
+    const title = pageMeta.title;
+    const description = pageMeta.description;
 
     this.title.setTitle(title);
     this.meta.updateTag({ name: 'description', content: description });
@@ -78,6 +73,43 @@ export class App {
       const canonicalLink = this.getOrCreateLink('canonical');
       canonicalLink.setAttribute('href', canonicalUrl);
     }
+  }
+
+  private resolvePageMeta(pagePath: string): { slug: string | null; title: string; description: string } {
+    const map: Record<string, { slug: string | null; title: string; description: string }> = {
+      '/galeria': {
+        slug: 'galeria',
+        title: 'Galeria completa | Cabo Indalo - Casa turistica en Cabo de Gata',
+        description:
+          'Descubre la galeria completa de Cabo Indalo: casa turistica en Cabo de Gata con ambiente mediterraneo, cerca de playas y naturaleza.',
+      },
+      '/que-ver': {
+        slug: 'que-ver',
+        title: 'Que ver en Cabo de Gata | Guia local Cabo Indalo',
+        description:
+          'Guia local con planes imprescindibles en Cabo de Gata: salinas, arrecifes, pueblos y rutas para disfrutar tu escapada.',
+      },
+      '/playas-cercanas': {
+        slug: 'playas-cercanas',
+        title: 'Playas cercanas a Cabo Indalo | Cabo de Gata',
+        description:
+          'Descubre las mejores playas cercanas a Cabo Indalo: Cabo de Gata, Genoveses y Monsul, con consejos para organizar tu dia.',
+      },
+      '/como-llegar': {
+        slug: 'como-llegar',
+        title: 'Como llegar a Cabo Indalo | San Miguel de Cabo de Gata',
+        description:
+          'Como llegar a Cabo Indalo en coche o avion, con tiempos orientativos y recomendaciones para aparcar y moverte por la zona.',
+      },
+      '/': {
+        slug: null,
+        title: 'Cabo Indalo | Casa turistica en Cabo de Gata (Almeria)',
+        description:
+          'Disfruta de Cabo Indalo, alojamiento vacacional en Cabo de Gata. Playa a 5 minutos, entorno natural y reserva segura.',
+      },
+    };
+
+    return map[pagePath] ?? map['/'];
   }
 
   private mapOgLocale(language: string): string {

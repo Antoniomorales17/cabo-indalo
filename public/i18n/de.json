@@ -233,5 +233,66 @@
       "room": "Nebenzimmer mit Tageslicht",
       "path": "Meerblick von einem Kuestenweg"
     }
+  },
+  "guides": {
+    "eyebrow": "Lokale Guides",
+    "title": "Plane deine Reise mit unseren Cabo de Gata Guides",
+    "subtitle": "Wir haben drei praktische Guides vorbereitet, damit du deinen Aufenthalt besser planen kannst.",
+    "readGuide": "Guide lesen",
+    "cards": {
+      "whatToVisit": {
+        "title": "Was man in Cabo de Gata sehen sollte",
+        "text": "Eine Auswahl wichtiger Orte fuer deinen ersten Besuch im Naturpark."
+      },
+      "nearbyBeaches": {
+        "title": "Empfohlene Straende in der Naehe",
+        "text": "Finde die besten Straende je nach Entfernung und Stimmung."
+      },
+      "howToGetThere": {
+        "title": "Anreise und Mobilitaet",
+        "text": "Klare Tipps fuer Anreise mit Auto oder Flugzeug und einfache Fortbewegung vor Ort."
+      }
+    },
+    "page": {
+      "backHome": "Zurueck zur Startseite",
+      "bookNow": "Bei Airbnb buchen",
+      "contactUs": "Kontakt",
+      "whatToVisit": {
+        "eyebrow": "Lokaler Guide",
+        "title": "Was du waehrend deines Aufenthalts in Cabo de Gata sehen kannst",
+        "intro": "Wenn du zum ersten Mal hier bist, hilft dir dieser Guide bei den schoensten Orten nahe Cabo Indalo.",
+        "sectionTitle": "Unbedingt sehenswerte Orte",
+        "p1": "Starte bei den Salinen von Cabo de Gata bei Sonnenauf- oder untergang. Eine der ikonischsten Landschaften im Naturpark.",
+        "p2": "Plane einen Vormittag fuer das Arrecife de las Sirenas und beende den Tag in San Jose oder Las Negras.",
+        "tipsTitle": "Schnelle Tipps",
+        "tip1": "Nimm Wasser, Kappe und bequeme Schuhe mit.",
+        "tip2": "Meide die heissesten Stunden im Sommer.",
+        "tip3": "Pruefe den Wind vor der Wahl von Strand oder Aussichtspunkt."
+      },
+      "nearbyBeaches": {
+        "eyebrow": "Strand Guide",
+        "title": "Straende in der Naehe von Cabo Indalo, die sich lohnen",
+        "intro": "Vom Haus aus kannst du Strandtage und Ausfluege zu bekannten Buchten gut kombinieren.",
+        "sectionTitle": "Straende fuer deine Woche",
+        "p1": "Der Strand von Cabo de Gata ist 5 Minuten zu Fuss entfernt und ideal fuer entspannte Familientage.",
+        "p2": "Fuer mehr Natur besuche Genoveses und Monsul mit dem Auto.",
+        "tipsTitle": "Schnelle Tipps",
+        "tip1": "In der Hochsaison frueh kommen fuer bessere Parkplaetze.",
+        "tip2": "Nimm Schirm und Essen mit, wenn es keine Services gibt.",
+        "tip3": "Respektiere geschuetzte Bereiche und hinterlasse keinen Muell."
+      },
+      "howToGetThere": {
+        "eyebrow": "Praktischer Guide",
+        "title": "So kommst du zu Cabo Indalo und bewegst dich vor Ort",
+        "intro": "Hier hast du eine klare Orientierung fuer Anreise und Tagesplanung.",
+        "sectionTitle": "Anreise und Fortbewegung",
+        "p1": "Bei Anreise per Flug ist der Flughafen Almeria etwa 15-20 Minuten mit dem Auto entfernt.",
+        "p2": "Bei Anreise mit dem Auto findet man meist problemlos einen Parkplatz in der Naehe.",
+        "tipsTitle": "Schnelle Tipps",
+        "tip1": "Speichere die genaue Adresse vor Abfahrt in Google Maps.",
+        "tip2": "Plane Einkaeufe in Cabo de Gata oder Pujaire.",
+        "tip3": "Kombiniere Autotage mit Plaenen zu Fuss."
+      }
+    }
   }
 }

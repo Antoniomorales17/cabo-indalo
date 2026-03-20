@@ -233,5 +233,66 @@
       "room": "Secondary room with natural light",
       "path": "Sea views from a coastal path"
     }
+  },
+  "guides": {
+    "eyebrow": "Local guides",
+    "title": "Plan your trip with our Cabo de Gata guides",
+    "subtitle": "We prepared three practical guides to help you organize your stay and enjoy every day.",
+    "readGuide": "Read guide",
+    "cards": {
+      "whatToVisit": {
+        "title": "What to visit in Cabo de Gata",
+        "text": "A selection of must-see places to enjoy the natural park on your first trip."
+      },
+      "nearbyBeaches": {
+        "title": "Recommended nearby beaches",
+        "text": "Discover which beaches to visit each day based on distance and vibe."
+      },
+      "howToGetThere": {
+        "title": "How to get there and move around",
+        "text": "Clear tips to arrive by car or plane, park easily, and get around the area."
+      }
+    },
+    "page": {
+      "backHome": "Back to home",
+      "bookNow": "Book on Airbnb",
+      "contactUs": "Contact us",
+      "whatToVisit": {
+        "eyebrow": "Local guide",
+        "title": "What to see in Cabo de Gata during your stay",
+        "intro": "If this is your first visit, this guide helps you discover special places near Cabo Indalo.",
+        "sectionTitle": "Must-see places",
+        "p1": "Start with Cabo de Gata salt flats at sunrise or sunset. It is one of the most iconic landscapes in the park and great for flamingo watching.",
+        "p2": "Save one morning for Arrecife de las Sirenas and end your day in charming villages like San Jose or Las Negras.",
+        "tipsTitle": "Quick tips",
+        "tip1": "Bring water, a hat, and comfortable shoes.",
+        "tip2": "Avoid the hottest hours in summer.",
+        "tip3": "Check wind conditions before choosing beach or viewpoint."
+      },
+      "nearbyBeaches": {
+        "eyebrow": "Beach guide",
+        "title": "Nearby beaches worth visiting from Cabo Indalo",
+        "intro": "From the house, you can combine easy daily beach plans with iconic coves in a short drive.",
+        "sectionTitle": "Beaches for your week",
+        "p1": "Cabo de Gata beach is a 5-minute walk and perfect for a comfortable family plan any time of day.",
+        "p2": "For a more natural setting, visit Genoveses and Monsul by car. They are famous for unspoilt landscapes and protected surroundings.",
+        "tipsTitle": "Quick tips",
+        "tip1": "Arrive early in high season for easier parking.",
+        "tip2": "Bring umbrella and food for beaches without services.",
+        "tip3": "Respect protected areas and leave no waste."
+      },
+      "howToGetThere": {
+        "eyebrow": "Practical guide",
+        "title": "How to get to Cabo Indalo and move around",
+        "intro": "Here is a clear reference to organize your arrival and save time during your stay.",
+        "sectionTitle": "Arrival and mobility",
+        "p1": "If you fly in, Almeria airport is around 15-20 minutes away by car. Renting a car is the most practical option to explore.",
+        "p2": "If you come by car, parking near the house is usually easy. In high season it may take longer, but private garage is usually not needed.",
+        "tipsTitle": "Quick tips",
+        "tip1": "Save the exact address in Google Maps before departure.",
+        "tip2": "Plan groceries in Cabo de Gata or Pujaire.",
+        "tip3": "Combine driving days with local walking plans."
+      }
+    }
   }
 }
