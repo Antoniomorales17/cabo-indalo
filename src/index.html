@@ -26,8 +26,13 @@
         "@context": "https://schema.org",
         "@type": "VacationRental",
         "name": "Cabo Indalo",
+        "identifier": "https://www.caboindalo.es",
         "description": "Alojamiento vacacional con encanto en el Parque Natural del Cabo de Gata, Almería. Vistas al mar y tranquilidad absoluta junto a las Salinas.",
-        "image": "https://www.caboindalo.es/assets/hero.jpg",
+        "image": [
+          "https://www.caboindalo.es/assets/hero.jpg",
+          "https://www.caboindalo.es/assets/interior.jpg",
+          "https://www.caboindalo.es/assets/terraza.jpg"
+        ],
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Calle Poseidonia, 14",
@@ -44,21 +49,29 @@
         "url": "https://www.caboindalo.es",
         "telephone": "+34647664536",
         "priceRange": "€€",
+        "containsPlace": {
+          "@type": "Accommodation",
+          "numberOfRooms": 2,
+          "occupancy": {
+            "@type": "QuantitativeValue",
+            "value": 4
+          }
+        },
         "amenityFeature": [
           {
             "@type": "LocationFeatureSpecification",
             "name": "Cerca de la playa",
-            "value": "true"
+            "value": true
           },
           {
             "@type": "LocationFeatureSpecification",
             "name": "Vistas al mar",
-            "value": "true"
+            "value": true
           },
           {
             "@type": "LocationFeatureSpecification",
             "name": "Parque Natural",
-            "value": "true"
+            "value": true
           }
         ]
       }
