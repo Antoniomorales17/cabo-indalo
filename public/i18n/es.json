@@ -41,6 +41,14 @@
       "beach": "Playa cercana",
       "sunrise": "Amanecer en la costa",
       "room": "Habitacion luminosa"
+    },
+    "viewer": {
+      "open": "Abrir imagen",
+      "close": "Cerrar galeria",
+      "previous": "Imagen anterior",
+      "next": "Imagen siguiente",
+      "counter": "Imagen {{current}} de {{total}}",
+      "hint": "Usa las flechas del teclado para navegar"
     }
   },
   "features": {
@@ -172,6 +180,29 @@
     "emailText": "Respondemos dudas y disponibilidad.",
     "phoneTitle": "Contacto por telefono",
     "phoneText": "Llamadas y WhatsApp para reserva directa."
+  },
+  "suggestions": {
+    "button": "Sugerencias",
+    "eyebrow": "Mejoras",
+    "title": "Envianos tu sugerencia",
+    "subtitle": "Queremos mejorar la experiencia. Cuentanos que cambiarias o que te gustaria ver.",
+    "close": "Cerrar",
+    "name": "Nombre (opcional)",
+    "namePlaceholder": "Tu nombre",
+    "email": "Correo (opcional)",
+    "emailPlaceholder": "tu@email.com",
+    "message": "Mensaje",
+    "messagePlaceholder": "Escribe aqui tu sugerencia...",
+    "invalidEmail": "Introduce un correo valido.",
+    "invalidMessage": "El mensaje debe tener entre 10 y 1200 caracteres.",
+    "send": "Enviar sugerencia",
+    "sending": "Enviando...",
+    "cancel": "Cancelar",
+    "status": {
+      "sent": "Gracias, hemos recibido tu sugerencia.",
+      "sendError": "No se pudo enviar la sugerencia. Intentalo de nuevo.",
+      "networkError": "Fallo de red o timeout al enviar la sugerencia."
+    }
   },
   "footer": {
     "subtitle": "Casa turistica en Cabo de Gata",

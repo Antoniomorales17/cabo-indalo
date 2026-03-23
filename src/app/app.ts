@@ -3,11 +3,12 @@ import { Meta, Title } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs';
+import { SuggestionsButtonComponent } from './components/suggestions-button/suggestions-button.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, SuggestionsButtonComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

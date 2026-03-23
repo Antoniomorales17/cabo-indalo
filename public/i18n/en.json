@@ -41,6 +41,14 @@
       "beach": "Nearby beach",
       "sunrise": "Coast sunrise",
       "room": "Bright room"
+    },
+    "viewer": {
+      "open": "Open image",
+      "close": "Close gallery",
+      "previous": "Previous image",
+      "next": "Next image",
+      "counter": "Image {{current}} of {{total}}",
+      "hint": "Use keyboard arrows to navigate"
     }
   },
   "features": {
@@ -172,6 +180,29 @@
     "emailText": "We answer questions and availability requests.",
     "phoneTitle": "Contact by phone",
     "phoneText": "Calls and WhatsApp for direct booking."
+  },
+  "suggestions": {
+    "button": "Suggestions",
+    "eyebrow": "Improvements",
+    "title": "Send us your suggestion",
+    "subtitle": "We want to improve the experience. Tell us what you would change or like to see.",
+    "close": "Close",
+    "name": "Name (optional)",
+    "namePlaceholder": "Your name",
+    "email": "Email (optional)",
+    "emailPlaceholder": "you@email.com",
+    "message": "Message",
+    "messagePlaceholder": "Write your suggestion here...",
+    "invalidEmail": "Enter a valid email.",
+    "invalidMessage": "Message must be between 10 and 1200 characters.",
+    "send": "Send suggestion",
+    "sending": "Sending...",
+    "cancel": "Cancel",
+    "status": {
+      "sent": "Thanks, we received your suggestion.",
+      "sendError": "Could not send the suggestion. Please try again.",
+      "networkError": "Network error or timeout while sending the suggestion."
+    }
   },
   "footer": {
     "subtitle": "Holiday home in Cabo de Gata",

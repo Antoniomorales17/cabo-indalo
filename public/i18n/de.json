@@ -41,6 +41,14 @@
       "beach": "Strand in der Naehe",
       "sunrise": "Sonnenaufgang an der Kueste",
       "room": "Helles Zimmer"
+    },
+    "viewer": {
+      "open": "Bild oeffnen",
+      "close": "Galerie schliessen",
+      "previous": "Vorheriges Bild",
+      "next": "Naechstes Bild",
+      "counter": "Bild {{current}} von {{total}}",
+      "hint": "Nutze die Pfeiltasten zum Navigieren"
     }
   },
   "features": {
@@ -172,6 +180,29 @@
     "emailText": "Wir beantworten Fragen und Verfuegbarkeit.",
     "phoneTitle": "Kontakt per Telefon",
     "phoneText": "Anrufe und WhatsApp fuer Direktbuchungen."
+  },
+  "suggestions": {
+    "button": "Vorschlaege",
+    "eyebrow": "Verbesserungen",
+    "title": "Sende uns deinen Vorschlag",
+    "subtitle": "Wir wollen das Erlebnis verbessern. Sag uns, was wir aendern oder ergaenzen sollten.",
+    "close": "Schliessen",
+    "name": "Name (optional)",
+    "namePlaceholder": "Dein Name",
+    "email": "E-Mail (optional)",
+    "emailPlaceholder": "du@email.com",
+    "message": "Nachricht",
+    "messagePlaceholder": "Schreibe hier deinen Vorschlag...",
+    "invalidEmail": "Bitte gueltige E-Mail eingeben.",
+    "invalidMessage": "Die Nachricht muss zwischen 10 und 1200 Zeichen lang sein.",
+    "send": "Vorschlag senden",
+    "sending": "Senden...",
+    "cancel": "Abbrechen",
+    "status": {
+      "sent": "Danke, wir haben deinen Vorschlag erhalten.",
+      "sendError": "Vorschlag konnte nicht gesendet werden. Bitte erneut versuchen.",
+      "networkError": "Netzwerkfehler oder Timeout beim Senden des Vorschlags."
+    }
   },
   "footer": {
     "subtitle": "Ferienhaus in Cabo de Gata",

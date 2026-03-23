@@ -1,57 +1,144 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Inject,
+  OnDestroy,
+  PLATFORM_ID,
+  computed,
+  signal,
+} from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { SHARED_GALLERY_IMAGES } from '../../shared/gallery-images';
 
 @Component({
   selector: 'app-gallery-page',
   imports: [RouterLink, FooterComponent, TranslatePipe],
   templateUrl: './gallery-page.component.html',
 })
-export class GalleryPageComponent {
-  constructor(private readonly translate: TranslateService) {}
+export class GalleryPageComponent implements OnDestroy {
+  protected readonly activeImageIndex = signal<number | null>(null);
+  protected readonly isViewerOpen = computed(() => this.activeImageIndex() !== null);
+  protected readonly activeImage = computed(() => {
+    const index = this.activeImageIndex();
+    if (index === null) {
+      return null;
+    }
+
+    return this.galleryImages[index] ?? null;
+  });
+  protected readonly activeImagePosition = computed(() => {
+    const index = this.activeImageIndex();
+    if (index === null) {
+      return 0;
+    }
+
+    return index + 1;
+  });
+
+  private readonly canUseBrowserApis: boolean;
+  private previousBodyOverflow = '';
+
+  constructor(
+    private readonly translate: TranslateService,
+    @Inject(DOCUMENT) private readonly document: Document,
+    @Inject(PLATFORM_ID) platformId: object
+  ) {
+    this.canUseBrowserApis = isPlatformBrowser(platformId);
+  }
+
+  ngOnDestroy(): void {
+    this.unlockScroll();
+  }
 
   protected get homeRoute(): string[] {
     const language = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     return ['/', language];
   }
 
-  protected readonly galleryImages = [
-    {
-      src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80',
-      altKey: 'galleryPage.alt.sunrise',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=1400&q=80',
-      altKey: 'galleryPage.alt.living',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?auto=format&fit=crop&w=1400&q=80',
-      altKey: 'galleryPage.alt.bedroom',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1400&q=80',
-      altKey: 'galleryPage.alt.kitchen',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1400&q=80',
-      altKey: 'galleryPage.alt.terrace',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80',
-      altKey: 'galleryPage.alt.coast',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1400&q=80',
-      altKey: 'galleryPage.alt.interior',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80',
-      altKey: 'galleryPage.alt.room',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1400&q=80',
-      altKey: 'galleryPage.alt.path',
-    },
-  ];
+  protected readonly galleryImages = SHARED_GALLERY_IMAGES.map((image) => ({
+    src: image.src,
+    altKey: `galleryPage.alt.${image.id}`,
+  }));
+
+  protected openViewer(index: number): void {
+    this.activeImageIndex.set(index);
+    this.lockScroll();
+  }
+
+  protected closeViewer(): void {
+    this.activeImageIndex.set(null);
+    this.unlockScroll();
+  }
+
+  protected showPreviousImage(): void {
+    const currentIndex = this.activeImageIndex();
+    if (currentIndex === null) {
+      return;
+    }
+
+    const nextIndex = (currentIndex - 1 + this.galleryImages.length) % this.galleryImages.length;
+    this.activeImageIndex.set(nextIndex);
+  }
+
+  protected showNextImage(): void {
+    const currentIndex = this.activeImageIndex();
+    if (currentIndex === null) {
+      return;
+    }
+
+    const nextIndex = (currentIndex + 1) % this.galleryImages.length;
+    this.activeImageIndex.set(nextIndex);
+  }
+
+  protected selectImage(index: number): void {
+    this.activeImageIndex.set(index);
+  }
+
+  protected trackImage(index: number, image: (typeof this.galleryImages)[number]): string {
+    return `${image.src}-${index}`;
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  protected onDocumentKeydown(event: KeyboardEvent): void {
+    if (this.activeImageIndex() === null) {
+      return;
+    }
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.closeViewer();
+      return;
+    }
+
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      this.showPreviousImage();
+      return;
+    }
+
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      this.showNextImage();
+    }
+  }
+
+  private lockScroll(): void {
+    if (!this.canUseBrowserApis) {
+      return;
+    }
+
+    this.previousBodyOverflow = this.document.body.style.overflow;
+    this.document.body.style.overflow = 'hidden';
+  }
+
+  private unlockScroll(): void {
+    if (!this.canUseBrowserApis) {
+      return;
+    }
+
+    this.document.body.style.overflow = this.previousBodyOverflow;
+  }
 }

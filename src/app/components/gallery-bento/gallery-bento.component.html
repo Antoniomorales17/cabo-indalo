@@ -1,4 +1,4 @@
-<section id="galeria" class="mx-auto w-full max-w-7xl scroll-mt-24 px-6 py-20 sm:px-10">
+﻿<section id="galeria" class="mx-auto w-full max-w-7xl scroll-mt-24 px-6 py-20 sm:px-10">
   <div class="mb-10 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
     <div appRevealOnScroll>
       <p class="text-sm font-semibold uppercase tracking-wider text-[var(--sea-dark)]">
@@ -17,175 +17,110 @@
   </div>
 
   <div class="grid auto-rows-[200px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-    <article
-      appRevealOnScroll
-      [revealDelay]="40"
-      class="group relative overflow-hidden rounded-2xl sm:col-span-2 lg:row-span-2"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=1200&q=80"
-        loading="lazy"
-        [alt]="'gallery.alt.living' | translate"
-        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-      />
-      <div
-        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
+    @for (image of galleryImages; track trackImage($index, image)) {
+      <article
+        appRevealOnScroll
+        [revealDelay]="image.revealDelay"
+        class="relative overflow-hidden rounded-2xl"
+        [class]="image.layoutClass"
       >
-        {{ 'gallery.labels.living' | translate }}
-      </div>
-    </article>
-    <article
-      appRevealOnScroll
-      [revealDelay]="80"
-      class="group relative overflow-hidden rounded-2xl"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?auto=format&fit=crop&w=900&q=80"
-        loading="lazy"
-        [alt]="'gallery.alt.bedroom' | translate"
-        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-      />
-      <div
-        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
-      >
-        {{ 'gallery.labels.bedroom' | translate }}
-      </div>
-    </article>
-    <article
-      appRevealOnScroll
-      [revealDelay]="120"
-      class="group relative overflow-hidden rounded-2xl"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=900&q=80"
-        loading="lazy"
-        [alt]="'gallery.alt.kitchen' | translate"
-        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-      />
-      <div
-        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
-      >
-        {{ 'gallery.labels.kitchen' | translate }}
-      </div>
-    </article>
-    <article
-      appRevealOnScroll
-      [revealDelay]="160"
-      class="group relative overflow-hidden rounded-2xl sm:col-span-2"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80"
-        loading="lazy"
-        [alt]="'gallery.alt.terrace' | translate"
-        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-      />
-      <div
-        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
-      >
-        {{ 'gallery.labels.terrace' | translate }}
-      </div>
-    </article>
-    <article
-      appRevealOnScroll
-      [revealDelay]="200"
-      class="group relative overflow-hidden rounded-2xl"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=900&q=80"
-        loading="lazy"
-        [alt]="'gallery.alt.cozy' | translate"
-        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-      />
-      <div
-        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
-      >
-        {{ 'gallery.labels.cozy' | translate }}
-      </div>
-    </article>
-    <article
-      appRevealOnScroll
-      [revealDelay]="240"
-      class="group relative overflow-hidden rounded-2xl"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80"
-        loading="lazy"
-        [alt]="'gallery.alt.beach' | translate"
-        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-      />
-      <div
-        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
-      >
-        {{ 'gallery.labels.beach' | translate }}
-      </div>
-    </article>
-    <article
-      appRevealOnScroll
-      [revealDelay]="280"
-      class="group relative overflow-hidden rounded-2xl sm:col-span-2"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
-        loading="lazy"
-        [alt]="'gallery.alt.sunrise' | translate"
-        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-      />
-      <div
-        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
-      >
-        {{ 'gallery.labels.sunrise' | translate }}
-      </div>
-    </article>
-    <article
-      appRevealOnScroll
-      [revealDelay]="320"
-      class="group relative overflow-hidden rounded-2xl"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80"
-        loading="lazy"
-        [alt]="'gallery.alt.room' | translate"
-        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-      />
-      <div
-        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
-      >
-        {{ 'gallery.labels.room' | translate }}
-      </div>
-    </article>
-    <article
-      appRevealOnScroll
-      [revealDelay]="280"
-      class="group relative overflow-hidden rounded-2xl sm:col-span-2"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
-        loading="lazy"
-        [alt]="'gallery.alt.sunrise' | translate"
-        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-      />
-      <div
-        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
-      >
-        {{ 'gallery.labels.sunrise' | translate }}
-      </div>
-    </article>
-    <article
-      appRevealOnScroll
-      [revealDelay]="80"
-      class="group relative overflow-hidden rounded-2xl"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?auto=format&fit=crop&w=900&q=80"
-        loading="lazy"
-        [alt]="'gallery.alt.bedroom' | translate"
-        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-      />
-      <div
-        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 text-white"
-      >
-        {{ 'gallery.labels.bedroom' | translate }}
-      </div>
-    </article>
+        <button
+          type="button"
+          (click)="openViewer($index)"
+          class="group relative h-full w-full cursor-zoom-in text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sea-dark)] focus-visible:ring-offset-2"
+          [attr.aria-label]="'gallery.viewer.open' | translate"
+        >
+          <img
+            [src]="image.src"
+            loading="lazy"
+            [alt]="image.altKey | translate"
+            class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 text-white"
+          >
+            <p class="text-base font-semibold">{{ image.labelKey | translate }}</p>
+            <p class="mt-1 text-xs text-white/80">{{ 'gallery.viewer.open' | translate }}</p>
+          </div>
+        </button>
+      </article>
+    }
   </div>
 </section>
+
+@if (isViewerOpen()) {
+  <div
+    class="fixed inset-0 z-50 bg-slate-950/90 p-4 backdrop-blur-sm sm:p-8"
+    role="dialog"
+    aria-modal="true"
+    (click)="closeViewer()"
+  >
+    <div class="mx-auto flex h-full w-full max-w-7xl flex-col" (click)="$event.stopPropagation()">
+      <div class="mb-4 flex items-center justify-between gap-4 text-white">
+        <p class="text-sm text-white/90">
+          {{
+            'gallery.viewer.counter'
+              | translate
+                : {
+                    current: activeImagePosition(),
+                    total: galleryImages.length,
+                  }
+          }}
+        </p>
+        <button
+          type="button"
+          (click)="closeViewer()"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/50 bg-black/20 text-2xl leading-none transition hover:bg-white/15"
+          [attr.aria-label]="'gallery.viewer.close' | translate"
+        >
+          ×
+        </button>
+      </div>
+
+      @if (activeImage(); as image) {
+        <div class="relative flex min-h-0 flex-1 items-center justify-center">
+          <button
+            type="button"
+            (click)="showPreviousImage()"
+            class="absolute left-0 z-10 inline-flex h-12 w-12 -translate-x-1 items-center justify-center rounded-full border border-white/40 bg-black/45 text-3xl text-white transition hover:bg-black/65 sm:-translate-x-6"
+            [attr.aria-label]="'gallery.viewer.previous' | translate"
+          >
+            ‹
+          </button>
+
+          <img
+            [src]="image.src"
+            [alt]="image.altKey | translate"
+            class="max-h-full w-full rounded-2xl object-contain shadow-2xl"
+          />
+
+          <button
+            type="button"
+            (click)="showNextImage()"
+            class="absolute right-0 z-10 inline-flex h-12 w-12 translate-x-1 items-center justify-center rounded-full border border-white/40 bg-black/45 text-3xl text-white transition hover:bg-black/65 sm:translate-x-6"
+            [attr.aria-label]="'gallery.viewer.next' | translate"
+          >
+            ›
+          </button>
+        </div>
+      }
+
+      <p class="mt-4 text-center text-xs text-white/70">{{ 'gallery.viewer.hint' | translate }}</p>
+
+      <div class="mt-4 flex gap-2 overflow-x-auto pb-1">
+        @for (image of galleryImages; track trackImage($index, image)) {
+          <button
+            type="button"
+            (click)="selectImage($index)"
+            class="relative h-16 w-20 shrink-0 overflow-hidden rounded-lg border-2 border-transparent transition"
+            [class.border-white]="activeImageIndex() === $index"
+            [attr.aria-label]="image.altKey | translate"
+          >
+            <img [src]="image.src" [alt]="image.altKey | translate" class="h-full w-full object-cover" />
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+}
+

@@ -19,13 +19,96 @@
 
   <section class="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10">
     <div class="columns-1 gap-4 sm:columns-2 lg:columns-3">
-      @for (image of galleryImages; track image.src) {
+      @for (image of galleryImages; track trackImage($index, image)) {
         <figure class="mb-4 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <img [src]="image.src" [alt]="image.altKey | translate" class="w-full object-cover transition duration-300 hover:scale-[1.02]" />
+          <button
+            type="button"
+            (click)="openViewer($index)"
+            class="group relative block w-full cursor-zoom-in text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sea-dark)] focus-visible:ring-offset-2"
+            [attr.aria-label]="'gallery.viewer.open' | translate"
+          >
+            <img
+              [src]="image.src"
+              [alt]="image.altKey | translate"
+              class="w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+            />
+          </button>
         </figure>
       }
     </div>
   </section>
+
+  @if (isViewerOpen()) {
+    <div
+      class="fixed inset-0 z-50 bg-slate-950/90 p-4 backdrop-blur-sm sm:p-8"
+      role="dialog"
+      aria-modal="true"
+      (click)="closeViewer()"
+    >
+      <div class="mx-auto flex h-full w-full max-w-7xl flex-col" (click)="$event.stopPropagation()">
+        <div class="mb-4 flex items-center justify-between gap-4 text-white">
+          <p class="text-sm text-white/90">
+            {{
+              'gallery.viewer.counter'
+                | translate
+                  : {
+                      current: activeImagePosition(),
+                      total: galleryImages.length,
+                    }
+            }}
+          </p>
+          <button
+            type="button"
+            (click)="closeViewer()"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/50 bg-black/20 text-2xl leading-none transition hover:bg-white/15"
+            [attr.aria-label]="'gallery.viewer.close' | translate"
+          >
+            ×
+          </button>
+        </div>
+
+        @if (activeImage(); as image) {
+          <div class="relative flex min-h-0 flex-1 items-center justify-center">
+            <button
+              type="button"
+              (click)="showPreviousImage()"
+              class="absolute left-0 z-10 inline-flex h-12 w-12 -translate-x-1 items-center justify-center rounded-full border border-white/40 bg-black/45 text-3xl text-white transition hover:bg-black/65 sm:-translate-x-6"
+              [attr.aria-label]="'gallery.viewer.previous' | translate"
+            >
+              ‹
+            </button>
+
+            <img [src]="image.src" [alt]="image.altKey | translate" class="max-h-full w-full rounded-2xl object-contain shadow-2xl" />
+
+            <button
+              type="button"
+              (click)="showNextImage()"
+              class="absolute right-0 z-10 inline-flex h-12 w-12 translate-x-1 items-center justify-center rounded-full border border-white/40 bg-black/45 text-3xl text-white transition hover:bg-black/65 sm:translate-x-6"
+              [attr.aria-label]="'gallery.viewer.next' | translate"
+            >
+              ›
+            </button>
+          </div>
+        }
+
+        <p class="mt-4 text-center text-xs text-white/70">{{ 'gallery.viewer.hint' | translate }}</p>
+
+        <div class="mt-4 flex gap-2 overflow-x-auto pb-1">
+          @for (image of galleryImages; track trackImage($index, image)) {
+            <button
+              type="button"
+              (click)="selectImage($index)"
+              class="relative h-16 w-20 shrink-0 overflow-hidden rounded-lg border-2 border-transparent transition"
+              [class.border-white]="activeImageIndex() === $index"
+              [attr.aria-label]="image.altKey | translate"
+            >
+              <img [src]="image.src" [alt]="image.altKey | translate" class="h-full w-full object-cover" />
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  }
 
   <app-footer></app-footer>
 </main>

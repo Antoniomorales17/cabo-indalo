@@ -41,6 +41,14 @@
       "beach": "Plage proche",
       "sunrise": "Lever du soleil sur la cote",
       "room": "Chambre lumineuse"
+    },
+    "viewer": {
+      "open": "Ouvrir l'image",
+      "close": "Fermer la galerie",
+      "previous": "Image precedente",
+      "next": "Image suivante",
+      "counter": "Image {{current}} sur {{total}}",
+      "hint": "Utilisez les fleches du clavier pour naviguer"
     }
   },
   "features": {
@@ -172,6 +180,29 @@
     "emailText": "Nous repondons aux questions et disponibilites.",
     "phoneTitle": "Contact par telephone",
     "phoneText": "Appels et WhatsApp pour reservation directe."
+  },
+  "suggestions": {
+    "button": "Suggestions",
+    "eyebrow": "Ameliorations",
+    "title": "Envoyez votre suggestion",
+    "subtitle": "Nous voulons ameliorer l'experience. Dites-nous ce que vous changeriez ou aimeriez voir.",
+    "close": "Fermer",
+    "name": "Nom (optionnel)",
+    "namePlaceholder": "Votre nom",
+    "email": "Email (optionnel)",
+    "emailPlaceholder": "vous@email.com",
+    "message": "Message",
+    "messagePlaceholder": "Ecrivez votre suggestion ici...",
+    "invalidEmail": "Entrez un email valide.",
+    "invalidMessage": "Le message doit contenir entre 10 et 1200 caracteres.",
+    "send": "Envoyer la suggestion",
+    "sending": "Envoi...",
+    "cancel": "Annuler",
+    "status": {
+      "sent": "Merci, nous avons recu votre suggestion.",
+      "sendError": "Impossible d'envoyer la suggestion. Reessayez.",
+      "networkError": "Erreur reseau ou delai depasse lors de l'envoi."
+    }
   },
   "footer": {
     "subtitle": "Maison touristique a Cabo de Gata",
