@@ -1,6 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { RevealOnScrollDirective } from '../../directives/reveal-on-scroll.directive';
 
@@ -32,6 +39,102 @@ interface Traveler {
 
 const STORAGE_KEY = 'cabo-indalo-viajeros';
 const EMAIL_API_URL = '/api/send-travelers';
+const DNI_REGEX = /^\d{8}[A-Za-z]$/;
+const NIE_REGEX = /^[XYZ]\d{7}[A-Za-z]$/i;
+const PASSPORT_REGEX = /^[A-Za-z0-9]{6,15}$/;
+const PHONE_REGEX = /^\+?[0-9]{9,15}$/;
+const NAME_REGEX = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/u;
+const ADDRESS_REGEX = /^[A-Za-zÀ-ÖØ-öø-ÿ0-9.,'\/ -]+$/u;
+const SUPPORT_DOC_REGEX = /^[A-Za-z0-9\-\/]{3,30}$/;
+
+function optionalPatternValidator(pattern: RegExp, errorKey: string): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = String(control.value || '').trim();
+    if (!value) {
+      return null;
+    }
+    return pattern.test(value) ? null : { [errorKey]: true };
+  };
+}
+
+function birthDateValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const raw = String(control.value || '').trim();
+    if (!raw) {
+      return null;
+    }
+
+    const date = new Date(raw);
+    if (Number.isNaN(date.getTime())) {
+      return { invalidBirthDate: true };
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (date > today) {
+      return { futureBirthDate: true };
+    }
+
+    const oldestAllowed = new Date('1900-01-01');
+    if (date < oldestAllowed) {
+      return { invalidBirthDate: true };
+    }
+
+    return null;
+  };
+}
+
+function isValidDniLetter(value: string): boolean {
+  if (!DNI_REGEX.test(value)) {
+    return false;
+  }
+  const letters = 'TRWAGMYFPDXBNJZSQVHLCKE';
+  const number = parseInt(value.slice(0, 8), 10);
+  const expected = letters[number % 23];
+  return value.slice(-1).toUpperCase() === expected;
+}
+
+function isValidNieLetter(value: string): boolean {
+  if (!NIE_REGEX.test(value)) {
+    return false;
+  }
+
+  const prefix = value[0].toUpperCase();
+  const map: Record<string, string> = { X: '0', Y: '1', Z: '2' };
+  const normalized = `${map[prefix]}${value.slice(1, 8)}${value.slice(-1).toUpperCase()}`;
+  return isValidDniLetter(normalized);
+}
+
+function documentValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = String(control.value || '').trim().toUpperCase();
+    if (!value) {
+      return null;
+    }
+
+    const type = String(control.parent?.get('tipoDocumento')?.value || '').toLowerCase();
+
+    if (type === 'dni') {
+      if (!DNI_REGEX.test(value)) {
+        return { invalidDocumentFormat: true };
+      }
+      return isValidDniLetter(value) ? null : { invalidDocumentChecksum: true };
+    }
+
+    if (type === 'nie') {
+      if (!NIE_REGEX.test(value)) {
+        return { invalidDocumentFormat: true };
+      }
+      return isValidNieLetter(value) ? null : { invalidDocumentChecksum: true };
+    }
+
+    if (type === 'passport') {
+      return PASSPORT_REGEX.test(value) ? null : { invalidDocumentFormat: true };
+    }
+
+    return { invalidDocumentFormat: true };
+  };
+}
 
 @Component({
   selector: 'app-guest-registration-section',
@@ -56,25 +159,25 @@ export class GuestRegistrationSectionComponent {
   ];
 
   protected readonly travelerForm = this.fb.group({
-    nombre: ['', [Validators.required, Validators.maxLength(80)]],
-    primerApellido: ['', [Validators.required, Validators.maxLength(80)]],
-    segundoApellido: ['', [Validators.maxLength(80)]],
-    fechaNacimiento: ['', Validators.required],
-    nacionalidad: ['', [Validators.required, Validators.maxLength(60)]],
+    nombre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(80), Validators.pattern(NAME_REGEX)]],
+    primerApellido: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(80), Validators.pattern(NAME_REGEX)]],
+    segundoApellido: ['', [Validators.maxLength(80), optionalPatternValidator(NAME_REGEX, 'invalidName')]],
+    fechaNacimiento: ['', [Validators.required, birthDateValidator()]],
+    nacionalidad: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(60), Validators.pattern(NAME_REGEX)]],
     sexo: ['', Validators.required],
     tipoDocumento: ['', Validators.required],
-    documento: ['', [Validators.required, Validators.maxLength(30)]],
-    soporteDocumento: ['', Validators.maxLength(30)],
-    telefono: ['', [Validators.maxLength(25)]],
-    telefonoAdicional: ['', [Validators.maxLength(25)]],
+    documento: ['', [Validators.required, Validators.maxLength(30), documentValidator()]],
+    soporteDocumento: ['', [Validators.maxLength(30), optionalPatternValidator(SUPPORT_DOC_REGEX, 'invalidSupportDoc')]],
+    telefono: ['', [Validators.maxLength(25), optionalPatternValidator(PHONE_REGEX, 'invalidPhone')]],
+    telefonoAdicional: ['', [Validators.maxLength(25), optionalPatternValidator(PHONE_REGEX, 'invalidPhone')]],
     correo: ['', Validators.email],
     parentesco: ['', Validators.required],
     direccionViajero: this.fb.group({
-      direccion: ['', [Validators.required, Validators.maxLength(120)]],
+      direccion: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(120), Validators.pattern(ADDRESS_REGEX)]],
       informacionAdicional: ['', Validators.maxLength(120)],
-      pais: ['', [Validators.required, Validators.maxLength(80)]],
-      provincia: ['', [Validators.required, Validators.maxLength(80)]],
-      municipio: ['', [Validators.required, Validators.maxLength(80)]],
+      pais: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(80), Validators.pattern(NAME_REGEX)]],
+      provincia: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(80), Validators.pattern(NAME_REGEX)]],
+      municipio: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(80), Validators.pattern(NAME_REGEX)]],
     }),
   });
 
@@ -82,6 +185,12 @@ export class GuestRegistrationSectionComponent {
   protected emailStatus = '';
   protected emailStatusKind: 'ok' | 'error' | '' = '';
   protected isSendingEmail = false;
+
+  constructor() {
+    this.travelerForm.get('tipoDocumento')?.valueChanges.subscribe(() => {
+      this.travelerForm.get('documento')?.updateValueAndValidity({ onlySelf: true });
+    });
+  }
 
   protected addTraveler(): void {
     if (this.travelerForm.invalid) {
@@ -92,7 +201,7 @@ export class GuestRegistrationSectionComponent {
     const value = this.travelerForm.getRawValue();
     const traveler: Traveler = {
       id: this.createTravelerId(),
-      ...value,
+      ...this.normalizeTraveler(value),
     };
 
     this.travelers = [...this.travelers, traveler];
@@ -183,6 +292,31 @@ export class GuestRegistrationSectionComponent {
     return !!control && control.invalid && (control.touched || control.dirty);
   }
 
+  protected hasErrorByKey(path: string, errorKey: string): boolean {
+    const control = this.travelerForm.get(path);
+    return Boolean(control && control.errors?.[errorKey] && (control.touched || control.dirty));
+  }
+
+  protected normalizeDocument(): void {
+    const control = this.travelerForm.get('documento');
+    if (!control) return;
+    const normalized = String(control.value || '')
+      .toUpperCase()
+      .replace(/\s+/g, '')
+      .trim();
+    if (normalized !== control.value) {
+      control.setValue(normalized);
+    }
+  }
+
+  protected documentFormatHintKey(): string {
+    const type = String(this.travelerForm.get('tipoDocumento')?.value || '').toLowerCase();
+    if (type === 'dni') return 'guest.invalidDniFormat';
+    if (type === 'nie') return 'guest.invalidNieFormat';
+    if (type === 'passport') return 'guest.invalidPassportFormat';
+    return 'guest.invalidDocumentFormat';
+  }
+
   protected trackByTravelerId(_index: number, traveler: Traveler): string {
     return traveler.id;
   }
@@ -249,6 +383,30 @@ export class GuestRegistrationSectionComponent {
   private setEmailStatus(kind: 'ok' | 'error' | '', message: string): void {
     this.emailStatusKind = kind;
     this.emailStatus = message;
+  }
+
+  private normalizeTraveler(value: Omit<Traveler, 'id'>): Omit<Traveler, 'id'> {
+    return {
+      ...value,
+      nombre: value.nombre.trim(),
+      primerApellido: value.primerApellido.trim(),
+      segundoApellido: value.segundoApellido.trim(),
+      nacionalidad: value.nacionalidad.trim(),
+      tipoDocumento: value.tipoDocumento.trim(),
+      documento: value.documento.trim().toUpperCase(),
+      soporteDocumento: value.soporteDocumento.trim().toUpperCase(),
+      telefono: value.telefono.trim(),
+      telefonoAdicional: value.telefonoAdicional.trim(),
+      correo: value.correo.trim(),
+      parentesco: value.parentesco.trim(),
+      direccionViajero: {
+        direccion: value.direccionViajero.direccion.trim(),
+        informacionAdicional: value.direccionViajero.informacionAdicional.trim(),
+        pais: value.direccionViajero.pais.trim(),
+        provincia: value.direccionViajero.provincia.trim(),
+        municipio: value.direccionViajero.municipio.trim(),
+      },
+    };
   }
 }
 

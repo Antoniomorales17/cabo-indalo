@@ -1,4 +1,10 @@
 const RESEND_API_URL = 'https://api.resend.com/emails';
+const DNI_REGEX = /^\d{8}[A-Za-z]$/;
+const NIE_REGEX = /^[XYZ]\d{7}[A-Za-z]$/i;
+const PASSPORT_REGEX = /^[A-Za-z0-9]{6,15}$/;
+const PHONE_REGEX = /^\+?[0-9]{9,15}$/;
+const NAME_REGEX = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/u;
+const ADDRESS_REGEX = /^[A-Za-zÀ-ÖØ-öø-ÿ0-9.,'\/ -]+$/u;
 
 module.exports = async function handler(req, res) {
   try {
@@ -30,10 +36,23 @@ module.exports = async function handler(req, res) {
     }
 
     const body = parseBody(req ? req.body : null);
-    const travelers = Array.isArray(body.travelers) ? body.travelers : [];
+    const travelersRaw = Array.isArray(body.travelers) ? body.travelers : [];
 
-    if (!travelers.length) {
+    if (!travelersRaw.length) {
       return res.status(400).json({ ok: false, message: 'No travelers provided' });
+    }
+
+    if (travelersRaw.length > 20) {
+      return res.status(400).json({ ok: false, message: 'Too many travelers in one request' });
+    }
+
+    const travelers = travelersRaw.map(normalizeTraveler);
+    const invalid = travelers.find((traveler) => !isValidTraveler(traveler));
+    if (invalid) {
+      return res.status(400).json({
+        ok: false,
+        message: 'Traveler data is invalid. Check required fields and document format.',
+      });
     }
 
     const resendResponse = await fetch(RESEND_API_URL, {
@@ -82,6 +101,105 @@ function parseBody(body) {
     }
   }
   return body;
+}
+
+function normalizeTraveler(input) {
+  const t = input && typeof input === 'object' ? input : {};
+  const a = t.direccionViajero && typeof t.direccionViajero === 'object' ? t.direccionViajero : {};
+  return {
+    ...t,
+    nombre: normalizeText(t.nombre),
+    primerApellido: normalizeText(t.primerApellido),
+    segundoApellido: normalizeText(t.segundoApellido),
+    fechaNacimiento: normalizeText(t.fechaNacimiento),
+    nacionalidad: normalizeText(t.nacionalidad),
+    sexo: normalizeText(t.sexo),
+    tipoDocumento: normalizeText(t.tipoDocumento).toLowerCase(),
+    documento: normalizeText(t.documento).toUpperCase(),
+    soporteDocumento: normalizeText(t.soporteDocumento).toUpperCase(),
+    telefono: normalizeText(t.telefono),
+    telefonoAdicional: normalizeText(t.telefonoAdicional),
+    correo: normalizeText(t.correo),
+    parentesco: normalizeText(t.parentesco),
+    direccionViajero: {
+      ...a,
+      direccion: normalizeText(a.direccion),
+      informacionAdicional: normalizeText(a.informacionAdicional),
+      pais: normalizeText(a.pais),
+      provincia: normalizeText(a.provincia),
+      municipio: normalizeText(a.municipio),
+    },
+  };
+}
+
+function normalizeText(value) {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
+function isValidTraveler(traveler) {
+  const requiredMissing =
+    !traveler.nombre ||
+    !traveler.primerApellido ||
+    !traveler.fechaNacimiento ||
+    !traveler.nacionalidad ||
+    !traveler.sexo ||
+    !traveler.tipoDocumento ||
+    !traveler.documento ||
+    !traveler.parentesco ||
+    !traveler.direccionViajero?.direccion ||
+    !traveler.direccionViajero?.pais ||
+    !traveler.direccionViajero?.provincia ||
+    !traveler.direccionViajero?.municipio;
+
+  if (requiredMissing) return false;
+
+  if (!NAME_REGEX.test(traveler.nombre) || !NAME_REGEX.test(traveler.primerApellido)) return false;
+  if (traveler.segundoApellido && !NAME_REGEX.test(traveler.segundoApellido)) return false;
+  if (!NAME_REGEX.test(traveler.nacionalidad)) return false;
+  if (!ADDRESS_REGEX.test(traveler.direccionViajero.direccion)) return false;
+  if (!NAME_REGEX.test(traveler.direccionViajero.pais)) return false;
+  if (!NAME_REGEX.test(traveler.direccionViajero.provincia)) return false;
+  if (!NAME_REGEX.test(traveler.direccionViajero.municipio)) return false;
+
+  const birthDate = new Date(traveler.fechaNacimiento);
+  if (Number.isNaN(birthDate.getTime())) return false;
+  if (birthDate > new Date()) return false;
+
+  if (traveler.telefono && !PHONE_REGEX.test(traveler.telefono)) return false;
+  if (traveler.telefonoAdicional && !PHONE_REGEX.test(traveler.telefonoAdicional)) return false;
+
+  if (!isValidDocument(traveler.tipoDocumento, traveler.documento)) return false;
+
+  return true;
+}
+
+function isValidDocument(type, document) {
+  if (type === 'dni') {
+    return isValidDni(document);
+  }
+  if (type === 'nie') {
+    return isValidNie(document);
+  }
+  if (type === 'passport') {
+    return PASSPORT_REGEX.test(document);
+  }
+  return false;
+}
+
+function isValidDni(document) {
+  if (!DNI_REGEX.test(document)) return false;
+  const letters = 'TRWAGMYFPDXBNJZSQVHLCKE';
+  const number = parseInt(document.slice(0, 8), 10);
+  const expected = letters[number % 23];
+  return document.slice(-1).toUpperCase() === expected;
+}
+
+function isValidNie(document) {
+  if (!NIE_REGEX.test(document)) return false;
+  const map = { X: '0', Y: '1', Z: '2' };
+  const prefix = document[0].toUpperCase();
+  const normalized = `${map[prefix]}${document.slice(1, 8)}${document.slice(-1).toUpperCase()}`;
+  return isValidDni(normalized);
 }
 
 function safeParse(raw) {

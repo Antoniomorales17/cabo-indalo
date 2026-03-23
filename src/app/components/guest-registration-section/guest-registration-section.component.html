@@ -13,30 +13,36 @@
         <label class="flex flex-col gap-1 text-sm text-slate-700">
           {{ 'guest.name' | translate }} *
           <input formControlName="nombre" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
-          <span *ngIf="hasError('nombre')" class="text-xs text-red-600">{{ 'guest.requiredName' | translate }}</span>
+          <span *ngIf="hasErrorByKey('nombre', 'required')" class="text-xs text-red-600">{{ 'guest.requiredName' | translate }}</span>
+          <span *ngIf="hasErrorByKey('nombre', 'pattern')" class="text-xs text-red-600">{{ 'guest.invalidNameFormat' | translate }}</span>
         </label>
 
         <label class="flex flex-col gap-1 text-sm text-slate-700">
           {{ 'guest.firstSurname' | translate }} *
           <input formControlName="primerApellido" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
-          <span *ngIf="hasError('primerApellido')" class="text-xs text-red-600">{{ 'guest.requiredFirstSurname' | translate }}</span>
+          <span *ngIf="hasErrorByKey('primerApellido', 'required')" class="text-xs text-red-600">{{ 'guest.requiredFirstSurname' | translate }}</span>
+          <span *ngIf="hasErrorByKey('primerApellido', 'pattern')" class="text-xs text-red-600">{{ 'guest.invalidSurnameFormat' | translate }}</span>
         </label>
 
         <label class="flex flex-col gap-1 text-sm text-slate-700">
           {{ 'guest.secondSurname' | translate }}
           <input formControlName="segundoApellido" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
+          <span *ngIf="hasErrorByKey('segundoApellido', 'invalidName')" class="text-xs text-red-600">{{ 'guest.invalidSurnameFormat' | translate }}</span>
         </label>
 
         <label class="flex flex-col gap-1 text-sm text-slate-700">
           {{ 'guest.birthDate' | translate }} *
           <input formControlName="fechaNacimiento" type="date" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
-          <span *ngIf="hasError('fechaNacimiento')" class="text-xs text-red-600">{{ 'guest.requiredBirthDate' | translate }}</span>
+          <span *ngIf="hasErrorByKey('fechaNacimiento', 'required')" class="text-xs text-red-600">{{ 'guest.requiredBirthDate' | translate }}</span>
+          <span *ngIf="hasErrorByKey('fechaNacimiento', 'futureBirthDate')" class="text-xs text-red-600">{{ 'guest.invalidBirthDateFuture' | translate }}</span>
+          <span *ngIf="hasErrorByKey('fechaNacimiento', 'invalidBirthDate')" class="text-xs text-red-600">{{ 'guest.invalidBirthDate' | translate }}</span>
         </label>
 
         <label class="flex flex-col gap-1 text-sm text-slate-700">
           {{ 'guest.nationality' | translate }} *
           <input formControlName="nacionalidad" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
-          <span *ngIf="hasError('nacionalidad')" class="text-xs text-red-600">{{ 'guest.requiredNationality' | translate }}</span>
+          <span *ngIf="hasErrorByKey('nacionalidad', 'required')" class="text-xs text-red-600">{{ 'guest.requiredNationality' | translate }}</span>
+          <span *ngIf="hasErrorByKey('nacionalidad', 'pattern')" class="text-xs text-red-600">{{ 'guest.invalidNationalityFormat' | translate }}</span>
         </label>
 
         <label class="flex flex-col gap-1 text-sm text-slate-700">
@@ -45,7 +51,7 @@
             <option value="">{{ 'guest.select' | translate }}</option>
             <option *ngFor="let option of sexOptions" [value]="'guest.sexOptions.' + option | translate">{{ 'guest.sexOptions.' + option | translate }}</option>
           </select>
-          <span *ngIf="hasError('sexo')" class="text-xs text-red-600">{{ 'guest.requiredSex' | translate }}</span>
+          <span *ngIf="hasErrorByKey('sexo', 'required')" class="text-xs text-red-600">{{ 'guest.requiredSex' | translate }}</span>
         </label>
 
         <label class="flex flex-col gap-1 text-sm text-slate-700">
@@ -54,28 +60,33 @@
             <option value="">{{ 'guest.select' | translate }}</option>
             <option *ngFor="let option of documentTypeOptions" [value]="'guest.documentTypes.' + option | translate">{{ 'guest.documentTypes.' + option | translate }}</option>
           </select>
-          <span *ngIf="hasError('tipoDocumento')" class="text-xs text-red-600">{{ 'guest.requiredDocType' | translate }}</span>
+          <span *ngIf="hasErrorByKey('tipoDocumento', 'required')" class="text-xs text-red-600">{{ 'guest.requiredDocType' | translate }}</span>
         </label>
 
         <label class="flex flex-col gap-1 text-sm text-slate-700">
           {{ 'guest.document' | translate }} *
-          <input formControlName="documento" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
-          <span *ngIf="hasError('documento')" class="text-xs text-red-600">{{ 'guest.requiredDocument' | translate }}</span>
+          <input formControlName="documento" type="text" (input)="normalizeDocument()" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
+          <span *ngIf="hasErrorByKey('documento', 'required')" class="text-xs text-red-600">{{ 'guest.requiredDocument' | translate }}</span>
+          <span *ngIf="hasErrorByKey('documento', 'invalidDocumentFormat')" class="text-xs text-red-600">{{ documentFormatHintKey() | translate }}</span>
+          <span *ngIf="hasErrorByKey('documento', 'invalidDocumentChecksum')" class="text-xs text-red-600">{{ 'guest.invalidDocumentChecksum' | translate }}</span>
         </label>
 
         <label class="flex flex-col gap-1 text-sm text-slate-700">
           {{ 'guest.documentSupport' | translate }}
           <input formControlName="soporteDocumento" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
+          <span *ngIf="hasErrorByKey('soporteDocumento', 'invalidSupportDoc')" class="text-xs text-red-600">{{ 'guest.invalidSupportDocFormat' | translate }}</span>
         </label>
 
         <label class="flex flex-col gap-1 text-sm text-slate-700">
           {{ 'guest.phone' | translate }}
           <input formControlName="telefono" type="tel" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
+          <span *ngIf="hasErrorByKey('telefono', 'invalidPhone')" class="text-xs text-red-600">{{ 'guest.invalidPhoneFormat' | translate }}</span>
         </label>
 
         <label class="flex flex-col gap-1 text-sm text-slate-700">
           {{ 'guest.phone2' | translate }}
           <input formControlName="telefonoAdicional" type="tel" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
+          <span *ngIf="hasErrorByKey('telefonoAdicional', 'invalidPhone')" class="text-xs text-red-600">{{ 'guest.invalidPhoneFormat' | translate }}</span>
         </label>
 
         <label class="flex flex-col gap-1 text-sm text-slate-700">
@@ -90,7 +101,7 @@
             <option value="">{{ 'guest.select' | translate }}</option>
             <option *ngFor="let option of relationshipOptions" [value]="'guest.relationships.' + option | translate">{{ 'guest.relationships.' + option | translate }}</option>
           </select>
-          <span *ngIf="hasError('parentesco')" class="text-xs text-red-600">{{ 'guest.requiredRelationship' | translate }}</span>
+          <span *ngIf="hasErrorByKey('parentesco', 'required')" class="text-xs text-red-600">{{ 'guest.requiredRelationship' | translate }}</span>
         </label>
       </div>
 
@@ -100,9 +111,10 @@
         <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <label class="flex flex-col gap-1 text-sm text-slate-700 lg:col-span-2">
             {{ 'guest.address' | translate }} *
-            <input formControlName="direccion" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
-            <span *ngIf="hasError('direccionViajero.direccion')" class="text-xs text-red-600">{{ 'guest.requiredAddress' | translate }}</span>
-          </label>
+          <input formControlName="direccion" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
+            <span *ngIf="hasErrorByKey('direccionViajero.direccion', 'required')" class="text-xs text-red-600">{{ 'guest.requiredAddress' | translate }}</span>
+          <span *ngIf="hasErrorByKey('direccionViajero.direccion', 'pattern')" class="text-xs text-red-600">{{ 'guest.invalidAddressFormat' | translate }}</span>
+        </label>
 
           <label class="flex flex-col gap-1 text-sm text-slate-700">
             {{ 'guest.addressExtra' | translate }}
@@ -111,21 +123,24 @@
 
           <label class="flex flex-col gap-1 text-sm text-slate-700">
             {{ 'guest.country' | translate }} *
-            <input formControlName="pais" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
-            <span *ngIf="hasError('direccionViajero.pais')" class="text-xs text-red-600">{{ 'guest.requiredCountry' | translate }}</span>
-          </label>
+          <input formControlName="pais" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
+            <span *ngIf="hasErrorByKey('direccionViajero.pais', 'required')" class="text-xs text-red-600">{{ 'guest.requiredCountry' | translate }}</span>
+          <span *ngIf="hasErrorByKey('direccionViajero.pais', 'pattern')" class="text-xs text-red-600">{{ 'guest.invalidCountryFormat' | translate }}</span>
+        </label>
 
           <label class="flex flex-col gap-1 text-sm text-slate-700">
             {{ 'guest.province' | translate }} *
-            <input formControlName="provincia" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
-            <span *ngIf="hasError('direccionViajero.provincia')" class="text-xs text-red-600">{{ 'guest.requiredProvince' | translate }}</span>
-          </label>
+          <input formControlName="provincia" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
+            <span *ngIf="hasErrorByKey('direccionViajero.provincia', 'required')" class="text-xs text-red-600">{{ 'guest.requiredProvince' | translate }}</span>
+          <span *ngIf="hasErrorByKey('direccionViajero.provincia', 'pattern')" class="text-xs text-red-600">{{ 'guest.invalidProvinceFormat' | translate }}</span>
+        </label>
 
           <label class="flex flex-col gap-1 text-sm text-slate-700">
             {{ 'guest.city' | translate }} *
-            <input formControlName="municipio" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
-            <span *ngIf="hasError('direccionViajero.municipio')" class="text-xs text-red-600">{{ 'guest.requiredCity' | translate }}</span>
-          </label>
+          <input formControlName="municipio" type="text" class="rounded-xl border border-slate-300 px-3 py-2 focus:border-[var(--sea)] focus:outline-none" />
+            <span *ngIf="hasErrorByKey('direccionViajero.municipio', 'required')" class="text-xs text-red-600">{{ 'guest.requiredCity' | translate }}</span>
+          <span *ngIf="hasErrorByKey('direccionViajero.municipio', 'pattern')" class="text-xs text-red-600">{{ 'guest.invalidCityFormat' | translate }}</span>
+        </label>
         </div>
       </div>
 
