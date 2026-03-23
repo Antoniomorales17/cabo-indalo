@@ -40,6 +40,10 @@ export class HeroSectionComponent {
     return ['/', this.currentLanguage, 'galeria'];
   }
 
+  protected get homeRoute(): string[] {
+    return ['/', this.currentLanguage];
+  }
+
   protected setLanguage(language: string, updateUrl = true): void {
     if (!this.languages.includes(language)) {
       return;
