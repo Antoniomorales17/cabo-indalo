@@ -165,6 +165,7 @@ export class GuestRegistrationSectionComponent {
         return;
       }
 
+      this.clearTravelers();
       this.setEmailStatus('ok', this.translate.instant('guest.status.sent'));
       this.cdr.markForCheck();
     } catch {
