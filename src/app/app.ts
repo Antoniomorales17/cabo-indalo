@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
@@ -15,6 +16,7 @@ import { SuggestionsButtonComponent } from './components/suggestions-button/sugg
 export class App {
   private readonly supportedLanguages = ['es', 'en', 'fr', 'de'];
   private readonly baseUrl = 'https://www.caboindalo.es';
+  private readonly document = inject(DOCUMENT);
   private readonly router = inject(Router);
   private readonly translate = inject(TranslateService);
   private readonly meta = inject(Meta);
@@ -49,9 +51,7 @@ export class App {
       this.translate.use(language);
     }
 
-    if (typeof document !== 'undefined') {
-      document.documentElement.lang = language;
-    }
+    this.document.documentElement.lang = language;
   }
 
   private applySeoMeta(language: string, pagePath: string): void {
@@ -70,10 +70,10 @@ export class App {
     this.meta.updateTag({ name: 'twitter:title', content: title });
     this.meta.updateTag({ name: 'twitter:description', content: description });
 
-    if (typeof document !== 'undefined') {
-      const canonicalLink = this.getOrCreateLink('canonical');
-      canonicalLink.setAttribute('href', canonicalUrl);
-    }
+    const canonicalLink = this.getOrCreateLink('canonical');
+    canonicalLink.setAttribute('href', canonicalUrl);
+
+    this.updateAlternateLinks(pageMeta.slug);
   }
 
   private resolvePageMeta(pagePath: string): { slug: string | null; title: string; description: string } {
@@ -123,12 +123,29 @@ export class App {
     return map[language] ?? 'es_ES';
   }
 
-  private getOrCreateLink(rel: string): HTMLLinkElement {
-    let link = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null;
+  private updateAlternateLinks(slug: string | null): void {
+    for (const language of this.supportedLanguages) {
+      const href = `${this.baseUrl}/${language}${slug ? `/${slug}` : ''}`;
+      const alternateLink = this.getOrCreateLink('alternate', language);
+      alternateLink.setAttribute('href', href);
+    }
+
+    const defaultHref = `${this.baseUrl}/es${slug ? `/${slug}` : ''}`;
+    const xDefaultLink = this.getOrCreateLink('alternate', 'x-default');
+    xDefaultLink.setAttribute('href', defaultHref);
+  }
+
+  private getOrCreateLink(rel: string, hreflang?: string): HTMLLinkElement {
+    const hreflangSelector = hreflang ? `[hreflang="${hreflang}"]` : '';
+    const selector = `link[rel="${rel}"]${hreflangSelector}`;
+    let link = this.document.querySelector(selector) as HTMLLinkElement | null;
     if (!link) {
-      link = document.createElement('link');
+      link = this.document.createElement('link');
       link.setAttribute('rel', rel);
-      document.head.appendChild(link);
+      if (hreflang) {
+        link.setAttribute('hreflang', hreflang);
+      }
+      this.document.head.appendChild(link);
     }
     return link;
   }
