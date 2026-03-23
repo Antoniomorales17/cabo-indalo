@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cabo Indalo - Tarjeta QR</title>
+    <style>
+      :root {
+        --sea-dark: #0f3a4a;
+        --sea: #1f6f8b;
+        --sand: #f6f0e4;
+        --ink: #0f172a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--ink);
+        background: #f5f6f8;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        padding: 24px;
+      }
+
+      .card {
+        width: 85.6mm;
+        height: 54mm;
+        border-radius: 4.5mm;
+        background: linear-gradient(145deg, #ffffff 0%, #f2ecdf 100%);
+        border: 0.35mm solid #dbe4ea;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+        padding: 3.6mm;
+        display: grid;
+        grid-template-columns: 1fr 27mm;
+        gap: 2.8mm;
+      }
+
+      .left {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 2.6mm;
+      }
+
+      .brand img {
+        width: 12mm;
+        height: 12mm;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 0.35mm solid #7eb3c8;
+        background: #fff;
+        box-shadow: 0 1.8mm 3.2mm rgba(15, 58, 74, 0.22);
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: 5.2mm;
+        line-height: 1.1;
+        color: var(--sea-dark);
+      }
+
+      .title {
+        margin: 1.8mm 0 1.2mm;
+        font-size: 3.9mm;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+
+      .subtitle {
+        margin: 0;
+        font-size: 2.8mm;
+        line-height: 1.35;
+        color: #334155;
+      }
+
+      .chips {
+        margin-top: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.3mm;
+      }
+
+      .chip {
+        font-size: 2.2mm;
+        font-weight: 600;
+        padding: 0.95mm 1.7mm;
+        border-radius: 10mm;
+        background: #e8f1f5;
+        border: 0.25mm solid #c6dce6;
+        color: #11455a;
+      }
+
+      .qr-wrap {
+        background: linear-gradient(180deg, #0f3a4a 0%, #14526a 100%);
+        border-radius: 3.3mm;
+        border: 0.35mm solid #0f3a4a;
+        display: grid;
+        place-items: center;
+        padding: 1.25mm;
+      }
+
+      .qr-wrap img {
+        width: 100%;
+        max-width: 24mm;
+        height: auto;
+        display: block;
+        border-radius: 1.2mm;
+      }
+
+      .url {
+        position: absolute;
+        left: -9999px;
+      }
+
+      @media print {
+        @page {
+          size: 85.6mm 54mm;
+          margin: 0;
+        }
+
+        body {
+          background: #fff;
+          padding: 0;
+          min-height: auto;
+        }
+
+        .card {
+          box-shadow: none;
+          border-color: #c8d6df;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <article class="card" role="img" aria-label="Tarjeta de acceso rapido con QR de Cabo Indalo">
+      <section class="left">
+        <div class="brand">
+          <img src="../cabo-indalo.png" alt="Logo Cabo Indalo" />
+          <h1>Cabo Indalo</h1>
+        </div>
+
+        <p class="title">Escanea y accede a toda tu info</p>
+        <p class="subtitle">WiFi, como llegar, playas cercanas, mapa y contacto en un solo enlace.</p>
+
+        <div class="chips">
+          <span class="chip">WiFi</span>
+          <span class="chip">Playas</span>
+          <span class="chip">Mapa</span>
+          <span class="chip">Contacto</span>
+        </div>
+      </section>
+
+      <aside class="qr-wrap">
+        <img src="./cabo-indalo-info-qr.png" alt="QR de acceso a info de huespedes Cabo Indalo" />
+      </aside>
+    </article>
+    <span class="url">https://www.caboindalo.es/es/info-qr</span>
+  </body>
+</html>

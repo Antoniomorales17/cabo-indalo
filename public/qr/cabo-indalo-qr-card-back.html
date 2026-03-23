@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cabo Indalo - Tarjeta QR (Reverso)</title>
+    <style>
+      :root {
+        --sea-dark: #0f3a4a;
+        --sea: #1f6f8b;
+        --sun: #f4d35e;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: #f5f6f8;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .card {
+        width: 85.6mm;
+        height: 54mm;
+        border-radius: 4.5mm;
+        background: radial-gradient(circle at 15% 15%, #2d8cb0 0%, var(--sea-dark) 62%);
+        color: #fff;
+        border: 0.35mm solid #0e3040;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
+        padding: 5mm 5.2mm;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .top {
+        display: flex;
+        align-items: center;
+        gap: 2.4mm;
+      }
+
+      .top img {
+        width: 10mm;
+        height: 10mm;
+        border-radius: 50%;
+        border: 0.25mm solid rgba(255, 255, 255, 0.5);
+      }
+
+      .top h1 {
+        margin: 0;
+        font-size: 5.2mm;
+        line-height: 1.1;
+      }
+
+      .line {
+        margin: 4mm 0 2.4mm;
+        width: 17mm;
+        height: 0.9mm;
+        border-radius: 10mm;
+        background: var(--sun);
+      }
+
+      .text {
+        margin: 0;
+        font-size: 3.15mm;
+        line-height: 1.35;
+        max-width: 68mm;
+      }
+
+      .contact {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1mm;
+      }
+
+      .contact a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 2.65mm;
+      }
+
+      @media print {
+        @page {
+          size: 85.6mm 54mm;
+          margin: 0;
+        }
+
+        body {
+          background: #fff;
+          padding: 0;
+          min-height: auto;
+        }
+
+        .card {
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <article class="card">
+      <header class="top">
+        <img src="../cabo-indalo.png" alt="Logo Cabo Indalo" />
+        <h1>Cabo Indalo</h1>
+      </header>
+
+      <div class="line"></div>
+
+      <p class="text">Gracias por alojarte con nosotros. Escanea el QR del anverso y tendras toda la informacion de tu estancia en segundos.</p>
+
+      <div class="contact">
+        <a href="tel:+34647664536">+34 647 664 536</a>
+        <a href="mailto:caboindalo@gmail.com">caboindalo@gmail.com</a>
+        <a href="https://www.caboindalo.es/es/info-qr">www.caboindalo.es/es/info-qr</a>
+      </div>
+    </article>
+  </body>
+</html>

@@ -102,6 +102,12 @@ export class App {
         description:
           'Como llegar a Cabo Indalo desde aeropuerto o carretera: tiempos actualizados, donde aparcar y como moverte por Cabo de Gata de forma sencilla.',
       },
+      '/info-qr': {
+        slug: 'info-qr',
+        title: 'Info QR para huespedes | Cabo Indalo',
+        description:
+          'Accede a la guia rapida para huespedes de Cabo Indalo: WiFi, contacto, mapa, urgencias y enlaces a que ver, playas cercanas y como llegar.',
+      },
       '/': {
         slug: null,
         title: 'Cabo Indalo | Casa turistica en Cabo de Gata (Almeria)',

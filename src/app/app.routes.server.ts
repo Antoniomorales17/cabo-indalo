@@ -37,6 +37,13 @@ export const serverRoutes: ServerRoute[] = [
     },
   },
   {
+    path: ':lang/info-qr',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      return [{ lang: 'es' }, { lang: 'en' }, { lang: 'fr' }, { lang: 'de' }];
+    },
+  },
+  {
     path: '**',
     renderMode: RenderMode.Server,
   },

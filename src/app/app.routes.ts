@@ -2,6 +2,7 @@ import { CanMatchFn, Routes } from '@angular/router';
 import { GalleryPageComponent } from './pages/gallery-page/gallery-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LocalGuidePageComponent } from './pages/local-guide-page/local-guide-page.component';
+import { QrInfoPageComponent } from './pages/qr-info-page/qr-info-page.component';
 
 const supportedLanguages = ['es', 'en', 'fr', 'de'];
 const languageCanMatch: CanMatchFn = (_route, segments) => {
@@ -19,6 +20,11 @@ export const routes: Routes = [
     path: 'galeria',
     pathMatch: 'full',
     redirectTo: 'es/galeria',
+  },
+  {
+    path: 'info-qr',
+    pathMatch: 'full',
+    redirectTo: 'es/info-qr',
   },
   {
     path: ':lang',
@@ -47,6 +53,11 @@ export const routes: Routes = [
     canMatch: [languageCanMatch],
     component: LocalGuidePageComponent,
     data: { guideKey: 'howToGetThere' },
+  },
+  {
+    path: ':lang/info-qr',
+    canMatch: [languageCanMatch],
+    component: QrInfoPageComponent,
   },
   {
     path: '**',

@@ -282,6 +282,10 @@
       "howToGetThere": {
         "title": "Anreise und Mobilitaet",
         "text": "Klare Tipps fuer Anreise mit Auto oder Flugzeug und einfache Fortbewegung vor Ort."
+      },
+      "qrGuestInfo": {
+        "title": "Schnelle Gaeste-Info (QR)",
+        "text": "Direkter Zugriff auf WiFi, Kontakt, Karte, Notfallinfos und lokale Guides auf einer Seite."
       }
     },
     "page": {
@@ -324,6 +328,46 @@
         "tip2": "Plane Einkaeufe in Cabo de Gata oder Pujaire.",
         "tip3": "Kombiniere Autotage mit Plaenen zu Fuss."
       }
+    }
+  },
+  "qrHub": {
+    "backHome": "Zurueck zur Startseite",
+    "eyebrow": "Schnellzugriff",
+    "title": "Nutzliche Infos fuer deinen Aufenthalt bei Cabo Indalo",
+    "subtitle": "Speichere diese Seite: WiFi, Kontakte und wichtige Links an einem Ort.",
+    "quick": {
+      "wifi": "WiFi",
+      "whatToVisit": "Was sehen",
+      "beaches": "Straende",
+      "howToGetThere": "Anreise"
+    },
+    "wifi": {
+      "title": "WiFi-Daten",
+      "subtitle": "Schnelle Verbindung fuer den ganzen Aufenthalt.",
+      "networkLabel": "Netzwerk",
+      "networkValue": "CaboIndalo",
+      "passwordLabel": "Passwort",
+      "passwordValue": "Passwort in der Unterkunft pruefen",
+      "note": "Wenn du Hilfe brauchst, kontaktiere uns per WhatsApp."
+    },
+    "contact": {
+      "title": "Kontakt und nuetzliche Links",
+      "subtitle": "Direkte Zugriffe, um Fragen schnell zu klaeren.",
+      "email": "Email: caboindalo@gmail.com",
+      "phone": "Telefon: +34 647 664 536",
+      "airbnb": "Airbnb oeffnen",
+      "maps": "In Google Maps oeffnen"
+    },
+    "guides": {
+      "title": "Lokale Guides",
+      "subtitle": "Wir nutzen bestehende Routen weiter, damit du je nach Plan mehr Details findest."
+    },
+    "emergency": {
+      "title": "Notfall",
+      "subtitle": "Wenn etwas Wichtiges passiert, folge diesen Schritten.",
+      "item1": "Allgemeine Notrufnummer in Spanien: 112",
+      "item2": "Standort teilen: Calle Poseidonia 14, Cabo de Gata",
+      "item3": "Bei Unterkunftsproblemen zuerst Cabo Indalo kontaktieren"
     }
   }
 }

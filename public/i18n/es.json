@@ -282,6 +282,10 @@
       "howToGetThere": {
         "title": "Como llegar y moverte",
         "text": "Consejos claros para llegar en coche o avion, aparcar con facilidad y moverte por la zona."
+      },
+      "qrGuestInfo": {
+        "title": "Info rapida para huespedes (QR)",
+        "text": "Acceso directo a WiFi, contacto, mapa, urgencias y guias locales desde una sola pagina."
       }
     },
     "page": {
@@ -324,6 +328,46 @@
         "tip2": "Planifica compras en supermercados de Cabo de Gata o Pujaire.",
         "tip3": "Combina dias de coche con planes a pie en el entorno cercano."
       }
+    }
+  },
+  "qrHub": {
+    "backHome": "Volver a inicio",
+    "eyebrow": "Acceso rapido",
+    "title": "Info util para tu estancia en Cabo Indalo",
+    "subtitle": "Guarda esta pagina: tienes en un solo lugar el WiFi, contactos y enlaces clave para moverte por la zona.",
+    "quick": {
+      "wifi": "WiFi",
+      "whatToVisit": "Que ver",
+      "beaches": "Playas",
+      "howToGetThere": "Como llegar"
+    },
+    "wifi": {
+      "title": "Datos del WiFi",
+      "subtitle": "Conexion rapida para toda la estancia.",
+      "networkLabel": "Red",
+      "networkValue": "CaboIndalo",
+      "passwordLabel": "Clave",
+      "passwordValue": "Consulta la clave en el alojamiento",
+      "note": "Si necesitas ayuda con la conexion, escribenos por WhatsApp."
+    },
+    "contact": {
+      "title": "Contacto y enlaces utiles",
+      "subtitle": "Accesos directos para resolver dudas en segundos.",
+      "email": "Email: caboindalo@gmail.com",
+      "phone": "Telefono: +34 647 664 536",
+      "airbnb": "Abrir Airbnb",
+      "maps": "Abrir en Google Maps"
+    },
+    "guides": {
+      "title": "Guias locales",
+      "subtitle": "Reutilizamos las rutas ya creadas para que puedas ampliar informacion segun tu plan."
+    },
+    "emergency": {
+      "title": "Urgencias",
+      "subtitle": "Si ocurre algo importante, usa estos pasos.",
+      "item1": "Emergencias generales en Espana: 112",
+      "item2": "Comparte ubicacion: Calle Poseidonia 14, Cabo de Gata",
+      "item3": "Para incidencias del alojamiento, contacta primero con Cabo Indalo"
     }
   }
 }

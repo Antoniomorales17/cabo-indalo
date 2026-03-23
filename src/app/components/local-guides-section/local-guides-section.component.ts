@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { RevealOnScrollDirective } from '../../directives/reveal-on-scroll.directive';
 
-type GuideSlug = 'que-ver' | 'playas-cercanas' | 'como-llegar';
+type GuideSlug = 'que-ver' | 'playas-cercanas' | 'como-llegar' | 'info-qr';
 
 @Component({
   selector: 'app-local-guides-section',
@@ -16,6 +16,7 @@ export class LocalGuidesSectionComponent {
     { slug: 'que-ver', key: 'whatToVisit' },
     { slug: 'playas-cercanas', key: 'nearbyBeaches' },
     { slug: 'como-llegar', key: 'howToGetThere' },
+    { slug: 'info-qr', key: 'qrGuestInfo' },
   ];
 
   constructor(private readonly translate: TranslateService) {}
@@ -25,4 +26,3 @@ export class LocalGuidesSectionComponent {
     return ['/', language, slug];
   }
 }
-

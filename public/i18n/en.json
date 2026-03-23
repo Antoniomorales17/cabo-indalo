@@ -282,6 +282,10 @@
       "howToGetThere": {
         "title": "How to get there and move around",
         "text": "Clear tips to arrive by car or plane, park easily, and get around the area."
+      },
+      "qrGuestInfo": {
+        "title": "Quick guest info (QR)",
+        "text": "Direct access to Wi-Fi, contact, maps, emergency info, and local guides on one page."
       }
     },
     "page": {
@@ -324,6 +328,46 @@
         "tip2": "Plan groceries in Cabo de Gata or Pujaire.",
         "tip3": "Combine driving days with local walking plans."
       }
+    }
+  },
+  "qrHub": {
+    "backHome": "Back to home",
+    "eyebrow": "Quick access",
+    "title": "Useful info for your stay at Cabo Indalo",
+    "subtitle": "Save this page: Wi-Fi, contacts, and key links in one place.",
+    "quick": {
+      "wifi": "Wi-Fi",
+      "whatToVisit": "What to visit",
+      "beaches": "Beaches",
+      "howToGetThere": "How to get there"
+    },
+    "wifi": {
+      "title": "Wi-Fi details",
+      "subtitle": "Fast connection during your whole stay.",
+      "networkLabel": "Network",
+      "networkValue": "CaboIndalo",
+      "passwordLabel": "Password",
+      "passwordValue": "Check the password at the accommodation",
+      "note": "If you need help connecting, contact us on WhatsApp."
+    },
+    "contact": {
+      "title": "Contact and useful links",
+      "subtitle": "Quick access to solve questions in seconds.",
+      "email": "Email: caboindalo@gmail.com",
+      "phone": "Phone: +34 647 664 536",
+      "airbnb": "Open Airbnb",
+      "maps": "Open in Google Maps"
+    },
+    "guides": {
+      "title": "Local guides",
+      "subtitle": "We reuse existing routes so you can expand details based on your plan."
+    },
+    "emergency": {
+      "title": "Emergency",
+      "subtitle": "If something important happens, use these steps.",
+      "item1": "General emergency number in Spain: 112",
+      "item2": "Share location: Calle Poseidonia 14, Cabo de Gata",
+      "item3": "For accommodation incidents, contact Cabo Indalo first"
     }
   }
 }
