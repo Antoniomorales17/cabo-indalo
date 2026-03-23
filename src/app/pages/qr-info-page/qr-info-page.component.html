@@ -1,12 +1,6 @@
 <main class="bg-[var(--sand)] text-slate-800">
   <section class="bg-[var(--sea-dark)] py-16 text-white">
     <div class="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 sm:px-10">
-      <a
-        [routerLink]="homeRoute"
-        class="inline-flex w-fit items-center rounded-lg border border-white/50 px-4 py-2 text-sm font-medium transition hover:bg-white/15"
-      >
-        {{ 'qrHub.backHome' | translate }}
-      </a>
       <div>
         <p class="text-sm font-semibold uppercase tracking-wider text-[var(--sun)]">
           {{ 'qrHub.eyebrow' | translate }}
@@ -21,7 +15,7 @@
     </div>
   </section>
 
-  <section class="mx-auto w-full max-w-5xl px-6 py-10 sm:px-10">
+  <!-- <section class="mx-auto w-full max-w-5xl px-6 py-10 sm:px-10">
     <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
       <a
         href="#wifi"
@@ -48,11 +42,14 @@
         {{ 'qrHub.quick.howToGetThere' | translate }}
       </a>
     </div>
-  </section>
+  </section> -->
 
-  <section class="mx-auto w-full max-w-5xl px-6 pb-16 sm:px-10">
+  <section class="mx-auto w-full max-w-5xl px-6 pb-16 py-10 sm:px-10">
     <div class="grid gap-5 lg:grid-cols-2">
-      <article id="wifi" class="rounded-2xl border border-[var(--sea)]/15 bg-white p-6 shadow-sm sm:p-8">
+      <article
+        id="wifi"
+        class="rounded-2xl border border-[var(--sea)]/15 bg-white p-6 shadow-sm sm:p-8"
+      >
         <h2 class="text-2xl font-semibold text-slate-900">{{ 'qrHub.wifi.title' | translate }}</h2>
         <p class="mt-3 text-slate-600">{{ 'qrHub.wifi.subtitle' | translate }}</p>
         <dl class="mt-5 space-y-3">
@@ -60,20 +57,26 @@
             <dt class="text-xs font-semibold uppercase tracking-wider text-[var(--sea-dark)]">
               {{ 'qrHub.wifi.networkLabel' | translate }}
             </dt>
-            <dd class="mt-1 text-base font-semibold text-slate-900">{{ 'qrHub.wifi.networkValue' | translate }}</dd>
+            <dd class="mt-1 text-base font-semibold text-slate-900">
+              {{ 'qrHub.wifi.networkValue' | translate }}
+            </dd>
           </div>
           <div class="rounded-xl bg-[var(--foam)] px-4 py-3">
             <dt class="text-xs font-semibold uppercase tracking-wider text-[var(--sea-dark)]">
               {{ 'qrHub.wifi.passwordLabel' | translate }}
             </dt>
-            <dd class="mt-1 text-base font-semibold text-slate-900">{{ 'qrHub.wifi.passwordValue' | translate }}</dd>
+            <dd class="mt-1 text-base font-semibold text-slate-900">
+              {{ 'qrHub.wifi.passwordValue' | translate }}
+            </dd>
           </div>
         </dl>
         <p class="mt-4 text-sm text-slate-600">{{ 'qrHub.wifi.note' | translate }}</p>
       </article>
 
       <article class="rounded-2xl border border-[var(--sea)]/15 bg-white p-6 shadow-sm sm:p-8">
-        <h2 class="text-2xl font-semibold text-slate-900">{{ 'qrHub.contact.title' | translate }}</h2>
+        <h2 class="text-2xl font-semibold text-slate-900">
+          {{ 'qrHub.contact.title' | translate }}
+        </h2>
         <p class="mt-3 text-slate-600">{{ 'qrHub.contact.subtitle' | translate }}</p>
         <div class="mt-5 grid gap-3 sm:grid-cols-2">
           <a
@@ -108,7 +111,9 @@
       </article>
 
       <article class="rounded-2xl border border-[var(--sea)]/15 bg-white p-6 shadow-sm sm:p-8">
-        <h2 class="text-2xl font-semibold text-slate-900">{{ 'qrHub.guides.title' | translate }}</h2>
+        <h2 class="text-2xl font-semibold text-slate-900">
+          {{ 'qrHub.guides.title' | translate }}
+        </h2>
         <p class="mt-3 text-slate-600">{{ 'qrHub.guides.subtitle' | translate }}</p>
         <div class="mt-5 space-y-3">
           @for (guide of guideLinks; track guide.slug) {
@@ -116,7 +121,7 @@
               [routerLink]="guideRoute(guide.slug)"
               class="flex items-center justify-between rounded-xl border border-[var(--sea)]/20 bg-[var(--foam)] px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-[var(--sea)]/35"
             >
-              <span>{{ ('guides.cards.' + guide.key + '.title') | translate }}</span>
+              <span>{{ 'guides.cards.' + guide.key + '.title' | translate }}</span>
               <span aria-hidden="true">></span>
             </a>
           }
@@ -124,16 +129,22 @@
       </article>
 
       <article class="rounded-2xl border border-[var(--sea)]/15 bg-white p-6 shadow-sm sm:p-8">
-        <h2 class="text-2xl font-semibold text-slate-900">{{ 'qrHub.emergency.title' | translate }}</h2>
+        <h2 class="text-2xl font-semibold text-slate-900">
+          {{ 'qrHub.emergency.title' | translate }}
+        </h2>
         <p class="mt-3 text-slate-600">{{ 'qrHub.emergency.subtitle' | translate }}</p>
         <ul class="mt-5 space-y-3 text-sm text-slate-700">
-          <li class="rounded-xl bg-[var(--foam)] px-4 py-3">{{ 'qrHub.emergency.item1' | translate }}</li>
-          <li class="rounded-xl bg-[var(--foam)] px-4 py-3">{{ 'qrHub.emergency.item2' | translate }}</li>
-          <li class="rounded-xl bg-[var(--foam)] px-4 py-3">{{ 'qrHub.emergency.item3' | translate }}</li>
+          <li class="rounded-xl bg-[var(--foam)] px-4 py-3">
+            {{ 'qrHub.emergency.item1' | translate }}
+          </li>
+          <li class="rounded-xl bg-[var(--foam)] px-4 py-3">
+            {{ 'qrHub.emergency.item2' | translate }}
+          </li>
+          <li class="rounded-xl bg-[var(--foam)] px-4 py-3">
+            {{ 'qrHub.emergency.item3' | translate }}
+          </li>
         </ul>
       </article>
     </div>
   </section>
-
-  <app-footer></app-footer>
 </main>

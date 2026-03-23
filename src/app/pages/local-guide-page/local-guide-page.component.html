@@ -48,26 +48,8 @@
         </li>
       </ul>
 
-      <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-        <a
-          href="https://www.airbnb.es/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center rounded-xl bg-[var(--sun)] px-6 py-3 text-base font-semibold text-slate-900 transition hover:bg-[var(--sun-soft)]"
-        >
-          {{ 'guides.page.bookNow' | translate }}
-        </a>
-        <a
-          [routerLink]="homeRoute"
-          fragment="contacto"
-          class="inline-flex items-center justify-center rounded-xl border border-[var(--sea)] px-6 py-3 text-base font-semibold text-[var(--sea-dark)] transition hover:bg-[var(--sea)]/10"
-        >
-          {{ 'guides.page.contactUs' | translate }}
-        </a>
-      </div>
     </article>
   </section>
 
   <app-footer></app-footer>
 </main>
-
