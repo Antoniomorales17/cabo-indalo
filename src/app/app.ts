@@ -4,12 +4,12 @@ import { Meta, Title } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs';
-import { SuggestionsButtonComponent } from './components/suggestions-button/suggestions-button.component';
+import { ScrollTopButtonComponent } from './components/scroll-top-button/scroll-top-button.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SuggestionsButtonComponent],
+  imports: [RouterOutlet, ScrollTopButtonComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

@@ -9,7 +9,8 @@
     "faq": "FAQs",
     "fullGallery": "Full gallery",
     "menuLabel": "Open menu",
-    "language": "Language"
+    "language": "Language",
+    "backToTop": "Top"
   },
   "hero": {
     "badge": "Holiday home in Cabo de Gata",
@@ -195,7 +196,10 @@
     "emailTitle": "Contact by email",
     "emailText": "We answer questions and availability requests.",
     "phoneTitle": "Contact by phone",
-    "phoneText": "Calls and WhatsApp for direct booking."
+    "phoneText": "Calls and WhatsApp for direct booking.",
+    "suggestionsEyebrow": "Suggestions box",
+    "suggestionsTitle": "Help us improve your experience",
+    "suggestionsText": "If you spot anything we can improve, tell us in less than a minute."
   },
   "suggestions": {
     "button": "Suggestions",

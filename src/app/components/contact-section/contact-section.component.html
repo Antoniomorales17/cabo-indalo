@@ -9,12 +9,29 @@
       <p class="mt-1 text-sm text-slate-600">{{ 'contact.emailText' | translate }}</p>
     </a>
     <a
-      href="tel:+34600000000"
+      href="tel:+34647664536"
       class="rounded-2xl border border-[var(--sea)]/20 bg-[var(--foam)] p-6 transition hover:border-[var(--sea)]/40"
     >
       <p class="text-xs font-semibold uppercase tracking-wider text-[var(--sea-dark)]">{{ 'contact.phoneTitle' | translate }}</p>
       <p class="mt-2 text-lg font-semibold text-slate-900">+34 647664536</p>
       <p class="mt-1 text-sm text-slate-600">{{ 'contact.phoneText' | translate }}</p>
     </a>
+  </div>
+
+  <div class="mx-auto w-full max-w-2xl px-6 pb-10 sm:px-10">
+    <div class="rounded-2xl border border-[var(--sea)]/25 bg-[var(--foam)] p-6 sm:p-7">
+      <p class="text-xs font-semibold uppercase tracking-wider text-[var(--sea-dark)]">
+        {{ 'contact.suggestionsEyebrow' | translate }}
+      </p>
+      <p class="mt-2 text-xl font-semibold text-slate-900">
+        {{ 'contact.suggestionsTitle' | translate }}
+      </p>
+      <p class="mt-2 text-sm text-slate-600">
+        {{ 'contact.suggestionsText' | translate }}
+      </p>
+      <div class="mt-5">
+        <app-suggestions-button></app-suggestions-button>
+      </div>
+    </div>
   </div>
 </section>

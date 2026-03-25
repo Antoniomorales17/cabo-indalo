@@ -9,7 +9,8 @@
     "faq": "FAQs",
     "fullGallery": "Galeria completa",
     "menuLabel": "Abrir menu",
-    "language": "Idioma"
+    "language": "Idioma",
+    "backToTop": "Subir"
   },
   "hero": {
     "badge": "Casa Turistica en Cabo de Gata",
@@ -195,7 +196,10 @@
     "emailTitle": "Contacto por email",
     "emailText": "Respondemos dudas y disponibilidad.",
     "phoneTitle": "Contacto por telefono",
-    "phoneText": "Llamadas y WhatsApp para reserva directa."
+    "phoneText": "Llamadas y WhatsApp para reserva directa.",
+    "suggestionsEyebrow": "Buzon de sugerencias",
+    "suggestionsTitle": "Ayudanos a mejorar tu experiencia",
+    "suggestionsText": "Si detectas algo que podemos mejorar, cuentanoslo en menos de un minuto."
   },
   "suggestions": {
     "button": "Sugerencias",

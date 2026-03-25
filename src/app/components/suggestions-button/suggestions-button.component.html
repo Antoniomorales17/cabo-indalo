@@ -1,6 +1,6 @@
 <button
   type="button"
-  class="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-[var(--sea-dark)] px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:scale-[1.02] hover:bg-[var(--sea)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sea-dark)] focus-visible:ring-offset-2"
+  class="inline-flex items-center gap-2 rounded-xl bg-[var(--sea-dark)] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[var(--sea)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sea-dark)] focus-visible:ring-offset-2"
   (click)="openModal()"
 >
   {{ 'suggestions.button' | translate }}
@@ -28,7 +28,7 @@
           (click)="closeModal()"
           [attr.aria-label]="'suggestions.close' | translate"
         >
-          ×
+          &times;
         </button>
       </div>
 

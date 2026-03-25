@@ -9,7 +9,8 @@
     "faq": "FAQs",
     "fullGallery": "Galerie complete",
     "menuLabel": "Ouvrir le menu",
-    "language": "Langue"
+    "language": "Langue",
+    "backToTop": "Haut"
   },
   "hero": {
     "badge": "Maison touristique a Cabo de Gata",
@@ -195,7 +196,10 @@
     "emailTitle": "Contact par email",
     "emailText": "Nous repondons aux questions et disponibilites.",
     "phoneTitle": "Contact par telephone",
-    "phoneText": "Appels et WhatsApp pour reservation directe."
+    "phoneText": "Appels et WhatsApp pour reservation directe.",
+    "suggestionsEyebrow": "Boite a suggestions",
+    "suggestionsTitle": "Aidez-nous a ameliorer votre experience",
+    "suggestionsText": "Si vous voyez un point a ameliorer, dites-le-nous en moins d'une minute."
   },
   "suggestions": {
     "button": "Suggestions",

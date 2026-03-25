@@ -9,7 +9,8 @@
     "faq": "FAQs",
     "fullGallery": "Komplette Galerie",
     "menuLabel": "Menue oeffnen",
-    "language": "Sprache"
+    "language": "Sprache",
+    "backToTop": "Nach oben"
   },
   "hero": {
     "badge": "Ferienhaus in Cabo de Gata",
@@ -195,7 +196,10 @@
     "emailTitle": "Kontakt per E-Mail",
     "emailText": "Wir beantworten Fragen und Verfuegbarkeit.",
     "phoneTitle": "Kontakt per Telefon",
-    "phoneText": "Anrufe und WhatsApp fuer Direktbuchungen."
+    "phoneText": "Anrufe und WhatsApp fuer Direktbuchungen.",
+    "suggestionsEyebrow": "Vorschlagsbox",
+    "suggestionsTitle": "Hilf uns, dein Erlebnis zu verbessern",
+    "suggestionsText": "Wenn dir etwas auffaellt, das wir verbessern koennen, sag es uns in weniger als einer Minute."
   },
   "suggestions": {
     "button": "Vorschlaege",
