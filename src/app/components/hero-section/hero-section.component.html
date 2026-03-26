@@ -1,8 +1,19 @@
 <section id="inicio" class="relative min-h-[88vh] scroll-mt-24 overflow-hidden">
   <img
-    src="https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format&fit=crop&w=2200&q=80"
+    src="https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=72&w=1280"
+    srcset="
+      https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=72&w=768 768w,
+      https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=72&w=1280 1280w,
+      https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=72&w=1920 1920w,
+      https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=72&w=2400 2400w
+    "
+    sizes="100vw"
     [alt]="'hero.title' | translate"
+    loading="eager"
+    decoding="async"
     fetchpriority="high"
+    width="2400"
+    height="1600"
     class="absolute inset-0 h-full w-full object-cover"
   />
   <div

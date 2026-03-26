@@ -16,6 +16,8 @@ import { SHARED_GALLERY_IMAGES, SharedGalleryImageId } from '../../shared/galler
 
 type GalleryImage = {
   src: string;
+  srcSet: string;
+  viewerSrc: string;
   altKey: string;
   labelKey: string;
   revealDelay: number;
@@ -34,6 +36,8 @@ export class GalleryBentoComponent implements OnDestroy {
 
     return {
       src: image.src,
+      srcSet: image.srcSet,
+      viewerSrc: image.viewerSrc,
       altKey: meta.altKey,
       labelKey: meta.labelKey,
       revealDelay: 40 + index * 40,

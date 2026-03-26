@@ -6,6 +6,18 @@ import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs';
 import { ScrollTopButtonComponent } from './components/scroll-top-button/scroll-top-button.component';
 
+type Language = 'es' | 'en' | 'fr' | 'de';
+
+type LocalizedSeo = {
+  title: string;
+  description: string;
+};
+
+type PageSeoConfig = {
+  slug: string | null;
+  localized: Record<Language, LocalizedSeo>;
+};
+
 
 @Component({
   selector: 'app-root',
@@ -14,7 +26,7 @@ import { ScrollTopButtonComponent } from './components/scroll-top-button/scroll-
   styleUrl: './app.css',
 })
 export class App {
-  private readonly supportedLanguages = ['es', 'en', 'fr', 'de'];
+  private readonly supportedLanguages: Language[] = ['es', 'en', 'fr', 'de'];
   private readonly baseUrl = 'https://www.caboindalo.es';
   private readonly document = inject(DOCUMENT);
   private readonly router = inject(Router);
@@ -40,7 +52,7 @@ export class App {
     const url = this.router.url.split(/[?#]/)[0];
     const segments = url.split('/').filter(Boolean);
     const first = segments[0]?.toLowerCase();
-    const hasLang = Boolean(first && this.supportedLanguages.includes(first));
+    const hasLang = Boolean(first && this.supportedLanguages.includes(first as Language));
     const lang = hasLang ? first : 'es';
     const pagePath = hasLang ? `/${segments.slice(1).join('/')}` : `/${segments.join('/')}`;
     return { lang, pagePath };
@@ -55,7 +67,8 @@ export class App {
   }
 
   private applySeoMeta(language: string, pagePath: string): void {
-    const pageMeta = this.resolvePageMeta(pagePath);
+    const normalizedLanguage = this.normalizeLanguage(language);
+    const pageMeta = this.resolvePageMeta(pagePath, normalizedLanguage);
     const localizedPath = pageMeta.slug ? `/${language}/${pageMeta.slug}` : `/${language}`;
     const canonicalUrl = `${this.baseUrl}${localizedPath}`;
     const title = pageMeta.title;
@@ -74,49 +87,146 @@ export class App {
     canonicalLink.setAttribute('href', canonicalUrl);
 
     this.updateAlternateLinks(pageMeta.slug);
+    this.updateVacationRentalStructuredData(canonicalUrl, normalizedLanguage);
   }
 
-  private resolvePageMeta(pagePath: string): { slug: string | null; title: string; description: string } {
-    const map: Record<string, { slug: string | null; title: string; description: string }> = {
+  private resolvePageMeta(pagePath: string, language: Language): { slug: string | null; title: string; description: string } {
+    const map: Record<string, PageSeoConfig> = {
       '/galeria': {
         slug: 'galeria',
-        title: 'Galeria completa | Cabo Indalo - Casa turistica en Cabo de Gata',
-        description:
-          'Descubre la galeria completa de Cabo Indalo: casa turistica en Cabo de Gata con ambiente mediterraneo, cerca de playas y naturaleza.',
+        localized: {
+          es: {
+            title: 'Galeria completa | Cabo Indalo - Casa turistica en Cabo de Gata',
+            description: 'Descubre la galeria completa de Cabo Indalo: casa turistica en Cabo de Gata con ambiente mediterraneo, cerca de playas y naturaleza.',
+          },
+          en: {
+            title: 'Full Gallery | Cabo Indalo - Holiday Home in Cabo de Gata',
+            description: 'Explore the full Cabo Indalo gallery: a holiday home in Cabo de Gata near beaches, nature, and Mediterranean landscapes.',
+          },
+          fr: {
+            title: 'Galerie complete | Cabo Indalo - Maison touristique a Cabo de Gata',
+            description: 'Decouvrez toute la galerie de Cabo Indalo, maison touristique a Cabo de Gata proche des plages et de la nature.',
+          },
+          de: {
+            title: 'Vollstandige Galerie | Cabo Indalo - Ferienhaus in Cabo de Gata',
+            description: 'Entdecke die komplette Galerie von Cabo Indalo, einem Ferienhaus in Cabo de Gata nahe Strand und Natur.',
+          },
+        },
       },
       '/que-ver': {
         slug: 'que-ver',
-        title: 'Que ver en Cabo de Gata | Guia local Cabo Indalo',
-        description:
-          'Que ver en Cabo de Gata en 1, 2 o 3 dias: ruta facil con salinas, Arrecife de las Sirenas y pueblos con encanto. Planifica tu escapada sin perder tiempo.',
+        localized: {
+          es: {
+            title: 'Que ver en Cabo de Gata | Guia local Cabo Indalo',
+            description: 'Que ver en Cabo de Gata en 1, 2 o 3 dias: ruta facil con salinas, Arrecife de las Sirenas y pueblos con encanto.',
+          },
+          en: {
+            title: 'What to See in Cabo de Gata | Cabo Indalo Local Guide',
+            description: 'A simple Cabo de Gata itinerary for 1, 2, or 3 days with salt flats, iconic viewpoints, and charming villages.',
+          },
+          fr: {
+            title: 'Que voir a Cabo de Gata | Guide local Cabo Indalo',
+            description: 'Itineraire simple a Cabo de Gata sur 1, 2 ou 3 jours avec salines, points de vue et villages pleins de charme.',
+          },
+          de: {
+            title: 'Was man in Cabo de Gata sehen kann | Lokaler Guide Cabo Indalo',
+            description: 'Einfache Route fur 1, 2 oder 3 Tage in Cabo de Gata mit Salinen, Aussichtspunkten und charmanten Orten.',
+          },
+        },
       },
       '/playas-cercanas': {
         slug: 'playas-cercanas',
-        title: 'Playas cercanas a Cabo Indalo | Cabo de Gata',
-        description:
-          'Las mejores playas cerca de Cabo Indalo: Cabo de Gata, Genoveses y Monsul con tiempos reales, consejos de acceso y plan recomendado para cada dia.',
+        localized: {
+          es: {
+            title: 'Playas cercanas a Cabo Indalo | Cabo de Gata',
+            description: 'Las mejores playas cerca de Cabo Indalo con tiempos reales, consejos de acceso y plan recomendado para cada dia.',
+          },
+          en: {
+            title: 'Beaches Near Cabo Indalo | Cabo de Gata',
+            description: 'The best beaches near Cabo Indalo with practical access tips and a recommended beach plan for your stay.',
+          },
+          fr: {
+            title: 'Plages proches de Cabo Indalo | Cabo de Gata',
+            description: 'Les plus belles plages proches de Cabo Indalo avec conseils d acces et plan recommande pour votre sejour.',
+          },
+          de: {
+            title: 'Strande in der Nahe von Cabo Indalo | Cabo de Gata',
+            description: 'Die besten Strande in der Nahe von Cabo Indalo mit Zugangstipps und empfohlenem Tagesplan.',
+          },
+        },
       },
       '/como-llegar': {
         slug: 'como-llegar',
-        title: 'Como llegar a Cabo Indalo | San Miguel de Cabo de Gata',
-        description:
-          'Como llegar a Cabo Indalo desde aeropuerto o carretera: tiempos actualizados, donde aparcar y como moverte por Cabo de Gata de forma sencilla.',
+        localized: {
+          es: {
+            title: 'Como llegar a Cabo Indalo | San Miguel de Cabo de Gata',
+            description: 'Como llegar a Cabo Indalo desde aeropuerto o carretera: tiempos actualizados y consejos para aparcar y moverte.',
+          },
+          en: {
+            title: 'How to Get to Cabo Indalo | San Miguel de Cabo de Gata',
+            description: 'How to reach Cabo Indalo from airport or road, plus practical parking and mobility tips.',
+          },
+          fr: {
+            title: 'Comment arriver a Cabo Indalo | San Miguel de Cabo de Gata',
+            description: 'Comment rejoindre Cabo Indalo depuis l aeroport ou la route, avec conseils pratiques de stationnement.',
+          },
+          de: {
+            title: 'Anreise nach Cabo Indalo | San Miguel de Cabo de Gata',
+            description: 'So erreichst du Cabo Indalo vom Flughafen oder mit dem Auto, inklusive Tipps zu Parken und Mobilitat.',
+          },
+        },
       },
       '/info-qr': {
         slug: 'info-qr',
-        title: 'Info QR para huespedes | Cabo Indalo',
-        description:
-          'Accede a la guia rapida para huespedes de Cabo Indalo: WiFi, contacto, mapa, urgencias y enlaces a que ver, playas cercanas y como llegar.',
+        localized: {
+          es: {
+            title: 'Info QR para huespedes | Cabo Indalo',
+            description: 'Guia rapida para huespedes de Cabo Indalo: WiFi, contacto, mapa, urgencias y enlaces utiles.',
+          },
+          en: {
+            title: 'Guest QR Info | Cabo Indalo',
+            description: 'Quick guest guide for Cabo Indalo with WiFi, contacts, map, emergency details, and useful links.',
+          },
+          fr: {
+            title: 'Info QR pour hotes | Cabo Indalo',
+            description: 'Guide rapide des hotes avec WiFi, contact, carte, urgences et liens utiles a Cabo Indalo.',
+          },
+          de: {
+            title: 'QR-Infos fur Gaste | Cabo Indalo',
+            description: 'Schneller Gaste-Guide fur Cabo Indalo mit WLAN, Kontakten, Karte, Notfallen und wichtigen Links.',
+          },
+        },
       },
       '/': {
         slug: null,
-        title: 'Cabo Indalo | Casa turistica en Cabo de Gata (Almeria)',
-        description:
-          'Disfruta de Cabo Indalo, alojamiento vacacional en Cabo de Gata. Playa a 5 minutos, entorno natural y reserva segura.',
+        localized: {
+          es: {
+            title: 'Cabo Indalo | Casa turistica en Cabo de Gata (Almeria)',
+            description: 'Disfruta de Cabo Indalo, alojamiento vacacional en Cabo de Gata. Playa a 5 minutos, entorno natural y reserva segura.',
+          },
+          en: {
+            title: 'Cabo Indalo | Holiday Home in Cabo de Gata (Almeria)',
+            description: 'Enjoy Cabo Indalo, a holiday home in Cabo de Gata just 5 minutes from the beach with secure booking.',
+          },
+          fr: {
+            title: 'Cabo Indalo | Maison touristique a Cabo de Gata (Almeria)',
+            description: 'Profitez de Cabo Indalo, hebergement touristique a Cabo de Gata, a 5 minutes de la plage.',
+          },
+          de: {
+            title: 'Cabo Indalo | Ferienhaus in Cabo de Gata (Almeria)',
+            description: 'Geniesse Cabo Indalo, ein Ferienhaus in Cabo de Gata, nur 5 Minuten vom Strand entfernt.',
+          },
+        },
       },
     };
 
-    return map[pagePath] ?? map['/'];
+    const page = map[pagePath] ?? map['/'];
+    const localized = page.localized[language];
+    return {
+      slug: page.slug,
+      title: localized.title,
+      description: localized.description,
+    };
   }
 
   private mapOgLocale(language: string): string {
@@ -127,6 +237,29 @@ export class App {
       de: 'de_DE',
     };
     return map[language] ?? 'es_ES';
+  }
+
+  private normalizeLanguage(language: string): Language {
+    return this.supportedLanguages.includes(language as Language) ? (language as Language) : 'es';
+  }
+
+  private updateVacationRentalStructuredData(canonicalUrl: string, language: Language): void {
+    const script = this.document.getElementById('vacation-rental-jsonld');
+    if (!script || !script.textContent) {
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(script.textContent) as Record<string, unknown>;
+      const next = {
+        ...parsed,
+        url: canonicalUrl,
+        inLanguage: language,
+      };
+      script.textContent = JSON.stringify(next);
+    } catch {
+      // If JSON-LD is not parseable we keep the current content unchanged.
+    }
   }
 
   private updateAlternateLinks(slug: string | null): void {

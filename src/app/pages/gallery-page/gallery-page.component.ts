@@ -60,6 +60,8 @@ export class GalleryPageComponent implements OnDestroy {
 
   protected readonly galleryImages = SHARED_GALLERY_IMAGES.map((image) => ({
     src: image.src,
+    srcSet: image.srcSet,
+    viewerSrc: image.viewerSrc,
     altKey: `galleryPage.alt.${image.id}`,
   }));
 

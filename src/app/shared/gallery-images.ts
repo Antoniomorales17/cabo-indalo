@@ -11,39 +11,53 @@ export type SharedGalleryImageId =
 export type SharedGalleryImage = {
   id: SharedGalleryImageId;
   src: string;
+  srcSet: string;
+  viewerSrc: string;
+};
+
+const UNSPLASH_PARAMS = 'auto=format,compress&fit=crop&q=72';
+
+const buildUnsplashImage = (photoId: string): Omit<SharedGalleryImage, 'id'> => {
+  const buildUrl = (width: number) => `https://images.unsplash.com/${photoId}?${UNSPLASH_PARAMS}&w=${width}`;
+  const widths = [480, 768, 1024, 1400];
+  return {
+    src: buildUrl(1024),
+    srcSet: widths.map((width) => `${buildUrl(width)} ${width}w`).join(', '),
+    viewerSrc: buildUrl(1800),
+  };
 };
 
 export const SHARED_GALLERY_IMAGES: SharedGalleryImage[] = [
   {
     id: 'living',
-    src: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=1400&q=80',
+    ...buildUnsplashImage('photo-1473116763249-2faaef81ccda'),
   },
   {
     id: 'bedroom',
-    src: 'https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?auto=format&fit=crop&w=1400&q=80',
+    ...buildUnsplashImage('photo-1496417263034-38ec4f0b665a'),
   },
   {
     id: 'kitchen',
-    src: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1400&q=80',
+    ...buildUnsplashImage('photo-1523413651479-597eb2da0ad6'),
   },
   {
     id: 'terrace',
-    src: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1400&q=80',
+    ...buildUnsplashImage('photo-1507089947368-19c1da9775ae'),
   },
   {
     id: 'interior',
-    src: 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1400&q=80',
+    ...buildUnsplashImage('photo-1512918728675-ed5a9ecdebfd'),
   },
   {
     id: 'coast',
-    src: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80',
+    ...buildUnsplashImage('photo-1500375592092-40eb2168fd21'),
   },
   {
     id: 'sunrise',
-    src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80',
+    ...buildUnsplashImage('photo-1507525428034-b723cf961d3e'),
   },
   {
     id: 'room',
-    src: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80',
+    ...buildUnsplashImage('photo-1505693416388-ac5ce068fe85'),
   },
 ];

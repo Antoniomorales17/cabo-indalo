@@ -29,6 +29,10 @@
           >
             <img
               [src]="image.src"
+              [attr.srcset]="image.srcSet"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              loading="lazy"
+              decoding="async"
               [alt]="image.altKey | translate"
               class="w-full object-cover transition duration-300 group-hover:scale-[1.02]"
             />
@@ -78,7 +82,12 @@
               ‹
             </button>
 
-            <img [src]="image.src" [alt]="image.altKey | translate" class="max-h-full w-full rounded-2xl object-contain shadow-2xl" />
+            <img
+              [src]="image.viewerSrc"
+              [alt]="image.altKey | translate"
+              decoding="async"
+              class="max-h-full w-full rounded-2xl object-contain shadow-2xl"
+            />
 
             <button
               type="button"
@@ -102,7 +111,13 @@
               [class.border-white]="activeImageIndex() === $index"
               [attr.aria-label]="image.altKey | translate"
             >
-              <img [src]="image.src" [alt]="image.altKey | translate" class="h-full w-full object-cover" />
+              <img
+                [src]="image.src"
+                [alt]="image.altKey | translate"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover"
+              />
             </button>
           }
         </div>
