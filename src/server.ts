@@ -36,6 +36,14 @@ app.use(
 );
 
 /**
+ * Redirect root URL to /es with a permanent 301 to avoid Google indexing
+ * the redirect as a separate page.
+ */
+app.get('/', (_req, res) => {
+  res.redirect(301, '/es');
+});
+
+/**
  * Handle all other requests by rendering the Angular application.
  */
 app.use((req, res, next) => {
