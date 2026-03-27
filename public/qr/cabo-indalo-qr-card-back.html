@@ -22,7 +22,7 @@
         place-items: center;
         padding: 24px;
         background: #f5f6f8;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
 
       .card {
@@ -44,11 +44,23 @@
         gap: 2.4mm;
       }
 
-      .top img {
+      .logo-wrap {
         width: 10mm;
         height: 10mm;
         border-radius: 50%;
         border: 0.25mm solid rgba(255, 255, 255, 0.5);
+        overflow: hidden;
+        flex-shrink: 0;
+        background: #fff;
+      }
+
+      .logo-wrap img {
+        width: 138%;
+        height: 138%;
+        margin-top: -19%;
+        margin-left: -19%;
+        display: block;
+        object-fit: cover;
       }
 
       .top h1 {
@@ -106,13 +118,18 @@
   <body>
     <article class="card">
       <header class="top">
-        <img src="../cabo-indalo.png" alt="Logo Cabo Indalo" />
+        <div class="logo-wrap">
+          <img src="../cabo-indalo.png" alt="Logo Cabo Indalo" />
+        </div>
         <h1>Cabo Indalo</h1>
       </header>
 
       <div class="line"></div>
 
-      <p class="text">Gracias por alojarte con nosotros. Escanea el QR del anverso y tendras toda la informacion de tu estancia en segundos.</p>
+      <p class="text">
+        Gracias por alojarte con nosotros. Escanea el QR del anverso y tendras toda la informacion
+        de tu estancia en segundos.
+      </p>
 
       <div class="contact">
         <a href="tel:+34647664536">+34 647 664 536</a>

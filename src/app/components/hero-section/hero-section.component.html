@@ -2,7 +2,7 @@
   <img
     src="https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=72&w=1280"
     srcset="
-      https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=72&w=768 768w,
+      https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=72&w=768   768w,
       https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=72&w=1280 1280w,
       https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=72&w=1920 1920w,
       https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=72&w=2400 2400w
@@ -18,6 +18,10 @@
   />
   <div
     class="absolute inset-0 bg-gradient-to-r from-[var(--sea-dark)]/94 via-[var(--sea-dark)]/74 to-[var(--sea)]/58"
+  ></div>
+  <div
+    class="absolute inset-x-0 bottom-0 h-20 sm:h-28"
+    style="background: linear-gradient(to bottom, transparent, var(--sand))"
   ></div>
 
   <header
@@ -40,7 +44,13 @@
         [class.border-white/35]="!hasScrolled"
         [class.bg-white/15]="!hasScrolled"
       >
-        <img src="/cabo-indalo.png" [alt]="'nav.brand' | translate" class="h-10 w-auto sm:h-11" />
+        <img
+          src="/cabo-indalo.png"
+          [alt]="'nav.brand' | translate"
+          class="h-10 w-auto sm:h-11"
+          width="44"
+          height="44"
+        />
         <span
           class="text-base font-semibold"
           [class.text-slate-900]="hasScrolled"

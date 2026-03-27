@@ -56,3 +56,15 @@ h4 {
     transition: none;
   }
 }
+
+/* Degradados suaves entre secciones */
+.section-fade {
+  height: 4rem;
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .section-fade {
+    height: 6rem;
+  }
+}
