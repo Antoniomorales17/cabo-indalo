@@ -16,7 +16,15 @@
     class="section-fade"
     style="background: linear-gradient(to bottom, var(--sand), var(--foam))"
   ></div>
-  <app-guest-registration-section></app-guest-registration-section>
+  @defer (on viewport) {
+    <app-guest-registration-section></app-guest-registration-section>
+  } @placeholder {
+    <section class="bg-[var(--foam)]">
+      <div class="mx-auto w-full max-w-7xl px-6 py-20 sm:px-10">
+        <div class="h-64 animate-pulse rounded-2xl bg-white/80"></div>
+      </div>
+    </section>
+  }
   <div
     class="section-fade"
     style="background: linear-gradient(to bottom, var(--foam), #ffffff)"
@@ -31,6 +39,14 @@
     class="section-fade"
     style="background: linear-gradient(to bottom, var(--sand), #ffffff)"
   ></div>
-  <app-contact-section></app-contact-section>
+  @defer (on viewport) {
+    <app-contact-section></app-contact-section>
+  } @placeholder {
+    <section class="bg-white">
+      <div class="mx-auto w-full max-w-7xl px-6 py-20 sm:px-10">
+        <div class="h-44 animate-pulse rounded-2xl bg-slate-100"></div>
+      </div>
+    </section>
+  }
   <app-footer></app-footer>
 </main>
