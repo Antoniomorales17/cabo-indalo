@@ -89,7 +89,9 @@
     "g4": "Tapas bars in San Jose",
     "g4Time": "8 min by car",
     "note": "Approximate times depending on traffic and season.",
-    "mapTitle": "Cabo Indalo map"
+    "mapTitle": "Cabo Indalo map",
+    "loadMap": "Load interactive map",
+    "openInMaps": "Open in Google Maps"
   },
   "guest": {
     "eyebrow": "Traveler registration",

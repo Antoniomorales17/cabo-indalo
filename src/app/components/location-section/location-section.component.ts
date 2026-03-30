@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RevealOnScrollDirective } from '../../directives/reveal-on-scroll.directive';
 
@@ -8,4 +8,10 @@ import { RevealOnScrollDirective } from '../../directives/reveal-on-scroll.direc
   templateUrl: './location-section.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LocationSectionComponent { }
+export class LocationSectionComponent {
+  readonly isMapVisible = signal(false);
+
+  showMap(): void {
+    this.isMapVisible.set(true);
+  }
+}

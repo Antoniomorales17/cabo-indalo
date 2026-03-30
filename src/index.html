@@ -46,7 +46,19 @@
     <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="dns-prefetch" href="https://www.google.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="preload"
+      as="image"
+      href="https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=60&w=1024"
+      imagesrcset="
+        https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=60&w=640 640w,
+        https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=60&w=1024 1024w,
+        https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=60&w=1440 1440w
+      "
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=optional"
       rel="stylesheet"
     />
 

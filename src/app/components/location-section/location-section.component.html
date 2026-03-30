@@ -5,13 +5,34 @@
   </div>
   <div class="mt-10 grid gap-6 lg:grid-cols-2">
     <div class="overflow-hidden rounded-2xl border border-[var(--sea)]/15 bg-white shadow-sm">
-      <iframe
-        [title]="'location.mapTitle' | translate"
-        src="https://www.google.com/maps?q=Calle+Poseidonia+14,+Cabo+de+Gata,+Almeria&output=embed"
-        class="h-[360px] w-full"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
+      @if (isMapVisible()) {
+        <iframe
+          [title]="'location.mapTitle' | translate"
+          src="https://www.google.com/maps?q=Calle+Poseidonia+14,+Cabo+de+Gata,+Almeria&output=embed"
+          class="h-[360px] w-full"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      } @else {
+        <div class="flex h-[360px] w-full flex-col items-center justify-center gap-4 bg-[var(--foam)] p-6 text-center">
+          <p class="text-sm text-slate-600">{{ 'location.note' | translate }}</p>
+          <button
+            type="button"
+            (click)="showMap()"
+            class="inline-flex items-center justify-center rounded-xl bg-[var(--sea-dark)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--sea)]"
+          >
+            {{ 'location.loadMap' | translate }}
+          </button>
+          <a
+            href="https://www.google.com/maps?q=Calle+Poseidonia+14,+Cabo+de+Gata,+Almeria"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-semibold text-[var(--sea-dark)] underline-offset-2 hover:underline"
+          >
+            {{ 'location.openInMaps' | translate }}
+          </a>
+        </div>
+      }
     </div>
     <div class="rounded-2xl border border-[var(--sea)]/15 bg-white p-6 shadow-sm">
       <h3 class="text-xl font-semibold text-slate-900">{{ 'location.nearby' | translate }}</h3>

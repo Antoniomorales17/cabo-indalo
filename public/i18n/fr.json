@@ -89,7 +89,9 @@
     "g4": "Bars a tapas a San Jose",
     "g4Time": "8 min en voiture",
     "note": "Temps indicatifs selon trafic et saison.",
-    "mapTitle": "Carte Cabo Indalo"
+    "mapTitle": "Carte Cabo Indalo",
+    "loadMap": "Charger la carte interactive",
+    "openInMaps": "Ouvrir dans Google Maps"
   },
   "guest": {
     "eyebrow": "Enregistrement des voyageurs",
