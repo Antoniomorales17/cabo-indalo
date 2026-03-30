@@ -15,15 +15,15 @@ export type SharedGalleryImage = {
   viewerSrc: string;
 };
 
-const UNSPLASH_PARAMS = 'auto=format,compress&fit=crop&q=60';
+const UNSPLASH_PARAMS = 'auto=format,compress&fit=crop&q=50';
 
 const buildUnsplashImage = (photoId: string): Omit<SharedGalleryImage, 'id'> => {
   const buildUrl = (width: number) => `https://images.unsplash.com/${photoId}?${UNSPLASH_PARAMS}&w=${width}`;
-  const widths = [400, 640, 960, 1280];
+  const widths = [320, 480, 640, 800];
   return {
-    src: buildUrl(640),
+    src: buildUrl(480),
     srcSet: widths.map((width) => `${buildUrl(width)} ${width}w`).join(', '),
-    viewerSrc: buildUrl(1600),
+    viewerSrc: buildUrl(1280),
   };
 };
 
