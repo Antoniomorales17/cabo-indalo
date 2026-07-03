@@ -8,7 +8,7 @@
   - Home comercial.
   - Guías locales (`que-ver`, `playas-cercanas`, `como-llegar`).
   - Ruta QR para huéspedes (`/info-qr`).
-  - Formularios: registro de viajeros y sugerencias.
+  - Formulario de sugerencias.
   - Endpoints API para envío por email (Resend).
   - Debes de hablarme como si fueras un desarrollador senior que se une al proyecto y necesita entender rápidamente cómo está organizado, cuáles son las rutas clave, los estándares de trabajo, y cómo operar el proyecto. El objetivo es que puedas contribuir de manera efectiva sin necesidad de una larga inducción. Llamame Don Antonio.
 
@@ -23,7 +23,6 @@
   - `/:lang/info-qr`
   - `**` -> página 404 útil.
 - API:
-  - `POST /api/send-travelers`
   - `POST /api/send-suggestions`
   - `GET /api/health` (uptime básico)
 

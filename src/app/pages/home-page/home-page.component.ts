@@ -5,7 +5,6 @@ import { FaqSectionComponent } from '../../components/faq-section/faq-section.co
 import { FeaturesSectionComponent } from '../../components/features-section/features-section.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { GalleryBentoComponent } from '../../components/gallery-bento/gallery-bento.component';
-import { GuestRegistrationSectionComponent } from '../../components/guest-registration-section/guest-registration-section.component';
 import { HeroSectionComponent } from '../../components/hero-section/hero-section.component';
 import { LocationSectionComponent } from '../../components/location-section/location-section.component';
 import { LocalGuidesSectionComponent } from '../../components/local-guides-section/local-guides-section.component';
@@ -18,7 +17,6 @@ import { LocalGuidesSectionComponent } from '../../components/local-guides-secti
     FeaturesSectionComponent,
     LocationSectionComponent,
     LocalGuidesSectionComponent,
-    GuestRegistrationSectionComponent,
     FaqSectionComponent,
     CtaSectionComponent,
     ContactSectionComponent,

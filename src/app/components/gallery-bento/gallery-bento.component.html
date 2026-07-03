@@ -16,7 +16,7 @@
     </a>
   </div>
 
-  <div class="grid auto-rows-[200px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="grid auto-rows-[220px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4" style="grid-auto-flow: dense">
     @for (image of galleryImages; track trackImage($index, image)) {
       <article
         appRevealOnScroll
@@ -32,7 +32,6 @@
         >
           <img
             [src]="image.src"
-            [attr.srcset]="image.srcSet"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             loading="lazy"
             decoding="async"

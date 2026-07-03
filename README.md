@@ -58,17 +58,3 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
-## Email Delivery With Resend
-
-This project includes a backend function at `api/send-travelers.ts` that sends traveler data by email using Resend.
-
-Required environment variables (Vercel Project Settings -> Environment Variables):
-
-- `RESEND_API_KEY`: your Resend API key.
-- `RESEND_FROM_EMAIL`: sender address, for example `Cabo Indalo <reservas@tudominio.com>`.
-- `TRAVELERS_TO_EMAIL`: destination inbox, for example `caboindalo@gmail.com`.
-
-Notes:
-
-- If `RESEND_FROM_EMAIL` is not configured, it falls back to `Cabo Indalo <onboarding@resend.dev>`.
-- For best deliverability, verify your domain in Resend and use a sender from that domain.

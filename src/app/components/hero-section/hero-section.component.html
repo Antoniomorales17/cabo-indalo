@@ -1,19 +1,13 @@
 <section id="inicio" class="relative min-h-[88vh] scroll-mt-24 overflow-hidden">
   <img
-    src="https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=50&w=768"
-    srcset="
-      https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=50&w=480   480w,
-      https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=50&w=768   768w,
-      https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=50&w=1024 1024w,
-      https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format,compress&fit=crop&q=50&w=1280 1280w
-    "
+    src="/gallery/1.avif"
     sizes="100vw"
     [alt]="'hero.title' | translate"
     loading="eager"
     decoding="async"
     fetchpriority="high"
-    width="2400"
-    height="1600"
+    width="1440"
+    height="1080"
     class="absolute inset-0 h-full w-full object-cover"
   />
   <div
@@ -90,26 +84,6 @@
           [class.text-white/90]="!hasScrolled"
           [class.hover:text-white]="!hasScrolled"
           >{{ 'nav.location' | translate }}</a
-        >
-        <a
-          [routerLink]="homeRoute"
-          fragment="registro-viajeros"
-          class="text-sm font-semibold transition"
-          [class.text-slate-700]="hasScrolled"
-          [class.hover:text-slate-900]="hasScrolled"
-          [class.text-white/90]="!hasScrolled"
-          [class.hover:text-white]="!hasScrolled"
-          >{{ 'nav.form' | translate }}</a
-        >
-        <a
-          [routerLink]="homeRoute"
-          fragment="contacto"
-          class="text-sm font-semibold transition"
-          [class.text-slate-700]="hasScrolled"
-          [class.hover:text-slate-900]="hasScrolled"
-          [class.text-white/90]="!hasScrolled"
-          [class.hover:text-white]="!hasScrolled"
-          >{{ 'nav.contact' | translate }}</a
         >
         <a
           [routerLink]="homeRoute"
@@ -214,28 +188,6 @@
         >
         <a
           [routerLink]="homeRoute"
-          fragment="registro-viajeros"
-          (click)="closeMobileMenu()"
-          class="rounded-lg px-3 py-2 text-sm font-semibold transition"
-          [class.text-slate-800]="hasScrolled"
-          [class.hover:bg-slate-100]="hasScrolled"
-          [class.text-white/90]="!hasScrolled"
-          [class.hover:bg-white/10]="!hasScrolled"
-          >{{ 'nav.form' | translate }}</a
-        >
-        <a
-          [routerLink]="homeRoute"
-          fragment="contacto"
-          (click)="closeMobileMenu()"
-          class="rounded-lg px-3 py-2 text-sm font-semibold transition"
-          [class.text-slate-800]="hasScrolled"
-          [class.hover:bg-slate-100]="hasScrolled"
-          [class.text-white/90]="!hasScrolled"
-          [class.hover:bg-white/10]="!hasScrolled"
-          >{{ 'nav.contact' | translate }}</a
-        >
-        <a
-          [routerLink]="homeRoute"
           fragment="faqs"
           (click)="closeMobileMenu()"
           class="rounded-lg px-3 py-2 text-sm font-semibold transition"
@@ -285,7 +237,7 @@
       </p>
       <div class="mt-8 flex flex-col gap-3 sm:flex-row">
         <a
-          href="https://www.airbnb.es/"
+          href="https://www.airbnb.es/rooms/1721160879958670001?photo_id=1688729784&amp;source_impression_id=p3_1783067745_P39KqnUS3wJnH_TF&amp;previous_page_section_name=1000"
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center justify-center rounded-xl bg-[var(--sun)] px-7 py-3 text-base font-semibold text-slate-900 transition hover:bg-[var(--sun-soft)]"

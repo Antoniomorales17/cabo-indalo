@@ -12,11 +12,14 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { RevealOnScrollDirective } from '../../directives/reveal-on-scroll.directive';
-import { SHARED_GALLERY_IMAGES, SharedGalleryImageId } from '../../shared/gallery-images';
+import {
+  BENTO_GALLERY_IMAGE_IDS,
+  SHARED_GALLERY_IMAGES,
+  SharedGalleryImageCategory,
+} from '../../shared/gallery-images';
 
 type GalleryImage = {
   src: string;
-  srcSet: string;
   viewerSrc: string;
   altKey: string;
   labelKey: string;
@@ -31,19 +34,22 @@ type GalleryImage = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GalleryBentoComponent implements OnDestroy {
-  protected readonly galleryImages: GalleryImage[] = SHARED_GALLERY_IMAGES.map((image, index) => {
-    const meta = this.getBentoMeta(image.id);
+  protected readonly galleryImages: GalleryImage[] = BENTO_GALLERY_IMAGE_IDS.map((id) =>
+    SHARED_GALLERY_IMAGES.find((image) => image.id === id)
+  )
+    .filter((image): image is (typeof SHARED_GALLERY_IMAGES)[number] => Boolean(image))
+    .map((image, index) => {
+      const meta = this.getBentoMeta(image.category, index);
 
-    return {
-      src: image.src,
-      srcSet: image.srcSet,
-      viewerSrc: image.viewerSrc,
-      altKey: meta.altKey,
-      labelKey: meta.labelKey,
-      revealDelay: 40 + index * 40,
-      layoutClass: meta.layoutClass,
-    };
-  });
+      return {
+        src: image.src,
+        viewerSrc: image.viewerSrc,
+        altKey: meta.altKey,
+        labelKey: meta.labelKey,
+        revealDelay: 40 + index * 40,
+        layoutClass: meta.layoutClass,
+      };
+    });
 
   protected readonly activeImageIndex = signal<number | null>(null);
   protected readonly isViewerOpen = computed(() => this.activeImageIndex() !== null);
@@ -163,28 +169,55 @@ export class GalleryBentoComponent implements OnDestroy {
     this.document.body.style.overflow = this.previousBodyOverflow;
   }
 
-  private getBentoMeta(id: SharedGalleryImageId): { altKey: string; labelKey: string; layoutClass: string } {
-    switch (id) {
-      case 'living':
-        return {
-          altKey: 'gallery.alt.living',
-          labelKey: 'gallery.labels.living',
-          layoutClass: 'sm:col-span-2 lg:row-span-2',
-        };
-      case 'bedroom':
-        return { altKey: 'gallery.alt.bedroom', labelKey: 'gallery.labels.bedroom', layoutClass: '' };
-      case 'kitchen':
-        return { altKey: 'gallery.alt.kitchen', labelKey: 'gallery.labels.kitchen', layoutClass: '' };
+  private getBentoMeta(
+    category: SharedGalleryImageCategory,
+    index: number
+  ): { altKey: string; labelKey: string; layoutClass: string } {
+    const isHero = index === 0 || index % 7 === 0;
+    const isTall = !isHero && (index % 5 === 0);
+    const isWide = !isHero && !isTall && (index % 3 === 1);
+
+    let layoutClass = '';
+
+    if (isHero) {
+      layoutClass = 'sm:col-span-2 lg:row-span-2';
+    } else if (isTall) {
+      layoutClass = 'lg:row-span-2';
+    } else if (isWide) {
+      layoutClass = 'sm:col-span-2';
+    }
+
+    switch (category) {
       case 'terrace':
-        return { altKey: 'gallery.alt.terrace', labelKey: 'gallery.labels.terrace', layoutClass: 'sm:col-span-2' };
-      case 'interior':
-        return { altKey: 'gallery.alt.cozy', labelKey: 'gallery.labels.cozy', layoutClass: '' };
+        layoutClass = 'sm:col-span-2 lg:row-span-2';
+        break;
       case 'coast':
-        return { altKey: 'gallery.alt.beach', labelKey: 'gallery.labels.beach', layoutClass: '' };
-      case 'sunrise':
-        return { altKey: 'gallery.alt.sunrise', labelKey: 'gallery.labels.sunrise', layoutClass: 'sm:col-span-2' };
+      case 'views':
+        layoutClass = 'sm:col-span-2';
+        break;
+    }
+
+    switch (category) {
+      case 'living':
+        return { altKey: 'gallery.alt.living', labelKey: 'gallery.labels.living', layoutClass };
+      case 'bedroom':
+        return { altKey: 'gallery.alt.bedroom', labelKey: 'gallery.labels.bedroom', layoutClass };
+      case 'kitchen':
+        return { altKey: 'gallery.alt.kitchen', labelKey: 'gallery.labels.kitchen', layoutClass };
+      case 'terrace':
+        return { altKey: 'gallery.alt.terrace', labelKey: 'gallery.labels.terrace', layoutClass };
+      case 'bathroom':
+        return { altKey: 'gallery.alt.bathroom', labelKey: 'gallery.labels.bathroom', layoutClass };
+      case 'exterior':
+        return { altKey: 'gallery.alt.exterior', labelKey: 'gallery.labels.exterior', layoutClass };
+      case 'views':
+        return { altKey: 'gallery.alt.views', labelKey: 'gallery.labels.views', layoutClass };
+      case 'interior':
+        return { altKey: 'gallery.alt.cozy', labelKey: 'gallery.labels.cozy', layoutClass };
+      case 'coast':
+        return { altKey: 'gallery.alt.beach', labelKey: 'gallery.labels.beach', layoutClass };
       case 'room':
-        return { altKey: 'gallery.alt.room', labelKey: 'gallery.labels.room', layoutClass: '' };
+        return { altKey: 'gallery.alt.room', labelKey: 'gallery.labels.room', layoutClass };
     }
   }
 }
